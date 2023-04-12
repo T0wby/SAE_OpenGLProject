@@ -10,6 +10,15 @@
     <Filter Include="glad">
       <UniqueIdentifier>{adfc8dc7-74dd-40f5-aa77-3a0620fab0bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{7b69a2bc-2b0c-47cb-87ad-bc3b12616989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{68d328bf-0173-4482-beb3-cfb88aa21869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\System">
+      <UniqueIdentifier>{29ed46d5-ed71-44af-a0e0-bbadd984ed9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\main.cpp">
@@ -21,10 +30,40 @@
     <ClCompile Include="..\Libs\glad\src\glad.c">
       <Filter>glad</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Mesh.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Material.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Component.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\System\DataManager.cpp">
+      <Filter>Core\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
       <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Mesh.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Material.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Component.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\System\DataManager.h">
+      <Filter>Core\System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

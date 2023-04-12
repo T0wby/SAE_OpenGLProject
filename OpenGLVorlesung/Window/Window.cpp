@@ -6,6 +6,15 @@ const int I_ERR_WIN_INIT_FAILED = -2;
 
 GLFWwindow* pWindow = nullptr;
 
+void CWindow::UpdateSwapBuffer(void)
+{
+}
+
+auto CWindow::GetWindowShouldClose(void) const -> const bool
+{
+	return false;
+}
+
 auto CWindow::Initialize(void) const -> const int
 {
 	if (!glfwInit()) return I_ERR_GLFW_INIT_FAILED;

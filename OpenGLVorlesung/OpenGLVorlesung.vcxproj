@@ -132,10 +132,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Libs\glad\src\glad.c" />
+    <ClCompile Include="Component\Component.cpp" />
+    <ClCompile Include="Component\Material.cpp" />
+    <ClCompile Include="Component\Mesh.cpp" />
     <ClCompile Include="Core\main.cpp" />
+    <ClCompile Include="Core\System\DataManager.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component\Component.h" />
+    <ClInclude Include="Component\Material.h" />
+    <ClInclude Include="Component\Mesh.h" />
+    <ClInclude Include="Core\System\DataManager.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Window\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
