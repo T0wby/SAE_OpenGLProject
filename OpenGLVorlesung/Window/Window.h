@@ -1,8 +1,10 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include <GLFW/glfw3.h>
+#include <../GLFW/glfw3.h>
+#include "../Component/Camera.h"
 #include <string>
+#include <memory>
 
 class CWindow
 {
@@ -22,6 +24,8 @@ private:
 	GLuint m_iWidth{ 0 };
 	GLuint m_iHeight{ 0 };
 	std::string m_sTitle{""};
+
+	std::shared_ptr<CCamera> m_pCamera;
 };
 
 #endif // !WINDOW_H

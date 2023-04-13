@@ -1,5 +1,8 @@
 #pragma once
 #include "Component.h"
+#include <vector>
+#include "../Core/General/Variables.h"
+
 class CMesh : IComponent
 {
 public:
@@ -9,11 +12,17 @@ public:
 	virtual void Draw(void) const override;
 	virtual void Finalize(void) override;
 private:
-	float m_fVertices[18] =
+	std::vector<Vertex> m_vertices =
 	{
-		-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, // links-unten rot
-		0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, // rechts-unten grün
-		0.0f, 0.5f, 0.0f, 0.0f, 0.0f, 1.0f, // mitte-oben blau
+		Vertex{Vertex::Position{-0.5f, -0.5f, 0.0f}, Vertex::Color::Red()}, // links-unten
+		Vertex{Vertex::Position{0.5f, -0.5f, 0.0f},  Vertex::Color::Green()}, // rechts-unten
+		Vertex{Vertex::Position{-0.5f, 0.5f, 0.0f},  Vertex::Color::Blue()}, // oben-links
+		Vertex{Vertex::Position{0.5f, 0.5f, 0.0f},   Vertex::Color::White()},
+	};
+
+	std::vector<unsigned int> m_indices = {
+		0, 1, 2,
+		2, 1, 3
 	};
 };
 

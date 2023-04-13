@@ -1,22 +1,22 @@
 #include "Material.h"
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include <../glad/glad.h>
+#include <../GLFW/glfw3.h>
 
 unsigned int I_SHADER_PROGRAMM = 0;
-const GLsizei I_SHADER_NUMB = 1;
+const GLsizei I_SHADER_ID = 1;
 
 const int CMaterial::Intialize(void) const
 {
     auto sVertArr = m_sVertexShader.c_str();
 
     auto iVertexShader = static_cast<GLuint>(glCreateShader(GL_VERTEX_SHADER)); // shader erstellen
-    glShaderSource(iVertexShader, I_SHADER_NUMB, &sVertArr, NULL); // datei angeben
+    glShaderSource(iVertexShader, I_SHADER_ID, &sVertArr, NULL); // datei angeben
     glCompileShader(iVertexShader); // kompilieren
 
     auto sFragArr = m_sFragmentShader.c_str();
 
     auto iFragmentShader = static_cast<GLuint>(glCreateShader(GL_FRAGMENT_SHADER)); // shader erstellen
-    glShaderSource(iFragmentShader, I_SHADER_NUMB, &sFragArr, NULL); // datei angeben
+    glShaderSource(iFragmentShader, I_SHADER_ID, &sFragArr, NULL); // datei angeben
     glCompileShader(iFragmentShader); // kompilieren
 
     I_SHADER_PROGRAMM = glCreateProgram();
@@ -28,6 +28,11 @@ const int CMaterial::Intialize(void) const
     glDeleteShader(iFragmentShader);
 
     return 0;
+}
+
+auto CMaterial::GetShaderID(void) const -> int const
+{
+    return I_SHADER_ID;
 }
 
 const int CMaterial::Update(void) const

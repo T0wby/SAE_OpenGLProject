@@ -102,9 +102,9 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);GLFW_INCLUDE_NONE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs\GLFW\include;$(SolutionDir)Libs\glad\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs\include\glm</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -119,9 +119,9 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);GLFW_INCLUDE_NONE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libs\GLFW\include;$(SolutionDir)Libs\glad\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libs\include\glm</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,21 +132,31 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Libs\glad\src\glad.c" />
+    <ClCompile Include="Component\Camera.cpp" />
     <ClCompile Include="Component\Component.cpp" />
     <ClCompile Include="Component\Material.cpp" />
     <ClCompile Include="Component\Mesh.cpp" />
+    <ClCompile Include="Core\General\Variables.cpp" />
     <ClCompile Include="Core\main.cpp" />
     <ClCompile Include="Core\System\DataManager.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="glad\Loader.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component\Camera.h" />
     <ClInclude Include="Component\Component.h" />
     <ClInclude Include="Component\Material.h" />
     <ClInclude Include="Component\Mesh.h" />
+    <ClInclude Include="Core\General\Variables.h" />
     <ClInclude Include="Core\System\DataManager.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="glad\Loader.h" />
     <ClInclude Include="Window\Window.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource Files\Shader\DefaultFragment.glsl" />
+    <None Include="Resource Files\Shader\DefaultVertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

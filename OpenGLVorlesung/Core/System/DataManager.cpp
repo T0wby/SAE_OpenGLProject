@@ -6,7 +6,9 @@ const std::string CDataManager::ReadFile(const char* a_sFilePath)
 {
     auto sContent = static_cast<std::string>("");
 
-    std::fstream stream(a_sFilePath, std::ios::in);
+    auto stream = std::fstream{};
+    stream.open(a_sFilePath, std::ios::in);
+
     if (!stream.is_open())
     {
         std::cout << "Err: Could not read file " << a_sFilePath << " File does not exist" << std::endl;
@@ -23,7 +25,7 @@ const std::string CDataManager::ReadFile(const char* a_sFilePath)
 
     stream.close();
 
-    if (!stream.is_open())
+    if (stream.is_open())
     {
         std::cout << "Err: Filestream still open " << std::endl;
         return std::string();

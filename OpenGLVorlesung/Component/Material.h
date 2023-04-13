@@ -7,6 +7,8 @@ public:
 	inline CMaterial(std::string a_sVertexShader, std::string a_sFragmentShader)
 		: m_sVertexShader(a_sVertexShader), m_sFragmentShader(a_sFragmentShader) {}
 
+	auto GetShaderID(void) const -> int const;
+
 	// Inherited via IComponent
 	virtual const int Intialize(void) const override;
 	virtual const int Update(void) const override;

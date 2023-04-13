@@ -19,6 +19,15 @@
     <Filter Include="Core\System">
       <UniqueIdentifier>{29ed46d5-ed71-44af-a0e0-bbadd984ed9a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{a0b97cd2-7853-4206-ae00-ea6865ee8ced}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shader">
+      <UniqueIdentifier>{694b636b-957c-4604-8d51-98bb299f9fba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\General">
+      <UniqueIdentifier>{b3aa2126-7d63-4e64-bc72-d4f3ce79716e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\main.cpp">
@@ -45,6 +54,15 @@
     <ClCompile Include="Core\System\DataManager.cpp">
       <Filter>Core\System</Filter>
     </ClCompile>
+    <ClCompile Include="glad\Loader.cpp">
+      <Filter>glad</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\General\Variables.cpp">
+      <Filter>Core\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Camera.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
@@ -65,5 +83,22 @@
     <ClInclude Include="Core\System\DataManager.h">
       <Filter>Core\System</Filter>
     </ClInclude>
+    <ClInclude Include="glad\Loader.h">
+      <Filter>glad</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\General\Variables.h">
+      <Filter>Core\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Camera.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resource Files\Shader\DefaultFragment.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="Resource Files\Shader\DefaultVertex.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>
