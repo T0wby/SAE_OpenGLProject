@@ -13,11 +13,11 @@ public:
 		: m_iWidth(a_iWidth), m_iHeight(a_iHeight), m_sTitle(a_sTitle){}
 
 	void UpdateSwapBuffer(void);
-
+	//void HandleKeys(GLFWwindow* a_pWindow, int a_iKey, int a_iScancode, int a_iAction, int a_iMode);
 	auto GetWindowShouldClose(void) const->const bool;
 
 	auto Initialize(void) const->const int;
-	auto Run(void) const->const int;
+	auto Update(void) const->const int;
 	auto Finalize(void) const->const int;
 
 private:

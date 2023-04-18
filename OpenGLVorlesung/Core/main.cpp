@@ -34,12 +34,22 @@ int Initialize()
 int Run()
 {
 	
+	while (!pWindow->GetWindowShouldClose())
+	{
+		pWindow->Update();
+
+		pWindow->UpdateSwapBuffer();
+	}
+
 	return I_SUCCESS;
 }
 
 void Finalize()
 {
-	
+	if (pWindow != nullptr)
+	{
+		pWindow->Finalize();
+	}
 }
 
 int main(void)

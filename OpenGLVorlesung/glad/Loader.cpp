@@ -5,7 +5,7 @@ const int I_GLAD_INIT_FAILED = 3;
 
 const int CLoader::Intialize(void) const
 {
-	/*auto iVersion = gladLoadGl();
+	auto iVersion = gladLoadGl();
 	if (iVersion == 0)
 	{
 		std::cout << "Err: Failed to open glad!" << std::endl;
@@ -14,7 +14,6 @@ const int CLoader::Intialize(void) const
 
 	glViewport(0, 0, m_iWidth, m_iHeight);
 
-	return I_SUCCESS;*/
 	return I_SUCCESS;
 }
 
