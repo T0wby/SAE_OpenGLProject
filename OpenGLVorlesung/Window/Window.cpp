@@ -10,7 +10,7 @@ auto CWindow::Initialize(void) const -> const int
 {
 	if (!glfwInit()) return I_ERR_GLFW_INIT_FAILED;
 
-	if (pWindow == nullptr) pWindow = glfwCreateWindow(640, 480, "Real Engine", nullptr, nullptr);
+	if (pWindow == nullptr) pWindow = glfwCreateWindow(640, 480, "SAE_Tobi_Engine", nullptr, nullptr);
 
 	if (!pWindow)
 	{
