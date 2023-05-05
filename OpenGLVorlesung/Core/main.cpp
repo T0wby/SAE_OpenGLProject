@@ -3,10 +3,11 @@
 
 const int I_SUCCESS = 0;
 
-std::unique_ptr<CWindow> pWindow;
+std::unique_ptr<CWindow> pWindow = nullptr;
 
 int Initialize()
 {
+	pWindow = std::make_unique<CWindow>();
 	return pWindow->Initialize();
 }
 
@@ -22,7 +23,6 @@ void Finalize()
 
 int main(void)
 {
-	pWindow = std::make_unique<CWindow>();
 	auto iErrorMsg = static_cast<int>(0);
 
 	iErrorMsg = Initialize();
