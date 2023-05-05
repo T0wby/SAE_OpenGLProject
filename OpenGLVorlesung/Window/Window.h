@@ -11,7 +11,7 @@ public:
 
 	auto Initialize(void) const->const int;
 	auto Update(void) const->const int;
-	auto Finalize(void) const->const int;
+	void Finalize(void);
 
 	auto GetWindowShouldClose(void) const->const bool;
 	void UpdateSwapBuffers(void);

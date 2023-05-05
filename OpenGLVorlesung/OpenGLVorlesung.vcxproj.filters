@@ -10,6 +10,9 @@
     <Filter Include="glad">
       <UniqueIdentifier>{adfc8dc7-74dd-40f5-aa77-3a0620fab0bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{d3a6e7f0-c2a4-48d9-ac57-8f969892730c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\main.cpp">
@@ -24,6 +27,12 @@
     <ClCompile Include="glad\Loader.cpp">
       <Filter>glad</Filter>
     </ClCompile>
+    <ClCompile Include="Components\Mesh.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Material.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
@@ -32,5 +41,22 @@
     <ClInclude Include="glad\Loader.h">
       <Filter>glad</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Mesh.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Component.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Material.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Core\DefaultFragment.glsl">
+      <Filter>Core</Filter>
+    </None>
+    <None Include="Core\DefaultVertex.glsl">
+      <Filter>Core</Filter>
+    </None>
   </ItemGroup>
 </Project>

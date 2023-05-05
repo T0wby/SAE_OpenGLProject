@@ -41,16 +41,15 @@ auto CWindow::Initialize(void) const -> const int
 auto CWindow::Update(void) const -> const int
 {
 	glfwPollEvents();
-	glClearColor(1, 0.5, 0.5, 1);
+	glClearColor(1.0f, 0.5f, 0.5f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	return I_SUCCESS;
 }
 
-auto CWindow::Finalize(void) const -> const int
+void CWindow::Finalize(void)
 {
 	glfwTerminate();
-	return I_SUCCESS;
 }
 
 auto CWindow::GetWindowShouldClose(void) const -> const bool
