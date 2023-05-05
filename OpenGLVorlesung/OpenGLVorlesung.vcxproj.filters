@@ -18,13 +18,19 @@
     <ClCompile Include="Window\Window.cpp">
       <Filter>Window</Filter>
     </ClCompile>
-    <ClCompile Include="..\Libs\glad\src\glad.c">
+    <ClCompile Include="glad\src\glad.c">
+      <Filter>glad</Filter>
+    </ClCompile>
+    <ClCompile Include="glad\Loader.cpp">
       <Filter>glad</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
       <Filter>Window</Filter>
+    </ClInclude>
+    <ClInclude Include="glad\Loader.h">
+      <Filter>glad</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
