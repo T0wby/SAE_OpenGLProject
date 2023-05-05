@@ -13,6 +13,9 @@
     <Filter Include="Components">
       <UniqueIdentifier>{d3a6e7f0-c2a4-48d9-ac57-8f969892730c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\System">
+      <UniqueIdentifier>{cdeb5d5d-241a-4b91-9e40-76b2fe0b20f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\main.cpp">
@@ -33,6 +36,9 @@
     <ClCompile Include="Components\Material.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Core\System\DataManager.cpp">
+      <Filter>Core\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
@@ -50,12 +56,15 @@
     <ClInclude Include="Components\Material.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Core\System\DataManager.h">
+      <Filter>Core\System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Core\DefaultFragment.glsl">
+    <None Include="..\Shader\DefaultFragment.glsl">
       <Filter>Core</Filter>
     </None>
-    <None Include="Core\DefaultVertex.glsl">
+    <None Include="..\Shader\DefaultVertex.glsl">
       <Filter>Core</Filter>
     </None>
   </ItemGroup>

@@ -10,14 +10,16 @@ unsigned int I_SHADER_PROGRAM = 0;
 const int CMaterial::Initialize(void) const
 {
     // VertexShader
-    GLuint iVertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(iVertexShader, I_SHADER_COUNT, &m_sVertexShader, NULL); // Binding iVertexShader with the const char m_sVertexShader
+    auto sVertArr = m_sVertexShader.c_str();
+    auto iVertexShader = static_cast<GLuint>(glCreateShader(GL_VERTEX_SHADER));
+    glShaderSource(iVertexShader, I_SHADER_COUNT, &sVertArr, NULL); // Binding iVertexShader with the string m_sVertexShader
     glCompileShader(iVertexShader);
 
 
     // FragmentShader
-    GLuint iFragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(iFragmentShader, I_SHADER_COUNT, &m_sFragmentShader, NULL); // Binding iFragmentShader with the const char m_sFragmentShader
+    auto sFragArr = m_sFragmentShader.c_str();
+    auto iFragmentShader = static_cast<GLuint>(glCreateShader(GL_FRAGMENT_SHADER));
+    glShaderSource(iFragmentShader, I_SHADER_COUNT, &sFragArr, NULL); // Binding iFragmentShader with the string m_sFragmentShader
     glCompileShader(iFragmentShader);
 
     // ShaderBuffer(Programm)

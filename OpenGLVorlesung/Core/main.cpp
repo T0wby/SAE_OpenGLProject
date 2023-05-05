@@ -1,4 +1,5 @@
 #include "../glad/Loader.h"
+#include "System/DataManager.h"
 #include "../Window/Window.h"
 #include "../Components/Mesh.h"
 #include "../Components/Material.h"
@@ -13,10 +14,13 @@ std::unique_ptr<IComponent> pMesh = nullptr;
 
 int Initialize()
 {
+	auto fileVertex = CDataManager::ReadFile("../../Shader/DefaultVertex.glsl");
+	auto fileFragment = CDataManager::ReadFile("../../Shader/DefaultFragment.glsl");
+
 	auto iErrorMsg = static_cast<int>(0);
 	pWindow = std::make_unique<CWindow>(640, 480, "SAE_Tobi_Engine");
 	pGladLoader = std::make_unique<CLoader>(640, 480);
-	pMaterial = std::make_unique<CMaterial>();
+	pMaterial = std::make_unique<CMaterial>(fileVertex, fileFragment);
 	pMesh = std::make_unique<CMesh>();
 
 	iErrorMsg = pWindow->Initialize();
