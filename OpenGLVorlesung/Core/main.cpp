@@ -23,8 +23,8 @@ std::unique_ptr<IComponent> pMesh = nullptr;
 
 int Initialize()
 {
-	auto vertexShader = CDataManager::ReadFile("Resource Files/Shader/DefaultFragmentShader.glsl");
-	auto fragmentShader = CDataManager::ReadFile("Resource Files/Shader/DefaultVertexShader.glsl");
+	auto vertexShader = CDataManager::ReadFile("Resource Files/Shader/DefaultVertexShader.glsl");
+	auto fragmentShader = CDataManager::ReadFile("Resource Files/Shader/DefaultFragmentShader.glsl");
 
 	auto iErrorMsg = static_cast<int>(0);
 

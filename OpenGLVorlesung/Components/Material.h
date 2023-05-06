@@ -22,7 +22,7 @@ private:
 	std::string m_sVertexShader{ "" };
 	std::string m_sFragmentShader{ "" };
 
-	std::string m_sTestVertexShader =
+	/*std::string m_sTestVertexShader =
 		"#version 330 core\n"
 		"layout(location = 0) in vec3 position;\n"
 		"layout(location = 1) in vec3 color;\n"
@@ -39,7 +39,7 @@ private:
 		"void main()"
 		"{"
 		"fragColor = vec4(vertexColor, 1.0f);\n"
-		"}\n";
+		"}\n";*/
 };
 #endif // !MATERIAL_H
 

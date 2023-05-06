@@ -1,6 +1,7 @@
 #include "Material.h"
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <iostream>
 
 const GLsizei I_SHADER_ID = 1;
 
@@ -14,12 +15,21 @@ auto CMaterial::GetShaderID(void) const -> const int
 
 const int CMaterial::Initialize(void) const
 {
+    const int buffersize{ 1024 };
+    int success{};
+    char infoLog[buffersize];
     // VertexShader
     auto sVertArr = m_sVertexShader.c_str();
     auto iVertexShader = static_cast<GLuint>(glCreateShader(GL_VERTEX_SHADER));
     glShaderSource(iVertexShader, I_SHADER_ID, &sVertArr, NULL); // Binding iVertexShader with the string m_sVertexShader
     glCompileShader(iVertexShader);
 
+    glGetShaderiv(iVertexShader, GL_COMPILE_STATUS, &success);
+    if (!success)
+    {
+        glGetShaderInfoLog(iVertexShader, buffersize, nullptr, infoLog);
+        std::cout << "ERR: VertexShader compilation failed!\n" << infoLog << std::endl;
+    }
 
     // FragmentShader
     auto sFragArr = m_sFragmentShader.c_str();
@@ -27,11 +37,25 @@ const int CMaterial::Initialize(void) const
     glShaderSource(iFragmentShader, I_SHADER_ID, &sFragArr, NULL); // Binding iFragmentShader with the string m_sFragmentShader
     glCompileShader(iFragmentShader);
 
+    glGetShaderiv(iFragmentShader, GL_COMPILE_STATUS, &success);
+    if (!success)
+    {
+        glGetShaderInfoLog(iFragmentShader, buffersize, nullptr, infoLog);
+        std::cout << "ERR: FragmentShader compilation failed!\n" << infoLog << std::endl;
+    }
+
     // ShaderBuffer(Programm)
     I_SHADER_PROGRAM = glCreateProgram();
     glAttachShader(I_SHADER_PROGRAM, iVertexShader);
     glAttachShader(I_SHADER_PROGRAM, iFragmentShader);
     glLinkProgram(I_SHADER_PROGRAM);
+
+    glGetProgramiv(I_SHADER_PROGRAM, GL_LINK_STATUS, &success);
+    if (!success)
+    {
+        glGetProgramInfoLog(I_SHADER_PROGRAM, buffersize, nullptr, infoLog);
+        std::cout << "ERR: Shader Linking failed!\n" << infoLog << std::endl;
+    }
 
     glDeleteShader(iVertexShader);
     glDeleteShader(iFragmentShader);
