@@ -1,26 +1,41 @@
 #include "../glad/Loader.h"
 #include "System/DataManager.h"
 #include "../Window/Window.h"
+#include "../Components/Camera.h"
 #include "../Components/Mesh.h"
 #include "../Components/Material.h"
+#include <glm/glm.hpp>
 #include <memory>
 
 const int I_SUCCESS = 0;
+const int I_WIDTH = 640;
+const int I_HEIGHT = 640;
 
+
+// System
 std::unique_ptr<CWindow> pWindow = nullptr;
 std::unique_ptr<CLoader> pGladLoader = nullptr;
-std::unique_ptr<IComponent> pMaterial = nullptr;
+
+// Components
+std::shared_ptr<CCamera> pCamera = nullptr;
+std::unique_ptr<CMaterial> pMaterial = nullptr;
 std::unique_ptr<IComponent> pMesh = nullptr;
 
 int Initialize()
 {
-	auto fileVertex = CDataManager::ReadFile("../../Shader/DefaultVertex.glsl");
-	auto fileFragment = CDataManager::ReadFile("../../Shader/DefaultFragment.glsl");
+	auto vertexShader = CDataManager::ReadFile("Resource Files/Shader/DefaultFragmentShader.glsl");
+	auto fragmentShader = CDataManager::ReadFile("Resource Files/Shader/DefaultVertexShader.glsl");
 
 	auto iErrorMsg = static_cast<int>(0);
-	pWindow = std::make_unique<CWindow>(640, 480, "SAE_Tobi_Engine");
-	pGladLoader = std::make_unique<CLoader>(640, 480);
-	pMaterial = std::make_unique<CMaterial>(fileVertex, fileFragment);
+
+	pCamera = std::make_shared<CCamera>(I_WIDTH, I_HEIGHT, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -0.5f), glm::vec3(0.0f, 1.0f, 0.0f));
+
+	// System
+	pWindow = std::make_unique<CWindow>(I_WIDTH, I_HEIGHT, "SAE_Tobi_Engine", pCamera);
+	pGladLoader = std::make_unique<CLoader>(I_WIDTH, I_HEIGHT);
+
+	// Components
+	pMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader);
 	pMesh = std::make_unique<CMesh>();
 
 	iErrorMsg = pWindow->Initialize();
@@ -43,6 +58,9 @@ int Run()
 	while (!pWindow->GetWindowShouldClose())
 	{
 		pWindow->Update();
+
+		pCamera->SetCameraData(60.0f, 0.1f, 1000.0f, pMaterial->GetShaderID(), "camMatrix");
+		pCamera->Update();
 
 		pMaterial->Draw();
 		pMesh->Draw();

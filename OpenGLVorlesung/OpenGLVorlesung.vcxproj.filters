@@ -16,6 +16,15 @@
     <Filter Include="Core\System">
       <UniqueIdentifier>{cdeb5d5d-241a-4b91-9e40-76b2fe0b20f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{124fe819-8be0-4bcc-835f-7a7dfcac81a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shader">
+      <UniqueIdentifier>{d7be506b-5549-4107-83c9-88018efec1e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\General">
+      <UniqueIdentifier>{e06577c0-c687-4929-a933-e3053ac18496}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\main.cpp">
@@ -39,6 +48,12 @@
     <ClCompile Include="Core\System\DataManager.cpp">
       <Filter>Core\System</Filter>
     </ClCompile>
+    <ClCompile Include="Core\General\Variables.cpp">
+      <Filter>Core\General</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Camera.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
@@ -59,13 +74,19 @@
     <ClInclude Include="Core\System\DataManager.h">
       <Filter>Core\System</Filter>
     </ClInclude>
+    <ClInclude Include="Core\General\Variables.h">
+      <Filter>Core\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Camera.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Shader\DefaultFragment.glsl">
-      <Filter>Core</Filter>
+    <None Include="Resource Files\Shader\DefaultFragmentShader.glsl">
+      <Filter>Resource Files\Shader</Filter>
     </None>
-    <None Include="..\Shader\DefaultVertex.glsl">
-      <Filter>Core</Filter>
+    <None Include="Resource Files\Shader\DefaultVertexShader.glsl">
+      <Filter>Resource Files\Shader</Filter>
     </None>
   </ItemGroup>
 </Project>

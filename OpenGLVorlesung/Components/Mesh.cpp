@@ -2,15 +2,14 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-constexpr GLsizei I_VERTEX_SIZE = 6 * sizeof(float);
-constexpr GLsizei I_VERT_ELEM_SIZE = 3 * sizeof(float);
 const int I_DEFAULT = 0;
 const GLsizei I_BUF_NUMB = 1;
 const GLint I_FIRST_IDX = 0;
 const GLint I_SECOND_IDX = 1;
 const GLint I_VERTEX_COUNT = 3;
 
-unsigned int I_VERTEX_BUFFER = 0; // Iterator
+GLuint I_VERTEX_BUFFER = 0; // Iterator
+GLuint I_ELEM_BUFFER = 0; // Index Buffer
 
 const int CMesh::Initialize(void) const
 {
@@ -19,14 +18,20 @@ const int CMesh::Initialize(void) const
 	// Bind VertexArray to system
 	glBindVertexArray(I_VERTEX_BUFFER);
 
-	// Generate Buffer and define it
-	glGenBuffers(I_BUF_NUMB, &I_VERTEX_BUFFER);
-	glBindBuffer(GL_ARRAY_BUFFER, I_VERTEX_BUFFER);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(m_fVertices), m_fVertices, GL_STATIC_DRAW);
-	// Defining how we go through the Data(Start at 0, got 4 Vertices, Data in Float, not normalized, One data set contains 6 floats in Pos and Color, void pointer)
-	glVertexAttribPointer(I_FIRST_IDX, I_VERTEX_COUNT, GL_FLOAT, GL_FALSE, I_VERTEX_SIZE, (void*)I_DEFAULT);
+	// Generate VertexBuffer and define it
+	glGenBuffers(I_BUF_NUMB, &I_VERTEX_BUFFER); // Generate Buffer
+	glBindBuffer(GL_ARRAY_BUFFER, I_VERTEX_BUFFER); // Connect with OpenGL
+	glBufferData(GL_ARRAY_BUFFER, m_vertices.size() * sizeof(Vertex), &m_vertices.front(), GL_STATIC_DRAW); // Initialize with data
+
+	// Generate IndexBuffer and define it
+	glGenBuffers(I_BUF_NUMB, &I_ELEM_BUFFER);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, I_ELEM_BUFFER);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indices.size() * sizeof(unsigned int), &m_indices.front(), GL_STATIC_DRAW);
+
+	// Defining how we go through the Data(Start at 0, got number of Vertices, Data in Float, not normalized, One data set contains 6 floats in Pos and Color, void pointer)
+	glVertexAttribPointer(I_FIRST_IDX, I_VERTEX_COUNT, GL_FLOAT, GL_FALSE, Vertex::GetSize(), (void*)I_DEFAULT);
 	glEnableVertexAttribArray(I_FIRST_IDX);
-	glVertexAttribPointer(I_SECOND_IDX, I_VERTEX_COUNT, GL_FLOAT, GL_FALSE, I_VERTEX_SIZE, (void*)I_VERT_ELEM_SIZE);
+	glVertexAttribPointer(I_SECOND_IDX, I_VERTEX_COUNT, GL_FLOAT, GL_FALSE, Vertex::GetSize(), (void*)Vertex::GetElemSize());
 	glEnableVertexAttribArray(I_SECOND_IDX);
 
 	return 0;
@@ -40,7 +45,10 @@ const int CMesh::Update(void) const
 void CMesh::Draw(void)
 {
 	glBindVertexArray(I_VERTEX_BUFFER); // Data from Buffer to OpenGL
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, I_ELEM_BUFFER);
+
 	glDrawArrays(GL_TRIANGLES, I_FIRST_IDX, I_VERTEX_COUNT); // Updating Viewport
+	glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, (void*)I_DEFAULT);
 }
 
 void CMesh::Finalize(void)

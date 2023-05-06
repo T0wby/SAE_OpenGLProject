@@ -11,8 +11,7 @@ const std::string CDataManager::ReadFile(const char* a_sFilePath)
 
     if (!stream.is_open())
     {
-        std::cout << "Err: Could not read file" << a_sFilePath << "File does not exist" << std::endl;
-
+        std::cout << "Err: Could not read file " << a_sFilePath << " File does not exist" << std::endl;
         return std::string();
     }
 
@@ -26,12 +25,9 @@ const std::string CDataManager::ReadFile(const char* a_sFilePath)
 
     stream.close();
 
-
-
     if (stream.is_open())
     {
-        std::cout << "Err: Filestream is still open!" << std::endl;
-
+        std::cout << "Err: Filestream still open " << std::endl;
         return std::string();
     }
 

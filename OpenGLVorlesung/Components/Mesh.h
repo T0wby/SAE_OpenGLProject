@@ -3,6 +3,7 @@
 
 #include "Component.h"
 #include <vector>
+#include "../Core/General/Variables.h"
 
 class CMesh : public IComponent
 {
@@ -14,14 +15,19 @@ public:
 	virtual void Draw(void) override;
 	virtual void Finalize(void) override;
 
-private:
-	float m_fVertices[18] =
+private: 
+	std::vector<Vertex> m_vertices =
 	{
-		-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
-		 0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
-		-0.5f, 0.5f, 0.0f,  0.0f, 0.0f, 1.0f,
-		 //0.5f, 0.5f, 0.0f,  1.0f, 0.0f, 1.0f,
-		 //0.0f, 1.0f, 0.0f,  1.0f, 0.0f, 1.0f
+		Vertex{Vertex::Position{-0.5f, -0.5f, 0.0f}, Vertex::Color::Red()}, // links-unten
+		Vertex{Vertex::Position{0.5f, -0.5f, 0.0f},  Vertex::Color::Green()}, // rechts-unten
+		Vertex{Vertex::Position{-0.5f, 0.5f, 0.0f},  Vertex::Color::Blue()}, // oben-links
+		Vertex{Vertex::Position{0.5f, 0.5f, 0.0f},   Vertex::Color::White()},
+	};
+
+	std::vector<unsigned int> m_indices = 
+	{
+		0, 1, 2,
+		2, 1, 3
 	};
 };
 #endif // !MESH_H
