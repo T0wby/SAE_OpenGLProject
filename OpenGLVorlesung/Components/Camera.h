@@ -5,6 +5,7 @@
 #include <GLFW/glfw3.h>
 #include "Component.h"
 #include <glm/glm.hpp>
+#include <iostream>
 
 class CCamera : public IComponent
 {
@@ -18,7 +19,12 @@ public:
 		m_cameraData = { a_fFOVdegree , a_fNearPlane , a_fFarPlane , a_iShaderID, a_sName };
 	}
 
-	inline void SetPosition(glm::vec3 a_pos) { m_pos += a_pos; }
+	inline void SetPosition(glm::vec3 a_pos) 
+	{ 
+		m_pos += a_pos; 
+		std::cout << "Camera Pos is X: " << m_pos.x << " Y: " << m_pos.y << " Z: " << m_pos.z << std::endl;
+
+	}
 
 	// Inherited via IComponent
 	virtual const int Initialize(void) const override;

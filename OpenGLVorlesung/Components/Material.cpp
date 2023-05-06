@@ -18,6 +18,7 @@ const int CMaterial::Initialize(void) const
     const int buffersize{ 1024 };
     int success{};
     char infoLog[buffersize];
+
     // VertexShader
     auto sVertArr = m_sVertexShader.c_str();
     auto iVertexShader = static_cast<GLuint>(glCreateShader(GL_VERTEX_SHADER));

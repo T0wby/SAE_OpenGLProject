@@ -19,16 +19,14 @@ std::unique_ptr<CLoader> pGladLoader = nullptr;
 // Components
 std::shared_ptr<CCamera> pCamera = nullptr;
 std::unique_ptr<CMaterial> pMaterial = nullptr;
-std::unique_ptr<IComponent> pMesh = nullptr;
+std::unique_ptr<CMesh> pMesh = nullptr;
 
 int Initialize()
 {
 	auto vertexShader = CDataManager::ReadFile("Resource Files/Shader/DefaultVertexShader.glsl");
 	auto fragmentShader = CDataManager::ReadFile("Resource Files/Shader/DefaultFragmentShader.glsl");
 
-	auto iErrorMsg = static_cast<int>(0);
-
-	pCamera = std::make_shared<CCamera>(I_WIDTH, I_HEIGHT, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, -0.5f), glm::vec3(0.0f, 1.0f, 0.0f));
+	pCamera = std::make_shared<CCamera>(I_WIDTH, I_HEIGHT, glm::vec3(0.0f, 0.0f, 2.0f), glm::vec3(0.0f, 0.0f, -0.5f), glm::vec3(0.0f, 1.0f, 0.0f));
 
 	// System
 	pWindow = std::make_unique<CWindow>(I_WIDTH, I_HEIGHT, "SAE_Tobi_Engine", pCamera);
@@ -38,18 +36,15 @@ int Initialize()
 	pMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader);
 	pMesh = std::make_unique<CMesh>();
 
-	iErrorMsg = pWindow->Initialize();
-	if (iErrorMsg != 0) return iErrorMsg;
+	auto iErrorMsg = pWindow->Initialize();
 
 	iErrorMsg = pGladLoader->Initialize();
-	if (iErrorMsg != 0) return iErrorMsg;
 
 	iErrorMsg = pMaterial->Initialize();
-	if (iErrorMsg != 0) return iErrorMsg;
 	
 	iErrorMsg = pMesh->Initialize();
-	if (iErrorMsg != 0) return iErrorMsg;
 
+	//glEnable(GL_DEPTH_TEST);
 	return iErrorMsg;
 }
 
@@ -59,7 +54,7 @@ int Run()
 	{
 		pWindow->Update();
 
-		pCamera->SetCameraData(60.0f, 0.1f, 1000.0f, pMaterial->GetShaderID(), "camMatrix");
+		pCamera->SetCameraData(45.0f, 0.1f, 1000.0f, pMaterial->GetShaderID(), "camMatrix");
 		pCamera->Update();
 
 		pMaterial->Draw();
@@ -80,12 +75,12 @@ int main(void)
 	auto iErrorMsg = static_cast<int>(0);
 
 	iErrorMsg = Initialize();
-	if (iErrorMsg != 0) return iErrorMsg;
+	//if (iErrorMsg != 0) return iErrorMsg;
 
 	iErrorMsg = Run();
-	if (iErrorMsg != 0) return iErrorMsg;
+	//if (iErrorMsg != 0) return iErrorMsg;
 
 	Finalize();
 	
-	return I_SUCCESS;
+	return iErrorMsg;
 }

@@ -19,19 +19,19 @@ const int CMesh::Initialize(void) const
 	glBindVertexArray(I_VERTEX_BUFFER);
 
 	// Generate VertexBuffer and define it
-	glGenBuffers(I_BUF_NUMB, &I_VERTEX_BUFFER); // Generate Buffer
-	glBindBuffer(GL_ARRAY_BUFFER, I_VERTEX_BUFFER); // Connect with OpenGL
-	glBufferData(GL_ARRAY_BUFFER, m_vertices.size() * sizeof(Vertex), &m_vertices.front(), GL_STATIC_DRAW); // Initialize with data
+	glGenBuffers(I_BUF_NUMB, &I_VERTEX_BUFFER); // buf = new Buffer()
+	glBindBuffer(GL_ARRAY_BUFFER, I_VERTEX_BUFFER); // _openGL.SetBuffer(buf);
+	glBufferData(GL_ARRAY_BUFFER, m_vertices.size() * sizeof(Vertex), &m_vertices.front(), GL_STATIC_DRAW); //buf.Initialize(IsArray, _size, ref _vertices, IsStaticDraw);
 
 	// Generate IndexBuffer and define it
 	glGenBuffers(I_BUF_NUMB, &I_ELEM_BUFFER);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, I_ELEM_BUFFER);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indices.size() * sizeof(unsigned int), &m_indices.front(), GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indices.size() * sizeof(unsigned int), &m_indices[0], GL_STATIC_DRAW);
 
 	// Defining how we go through the Data(Start at 0, got number of Vertices, Data in Float, not normalized, One data set contains 6 floats in Pos and Color, void pointer)
 	glVertexAttribPointer(I_FIRST_IDX, I_VERTEX_COUNT, GL_FLOAT, GL_FALSE, Vertex::GetSize(), (void*)I_DEFAULT);
 	glEnableVertexAttribArray(I_FIRST_IDX);
-	glVertexAttribPointer(I_SECOND_IDX, I_VERTEX_COUNT, GL_FLOAT, GL_FALSE, Vertex::GetSize(), (void*)Vertex::GetElemSize());
+	glVertexAttribPointer(I_SECOND_IDX, I_VERTEX_COUNT, GL_FLOAT, GL_FALSE, Vertex::GetSize(), (void*)(Vertex::GetElemSize()));
 	glEnableVertexAttribArray(I_SECOND_IDX);
 
 	return 0;
@@ -48,7 +48,7 @@ void CMesh::Draw(void)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, I_ELEM_BUFFER);
 
 	glDrawArrays(GL_TRIANGLES, I_FIRST_IDX, I_VERTEX_COUNT); // Updating Viewport
-	glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, (void*)I_DEFAULT);
+	glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, (void*)0);
 }
 
 void CMesh::Finalize(void)
