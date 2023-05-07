@@ -15,7 +15,6 @@ const int CMesh::Initialize(void) const
 {
 	// Generating VertexArray
 	glGenVertexArrays(I_BUF_NUMB, &I_VERTEX_BUFFER);
-	// Bind VertexArray to system
 	glBindVertexArray(I_VERTEX_BUFFER);
 
 	// Generate VertexBuffer and define it

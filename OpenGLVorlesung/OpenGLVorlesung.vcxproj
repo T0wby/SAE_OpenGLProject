@@ -141,6 +141,7 @@
     <ClCompile Include="Core\System\DataManager.cpp" />
     <ClCompile Include="glad\Loader.cpp" />
     <ClCompile Include="glad\src\glad.c" />
+    <ClCompile Include="Input\UserInput.cpp" />
     <ClCompile Include="Window\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -151,11 +152,12 @@
     <ClInclude Include="Core\General\Variables.h" />
     <ClInclude Include="Core\System\DataManager.h" />
     <ClInclude Include="glad\Loader.h" />
+    <ClInclude Include="Input\UserInput.h" />
     <ClInclude Include="Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resource Files\Shader\DefaultFragmentShader.glsl" />
-    <None Include="Resource Files\Shader\DefaultVertexShader.glsl" />
+    <None Include="Resource Files\Shader\DefaultFragment.glsl" />
+    <None Include="Resource Files\Shader\DefaultVertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

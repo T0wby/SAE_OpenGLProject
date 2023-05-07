@@ -25,6 +25,9 @@
     <Filter Include="Core\General">
       <UniqueIdentifier>{e06577c0-c687-4929-a933-e3053ac18496}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{2739dea7-f609-4fef-a46e-002fdeb62ea0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\main.cpp">
@@ -54,6 +57,9 @@
     <ClCompile Include="Components\Camera.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Input\UserInput.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
@@ -80,12 +86,15 @@
     <ClInclude Include="Components\Camera.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Input\UserInput.h">
+      <Filter>Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resource Files\Shader\DefaultFragmentShader.glsl">
+    <None Include="Resource Files\Shader\DefaultFragment.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
-    <None Include="Resource Files\Shader\DefaultVertexShader.glsl">
+    <None Include="Resource Files\Shader\DefaultVertex.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
   </ItemGroup>

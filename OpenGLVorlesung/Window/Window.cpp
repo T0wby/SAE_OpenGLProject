@@ -8,41 +8,41 @@ GLFWwindow* pWindow = nullptr;
 
 std::shared_ptr<CCamera> pCurrCamera = nullptr;
 
-void HandleKeys(GLFWwindow* a_pWindow, int a_iKey, int a_iScancode, int a_iAction, int a_iModus)
-{
-	if (a_iAction == GLFW_PRESS || a_iAction == GLFW_REPEAT)
-	{
-		if (a_iAction == GLFW_PRESS && a_iKey == GLFW_KEY_ESCAPE)
-		{
-			glfwSetWindowShouldClose(pWindow, GLFW_TRUE);
-		}
-		if (a_iKey == GLFW_KEY_W || a_iKey == GLFW_KEY_UP)
-		{
-			pCurrCamera->SetPosition(glm::vec3(0.0f, 0.0f, 1.0f));
-		}
-		if (a_iKey == GLFW_KEY_A || a_iKey == GLFW_KEY_LEFT)
-		{
-			pCurrCamera->SetPosition(glm::vec3(1.0f, 0.0f, 0.0f));
-		}
-		if (a_iKey == GLFW_KEY_S || a_iKey == GLFW_KEY_DOWN)
-		{
-			pCurrCamera->SetPosition(glm::vec3(0.0f, 0.0f, -1.0f));
-		}
-		if (a_iKey == GLFW_KEY_D || a_iKey == GLFW_KEY_RIGHT)
-		{
-			pCurrCamera->SetPosition(glm::vec3(-1.0f, 0.0f, 0.0f));
-		}
-		if (a_iKey == GLFW_KEY_Q)
-		{
-			pCurrCamera->SetPosition(glm::vec3(0.0f, -1.0f, 0.0f));
-		}
-		if (a_iKey == GLFW_KEY_E)
-		{
-			pCurrCamera->SetPosition(glm::vec3(0.0f, 1.0f, 0.0f));
-		}
-	}
+//void HandleKeys(GLFWwindow* a_pWindow, int a_iKey, int a_iScancode, int a_iAction, int a_iModus)
+//{
+//	if (a_iAction == GLFW_PRESS || a_iAction == GLFW_REPEAT)
+//	{
+//		if (a_iAction == GLFW_PRESS && a_iKey == GLFW_KEY_ESCAPE)
+//		{
+//			glfwSetWindowShouldClose(pWindow, GLFW_TRUE);
+//		}
+//		if (a_iKey == GLFW_KEY_W || a_iKey == GLFW_KEY_UP)
+//		{
+//			pCurrCamera->SetPosition(glm::vec3(0.0f, 0.0f, 1.0f));
+//		}
+//		if (a_iKey == GLFW_KEY_A || a_iKey == GLFW_KEY_LEFT)
+//		{
+//			pCurrCamera->SetPosition(glm::vec3(1.0f, 0.0f, 0.0f));
+//		}
+//		if (a_iKey == GLFW_KEY_S || a_iKey == GLFW_KEY_DOWN)
+//		{
+//			pCurrCamera->SetPosition(glm::vec3(0.0f, 0.0f, -1.0f));
+//		}
+//		if (a_iKey == GLFW_KEY_D || a_iKey == GLFW_KEY_RIGHT)
+//		{
+//			pCurrCamera->SetPosition(glm::vec3(-1.0f, 0.0f, 0.0f));
+//		}
+//		if (a_iKey == GLFW_KEY_Q)
+//		{
+//			pCurrCamera->SetPosition(glm::vec3(0.0f, -1.0f, 0.0f));
+//		}
+//		if (a_iKey == GLFW_KEY_E)
+//		{
+//			pCurrCamera->SetPosition(glm::vec3(0.0f, 1.0f, 0.0f));
+//		}
+//	}
 	
-}
+//}
 
 auto CWindow::Initialize(void) const -> const int
 {
@@ -63,7 +63,7 @@ auto CWindow::Initialize(void) const -> const int
 
 	glfwMakeContextCurrent(pWindow);
 
-	glfwSetKeyCallback(pWindow, HandleKeys);
+	//glfwSetKeyCallback(pWindow, HandleKeys);
 	return I_SUCCESS;
 }
 
@@ -90,6 +90,25 @@ auto CWindow::GetWindowShouldClose(void) const -> const bool
 void CWindow::UpdateSwapBuffers(void)
 {
 	glfwSwapBuffers(pWindow);
+}
+
+void CWindow::SetWindowShouldClose(bool a_bShouldClose)
+{
+	if (a_bShouldClose)
+	{
+		glfwSetWindowShouldClose(pWindow, GLFW_TRUE);
+	}
+	else
+	{
+		glfwSetWindowShouldClose(pWindow, GLFW_FALSE);
+	}
+}
+
+GLFWwindow* CWindow::GetWindow(void)
+{
+	if (pWindow == nullptr) return nullptr;
+
+	return pWindow;
 }
 
 void CWindow::SetCamera(std::shared_ptr<CCamera> a_pCamera)

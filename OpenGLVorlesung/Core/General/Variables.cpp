@@ -1,6 +1,6 @@
 #include "Variables.h"
 const float F_ZERO = 0.0f;
-const float F_ONE = 0.0f;
+const float F_ONE = 1.0f;
 
 
 Vertex::Position Vertex::Position::Zero()

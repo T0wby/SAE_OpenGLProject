@@ -21,7 +21,9 @@ public:
 
 	auto GetWindowShouldClose(void) const->const bool;
 	void UpdateSwapBuffers(void);
+	void SetWindowShouldClose(bool a_bShouldClose);
 
+	GLFWwindow* GetWindow(void);
 
 private:
 	GLuint m_iWidth{ 0 };
