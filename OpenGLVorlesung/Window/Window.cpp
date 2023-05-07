@@ -27,6 +27,7 @@ auto CWindow::Initialize(void) const -> const int
 
 	glfwMakeContextCurrent(pWindow);
 
+	glfwSetInputMode(pWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	//glfwSetKeyCallback(pWindow, HandleKeys);
 	return I_SUCCESS;
 }

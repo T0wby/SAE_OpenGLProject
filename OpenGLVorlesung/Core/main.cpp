@@ -1,5 +1,6 @@
 #include "../glad/Loader.h"
 #include "System/DataManager.h"
+#include "General/Time.h"
 #include "../Window/Window.h"
 #include "../Components/Camera.h"
 #include "../Input/UserInput.h"
@@ -16,6 +17,7 @@ const int I_HEIGHT = 640;
 // System
 std::shared_ptr<CWindow> pWindow = nullptr;
 std::unique_ptr<CLoader> pGladLoader = nullptr;
+std::unique_ptr<CTime> pTime = nullptr;
 
 // Components
 std::shared_ptr<CCamera> pCamera = nullptr;
@@ -34,6 +36,7 @@ int Initialize()
 	pWindow = std::make_shared<CWindow>(I_WIDTH, I_HEIGHT, "SAE_Tobi_Engine", pCamera);
 	pGladLoader = std::make_unique<CLoader>(I_WIDTH, I_HEIGHT);
 	pUserInput = std::make_unique<CUserInput>();
+	pTime = std::make_unique<CTime>();
 
 	// Components
 	pMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader);
@@ -43,8 +46,8 @@ int Initialize()
 
 	iErrorMsg = pGladLoader->Initialize();
 
-
-	iErrorMsg = pUserInput->Initialize(pWindow, pCamera);
+	auto deltaTime = pTime->GetDeltaTime();
+	iErrorMsg = pUserInput->Initialize(pWindow, pCamera, deltaTime);
 
 	iErrorMsg = pMaterial->Initialize();
 	
@@ -56,9 +59,14 @@ int Initialize()
 
 int Run()
 {
+	float deltaTime{ 0.0f };
 	while (!pWindow->GetWindowShouldClose())
 	{
 		pWindow->Update();
+		pTime->Update();
+		deltaTime = pTime->GetDeltaTime();
+
+		pUserInput->Update(deltaTime);
 
 		pCamera->SetCameraData(45.0f, 0.1f, 1000.0f, pMaterial->GetShaderProgram(), "camMatrix");
 		pCamera->Update();

@@ -9,8 +9,8 @@
 class CUserInput
 {
 public:
-	auto Initialize(std::shared_ptr<CWindow> a_pWindow, std::shared_ptr<CCamera> a_pCamera) const->const int;
-	auto Update(void) const->const int;
+	int Initialize(std::shared_ptr<CWindow> a_pWindow, std::shared_ptr<CCamera> a_pCamera, float& a_fDeltaTime);
+	int Update(float& a_fDeltaTime);
 	void Finalize(void);
 
 	void SetExitInput(std::function<void(void)> a_pExitInput);
@@ -21,8 +21,11 @@ public:
 	void SetUpInput(std::function<void(void)> a_pUpInput);
 	void SetDownInput(std::function<void(void)> a_pDownInput);
 
+
 private:
 	void SetDefaultInput(void) const;
+	float m_fDeltaTime{ 0.0f };
+
 };
 #endif // !USERINPUT_H
 
