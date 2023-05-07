@@ -22,14 +22,15 @@ private:
 	std::string m_sVertexShader{ "" };
 	std::string m_sFragmentShader{ "" };
 
-	/*std::string m_sTestVertexShader =
+	std::string m_sTestVertexShader =
 		"#version 330 core\n"
 		"layout(location = 0) in vec3 position;\n"
 		"layout(location = 1) in vec3 color;\n"
 		"out vec3 vertexColor;\n"
+		"uniform mat4 camMatrix;\n"
 		"void main()\n"
 		"{"
-		"gl_Position = vec4(position, 1.0);\n"
+		"gl_Position = camMatrix * vec4(position, 1.0);\n"
 		"vertexColor = color;\n"
 		"}\n";
 	std::string m_sTestFragmentShader =
@@ -39,7 +40,7 @@ private:
 		"void main()"
 		"{"
 		"fragColor = vec4(vertexColor, 1.0f);\n"
-		"}\n";*/
+		"}\n";
 };
 #endif // !MATERIAL_H
 
