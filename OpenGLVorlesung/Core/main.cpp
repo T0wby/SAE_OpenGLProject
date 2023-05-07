@@ -50,7 +50,7 @@ int Initialize()
 	
 	iErrorMsg = pMesh->Initialize();
 
-	//glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 	return iErrorMsg;
 }
 

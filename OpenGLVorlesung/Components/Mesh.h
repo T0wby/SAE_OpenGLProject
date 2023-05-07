@@ -22,12 +22,14 @@ private:
 		Vertex{Vertex::Position{0.5f, -0.5f, 0.0f},  Vertex::Color::Green()}, // rechts-unten
 		Vertex{Vertex::Position{-0.5f, 0.5f, 0.0f},  Vertex::Color::Blue()}, // oben-links
 		Vertex{Vertex::Position{0.5f, 0.5f, 0.0f},   Vertex::Color::White()},
+		Vertex{Vertex::Position{0.0f, 1.0f, 0.0f},   Vertex::Color::Red()},
 	};
 
 	std::vector<unsigned int> m_indices = 
 	{
 		0, 1, 2,
-		2, 1, 3
+		2, 1, 3,
+		2, 3, 4
 	};
 };
 #endif // !MESH_H

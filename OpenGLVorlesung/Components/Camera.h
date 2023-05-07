@@ -27,7 +27,6 @@ public:
 	{ 
 		m_pos += a_pos; 
 		std::cout << "Camera Pos is X: " << m_pos.x << " Y: " << m_pos.y << " Z: " << m_pos.z << std::endl;
-
 	}
 
 	// Inherited via IComponent
