@@ -60,7 +60,7 @@ int Run()
 	{
 		pWindow->Update();
 
-		pCamera->SetCameraData(45.0f, 0.1f, 1000.0f, pMaterial->GetShaderID(), "camMatrix");
+		pCamera->SetCameraData(45.0f, 0.1f, 1000.0f, pMaterial->GetShaderProgram(), "camMatrix");
 		pCamera->Update();
 
 		pMaterial->Draw();

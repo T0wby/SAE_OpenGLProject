@@ -11,6 +11,7 @@ public:
 		: m_sVertexShader(a_sVertexShader), m_sFragmentShader(a_sFragmentShader) {}
 
 	auto GetShaderID(void) const -> const int;
+	auto GetShaderProgram(void) const -> const unsigned int;
 
 	// Engine Loop
 	virtual const int Initialize(void) const override;

@@ -13,6 +13,11 @@ auto CMaterial::GetShaderID(void) const -> const int
     return I_SHADER_ID;
 }
 
+auto CMaterial::GetShaderProgram(void) const -> const unsigned int
+{
+    return I_SHADER_PROGRAM;
+}
+
 const int CMaterial::Initialize(void) const
 {
     const int buffersize{ 1024 };
