@@ -30,3 +30,8 @@ void CCamera::Draw(void)
 void CCamera::Finalize(void)
 {
 }
+
+void CCamera::CalcOrientation(glm::vec3 a_front)
+{
+    m_orientation = glm::normalize(a_front);
+}

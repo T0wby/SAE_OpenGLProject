@@ -35,6 +35,8 @@ public:
 	virtual void Draw(void) override;
 	virtual void Finalize(void) override;
 
+	void CalcOrientation(glm::vec3 a_front);
+
 private:
 	//ScreenSize
 	int m_iWidth{ 0 };

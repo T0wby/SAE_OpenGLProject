@@ -18,12 +18,12 @@ std::function<void(void)> pDownInput = nullptr;
 
 // Mouse Input
 float fPitch { 0.0f };
-float fYaw { 0.0f };
+float fYaw { -90.0f };
 float fLastPosX { 400.0f };
 float fLastPosY { 400.0f };
 float fOffsetX { 0.0f };
 float fOffsetY { 0.0f };
-const float F_SENSE { 0.1f };
+const float F_SENSE { 0.0001f };
 
 void HandleKeys(GLFWwindow* a_pWindow, int a_iKey, int a_iScancode, int a_iAction, int a_iMode)
 {
@@ -80,6 +80,7 @@ void MouseInput(GLFWwindow* a_pWindow, double a_dXPos, double a_dYPos)
 	direction.y = sin(glm::radians(fPitch));
 	direction.z = sin(glm::radians(fYaw)) * cos(glm::radians(fPitch));
 	//cameraFront = glm::normalize(direction);
+	pCCamera->CalcOrientation(direction);
 }
 
 int CUserInput::Initialize(std::shared_ptr<CWindow> a_pWindow, std::shared_ptr<CCamera> a_pCamera, float& a_fDeltaTime)
