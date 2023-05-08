@@ -60,6 +60,9 @@
     <ClCompile Include="Input\UserInput.cpp">
       <Filter>Input</Filter>
     </ClCompile>
+    <ClCompile Include="Core\General\Time.cpp">
+      <Filter>Core\General</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
@@ -88,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="Input\UserInput.h">
       <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\General\Time.h">
+      <Filter>Core\General</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

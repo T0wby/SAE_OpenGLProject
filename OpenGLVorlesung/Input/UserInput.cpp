@@ -23,7 +23,7 @@ float fLastPosX { 400.0f };
 float fLastPosY { 400.0f };
 float fOffsetX { 0.0f };
 float fOffsetY { 0.0f };
-const float F_SENSE { 0.0001f };
+const float F_SENSE { 0.01f };
 
 void HandleKeys(GLFWwindow* a_pWindow, int a_iKey, int a_iScancode, int a_iAction, int a_iMode)
 {
@@ -45,10 +45,10 @@ void HandleKeys(GLFWwindow* a_pWindow, int a_iKey, int a_iScancode, int a_iActio
 		case GLFW_KEY_D: //nobreak
 		case GLFW_KEY_RIGHT: pRightInput(); break;
 
-		case GLFW_KEY_Q: //nobreak
+		case GLFW_KEY_E: //nobreak
 		case GLFW_KEY_SPACE: pUpInput(); break;
 
-		case GLFW_KEY_E: //nobreak
+		case GLFW_KEY_Q: //nobreak
 		case GLFW_KEY_LEFT_CONTROL: pDownInput(); break;
 
 		default:
@@ -59,10 +59,10 @@ void HandleKeys(GLFWwindow* a_pWindow, int a_iKey, int a_iScancode, int a_iActio
 
 void MouseInput(GLFWwindow* a_pWindow, double a_dXPos, double a_dYPos)
 {
-	fOffsetX = a_dXPos - fLastPosX;
-	fOffsetY = fLastPosY - a_dYPos; // reversed since y-coordinates range from bottom to top
-	fLastPosX = a_dXPos;
-	fLastPosY = a_dYPos;
+	fOffsetX = static_cast<float>(a_dXPos)- fLastPosX;
+	fOffsetY = fLastPosY - static_cast<float>(a_dYPos); // reversed since y-coordinates range from bottom to top
+	fLastPosX = static_cast<float>(a_dXPos);
+	fLastPosY = static_cast<float>(a_dYPos);
 
 	fOffsetX *= F_SENSE;
 	fOffsetY *= F_SENSE;
@@ -79,7 +79,6 @@ void MouseInput(GLFWwindow* a_pWindow, double a_dXPos, double a_dYPos)
 	direction.x = cos(glm::radians(fYaw)) * cos(glm::radians(fPitch));
 	direction.y = sin(glm::radians(fPitch));
 	direction.z = sin(glm::radians(fYaw)) * cos(glm::radians(fPitch));
-	//cameraFront = glm::normalize(direction);
 	pCCamera->CalcOrientation(direction);
 }
 
@@ -148,12 +147,12 @@ void CUserInput::SetDownInput(std::function<void(void)> a_pDownInput)
 void CUserInput::SetDefaultInput(void) const
 {
 	pExitInput = ([]() { pCurrWindow->SetWindowShouldClose(true); });
-	pForwardInput = ([]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * pCCamera->GetOrientation())); });
-	pBackwardInput = ([]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * -pCCamera->GetOrientation())); });
-	pRightInput = ([]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * glm::normalize(glm::cross(pCCamera->GetOrientation(), pCCamera->GetUp())))); });
-	pLeftInput = ([]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * -glm::normalize(glm::cross(pCCamera->GetOrientation(), pCCamera->GetUp())))); });
-	pUpInput = ([]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * pCCamera->GetUp())); });
-	pDownInput = ([]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * -pCCamera->GetUp())); });
+	pForwardInput = ([this]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * m_fDeltaTime * pCCamera->GetOrientation())); });
+	pBackwardInput = ([this]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * m_fDeltaTime * -pCCamera->GetOrientation())); });
+	pRightInput = ([this]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * m_fDeltaTime * glm::normalize(glm::cross(pCCamera->GetOrientation(), pCCamera->GetUp())))); });
+	pLeftInput = ([this]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * m_fDeltaTime * -glm::normalize(glm::cross(pCCamera->GetOrientation(), pCCamera->GetUp())))); });
+	pUpInput = ([this]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * m_fDeltaTime * pCCamera->GetUp())); });
+	pDownInput = ([this]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * m_fDeltaTime * -pCCamera->GetUp())); });
 }
 
 
