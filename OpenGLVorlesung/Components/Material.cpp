@@ -25,7 +25,7 @@ const int CMaterial::Initialize(void) const
     char infoLog[buffersize];
 
     // VertexShader
-    auto sVertArr = m_sTestVertexShader.c_str();
+    auto sVertArr = m_sVertexShader.c_str();
     auto iVertexShader = static_cast<GLuint>(glCreateShader(GL_VERTEX_SHADER));
     glShaderSource(iVertexShader, I_SHADER_ID, &sVertArr, NULL); // Binding iVertexShader with the string m_sVertexShader
     glCompileShader(iVertexShader);
@@ -38,7 +38,7 @@ const int CMaterial::Initialize(void) const
     }
 
     // FragmentShader
-    auto sFragArr = m_sTestFragmentShader.c_str();
+    auto sFragArr = m_sFragmentShader.c_str();
     auto iFragmentShader = static_cast<GLuint>(glCreateShader(GL_FRAGMENT_SHADER));
     glShaderSource(iFragmentShader, I_SHADER_ID, &sFragArr, NULL); // Binding iFragmentShader with the string m_sFragmentShader
     glCompileShader(iFragmentShader);
