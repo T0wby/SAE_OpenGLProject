@@ -20,6 +20,12 @@ const int CCamera::Update(void) const
 
     glUniformMatrix4fv(glGetUniformLocation(m_cameraData.iShaderID, m_cameraData.sName), 1, GL_FALSE, glm::value_ptr(projection * view));
 
+    // Test
+    glm::mat4 trans = glm::mat4(1.0f);
+    trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
+    trans = glm::rotate(trans, static_cast<float>(glfwGetTime()), glm::vec3(0.0f, 0.0f, 1.0f));
+    glUniformMatrix4fv(glGetUniformLocation(m_cameraData.iShaderID, "transform"), 1, GL_FALSE, glm::value_ptr(trans));
+
     return 0;
 }
 
