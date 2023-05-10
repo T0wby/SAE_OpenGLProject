@@ -49,8 +49,10 @@ int Initialize()
 	auto deltaTime = pTime->GetDeltaTime();
 	iErrorMsg = pUserInput->Initialize(pWindow, pCamera, deltaTime);
 
+	//iErrorMsg = pCamera->Initialize();
+
 	iErrorMsg = pMaterial->Initialize();
-	
+
 	iErrorMsg = pMesh->Initialize();
 
 	glEnable(GL_DEPTH_TEST);

@@ -5,6 +5,9 @@
 
 const int CCamera::Initialize(void) const
 {
+    /*glUseProgram(m_cameraData.iShaderID);
+    glUniform1i(glGetUniformLocation(m_cameraData.iShaderID, "texture1"), 0);
+    glUniform1i(glGetUniformLocation(m_cameraData.iShaderID, "texture2"), 1);*/
     return 0;
 }
 
@@ -19,7 +22,7 @@ const int CCamera::Update(void) const
     projection = glm::perspective(glm::radians(m_cameraData.fFOVdegree), static_cast<float>(m_iWidth / m_iHeight), m_cameraData.fNearPlane, m_cameraData.fFarPlane);
 
     glUniformMatrix4fv(glGetUniformLocation(m_cameraData.iShaderID, m_cameraData.sName), 1, GL_FALSE, glm::value_ptr(projection * view));
-
+    
     // Test
     glm::mat4 trans = glm::mat4(1.0f);
     //trans = glm::translate(trans, glm::vec3(0.5f, -0.5f, 0.0f));
