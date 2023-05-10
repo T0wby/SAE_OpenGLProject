@@ -19,38 +19,38 @@ private:
 	std::vector<Vertex> m_vertices =
 	{
 		// Front
-		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f}, Vertex::Color::Red()}, // 0
-		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f},  Vertex::Color::Green()}, // 1
-		Vertex{Vertex::Position{-0.5f, 0.5f, 0.5f},  Vertex::Color::Blue()}, // 2
-		Vertex{Vertex::Position{0.5f, 0.5f, 0.5f},   Vertex::Color::White()}, // 3
-		Vertex{Vertex::Position{0.0f, 1.0f, 0.0f},   Vertex::Color::Red()}, // 4
+		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f}, Vertex::Color::Red(),   Vertex::UVCoord{0.0f, 0.0f}}, // 0
+		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f},  Vertex::Color::Green(), Vertex::UVCoord{0.0f, 1.0f}}, // 1
+		Vertex{Vertex::Position{-0.5f, 0.5f, 0.5f},  Vertex::Color::Blue(),  Vertex::UVCoord{1.0f, 0.0f}}, // 2
+		Vertex{Vertex::Position{0.5f, 0.5f, 0.5f},   Vertex::Color::White(), Vertex::UVCoord{1.0f, 1.0f}}, // 3
+		Vertex{Vertex::Position{0.0f, 1.0f, 0.0f},   Vertex::Color::Red(),   Vertex::UVCoord{1.0f, 1.0f}}, // 4
 
 		// Right
-		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f}, Vertex::Color::Red()}, // 5
-		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f},  Vertex::Color::Green()}, // 6
-		Vertex{Vertex::Position{0.5f, 0.5f, 0.5f},  Vertex::Color::Blue()}, // 7
-		Vertex{Vertex::Position{0.5f, 0.5f, -0.5f},   Vertex::Color::White()}, // 8
-		Vertex{Vertex::Position{0.0f, 1.0f, 0.0f},   Vertex::Color::Red()}, // 9
+		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f},  Vertex::Color::Red(),   Vertex::UVCoord{0.0f, 0.0f}}, // 5
+		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f}, Vertex::Color::Green(), Vertex::UVCoord{0.0f, 1.0f}}, // 6
+		Vertex{Vertex::Position{0.5f, 0.5f, 0.5f},   Vertex::Color::Blue(),  Vertex::UVCoord{1.0f, 0.0f}}, // 7
+		Vertex{Vertex::Position{0.5f, 0.5f, -0.5f},  Vertex::Color::White(), Vertex::UVCoord{1.0f, 1.0f}}, // 8
+		Vertex{Vertex::Position{0.0f, 1.0f, 0.0f},   Vertex::Color::Red(),   Vertex::UVCoord{1.0f, 1.0f}}, // 9
 
 		// Left
-		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f}, Vertex::Color::Red()}, // 10
-		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f},  Vertex::Color::Green()}, // 11
-		Vertex{Vertex::Position{-0.5f, 0.5f, -0.5f},  Vertex::Color::Blue()}, // 12
-		Vertex{Vertex::Position{-0.5f, 0.5f, 0.5f},   Vertex::Color::White()}, // 13
-		Vertex{Vertex::Position{0.0f, 1.0f, 0.0f},   Vertex::Color::Red()}, // 14
+		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f},Vertex::Color::Red(),   Vertex::UVCoord{0.0f, 0.0f}}, // 10
+		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f}, Vertex::Color::Green(), Vertex::UVCoord{0.0f, 1.0f}}, // 11
+		Vertex{Vertex::Position{-0.5f, 0.5f, -0.5f}, Vertex::Color::Blue(),  Vertex::UVCoord{1.0f, 0.0f}}, // 12
+		Vertex{Vertex::Position{-0.5f, 0.5f, 0.5f},  Vertex::Color::White(), Vertex::UVCoord{1.0f, 1.0f}}, // 13
+		Vertex{Vertex::Position{0.0f, 1.0f, 0.0f},   Vertex::Color::Red(),   Vertex::UVCoord{1.0f, 1.0f}}, // 14
 		
 		// Back
-		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f}, Vertex::Color::Red()}, // 15
-		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f},  Vertex::Color::Green()}, // 16
-		Vertex{Vertex::Position{0.5f, 0.5f, -0.5f},  Vertex::Color::Blue()}, // 17
-		Vertex{Vertex::Position{-0.5f, 0.5f, -0.5f},   Vertex::Color::White()}, // 18
-		Vertex{Vertex::Position{0.0f, 1.0f, 0.0f},   Vertex::Color::Red()}, // 19
+		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f}, Vertex::Color::Red(),   Vertex::UVCoord{0.0f, 0.0f}}, // 15
+		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f},Vertex::Color::Green(), Vertex::UVCoord{0.0f, 1.0f}}, // 16
+		Vertex{Vertex::Position{0.5f, 0.5f, -0.5f},  Vertex::Color::Blue(),  Vertex::UVCoord{1.0f, 0.0f}}, // 17
+		Vertex{Vertex::Position{-0.5f, 0.5f, -0.5f}, Vertex::Color::White(), Vertex::UVCoord{1.0f, 1.0f}}, // 18
+		Vertex{Vertex::Position{0.0f, 1.0f, 0.0f},   Vertex::Color::Red(),   Vertex::UVCoord{1.0f, 1.0f}}, // 19
 
 		// Bottom
-		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f}, Vertex::Color::Red()}, // 20
-		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f},  Vertex::Color::Green()}, // 21
-		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f},  Vertex::Color::Blue()}, // 22
-		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f},   Vertex::Color::White()}, // 23
+		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f},Vertex::Color::Red(),   Vertex::UVCoord{0.0f, 0.0f}}, // 20
+		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f}, Vertex::Color::Green(), Vertex::UVCoord{0.0f, 1.0f}}, // 21
+		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f}, Vertex::Color::Blue(),  Vertex::UVCoord{1.0f, 0.0f}}, // 22
+		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f},  Vertex::Color::White(), Vertex::UVCoord{1.0f, 1.0f}}, // 23
 	};
 
 	std::vector<unsigned int> m_indices = 

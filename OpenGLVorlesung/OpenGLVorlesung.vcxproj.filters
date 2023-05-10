@@ -28,6 +28,9 @@
     <Filter Include="Input">
       <UniqueIdentifier>{2739dea7-f609-4fef-a46e-002fdeb62ea0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Image">
+      <UniqueIdentifier>{76402879-6348-4251-bf2b-ed8c0d4b31cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\main.cpp">
@@ -103,5 +106,10 @@
     <None Include="Resource Files\Shader\DefaultVertex.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource Files\Image\SAE_Institute_Black_Logo.jpg">
+      <Filter>Resource Files\Image</Filter>
+    </Image>
   </ItemGroup>
 </Project>

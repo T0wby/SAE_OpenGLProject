@@ -161,6 +161,9 @@
     <None Include="Resource Files\Shader\DefaultFragment.glsl" />
     <None Include="Resource Files\Shader\DefaultVertex.glsl" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource Files\Image\SAE_Institute_Black_Logo.jpg" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

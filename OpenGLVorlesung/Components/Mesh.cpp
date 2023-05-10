@@ -6,6 +6,7 @@ const int I_DEFAULT = 0;
 const GLsizei I_BUF_NUMB = 1;
 const GLint I_FIRST_IDX = 0; // layout (location = 0) in vertex shade
 const GLint I_SECOND_IDX = 1; // layout (location = 1) in vertex shade
+const GLint I_THIRD_IDX = 2; // Texture layout (location = 2) in vertex shade
 const GLint I_VARIABLE_SIZE = 3; // The position/color values have a size of 3 floats and we do not normalize the values.
 
 GLuint I_VERTEX_BUFFER = 0; // Iterator
@@ -32,6 +33,8 @@ const int CMesh::Initialize(void) const
 	glEnableVertexAttribArray(I_FIRST_IDX);
 	glVertexAttribPointer(I_SECOND_IDX, I_VARIABLE_SIZE, GL_FLOAT, GL_FALSE, Vertex::GetSize(), (void*)(Vertex::GetElemSize()));
 	glEnableVertexAttribArray(I_SECOND_IDX);
+	glVertexAttribPointer(I_THIRD_IDX, 2, GL_FLOAT, GL_FALSE, Vertex::GetSize(), (void*)(Vertex::GetElemSize() * 2));
+	glEnableVertexAttribArray(I_THIRD_IDX);
 
 	return 0;
 }

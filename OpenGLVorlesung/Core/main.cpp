@@ -39,7 +39,7 @@ int Initialize()
 	pTime = std::make_unique<CTime>();
 
 	// Components
-	pMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader);
+	pMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
 	pMesh = std::make_unique<CMesh>();
 
 	auto iErrorMsg = pWindow->Initialize();

@@ -7,8 +7,8 @@
 class CMaterial : public IComponent
 {
 public:
-	inline CMaterial(std::string a_sVertexShader, std::string a_sFragmentShader)
-		: m_sVertexShader(a_sVertexShader), m_sFragmentShader(a_sFragmentShader) {}
+	inline CMaterial(std::string a_sVertexShader, std::string a_sFragmentShader, std::string a_sTexture)
+		: m_sVertexShader(a_sVertexShader), m_sFragmentShader(a_sFragmentShader), m_sTexture(a_sTexture) {}
 
 	auto GetShaderID(void) const -> const int;
 	auto GetShaderProgram(void) const -> const unsigned int;
@@ -22,6 +22,7 @@ public:
 private:
 	std::string m_sVertexShader{ "" };
 	std::string m_sFragmentShader{ "" };
+	std::string m_sTexture{ "" };
 
 	std::string m_sTestVertexShader =
 		"#version 330 core\n"
