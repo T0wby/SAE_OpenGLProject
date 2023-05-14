@@ -25,6 +25,7 @@ float fOffsetX { 0.0f };
 float fOffsetY { 0.0f };
 const float F_SENSE { 0.01f };
 
+/* Old Input 
 void HandleKeys(GLFWwindow* a_pWindow, int a_iKey, int a_iScancode, int a_iAction, int a_iMode)
 {
 	if (a_iAction == GLFW_PRESS || a_iAction == GLFW_REPEAT)
@@ -56,6 +57,7 @@ void HandleKeys(GLFWwindow* a_pWindow, int a_iKey, int a_iScancode, int a_iActio
 		}
 	}
 }
+*/
 
 void MouseInput(GLFWwindow* a_pWindow, double a_dXPos, double a_dYPos)
 {
@@ -91,7 +93,7 @@ int CUserInput::Initialize(std::shared_ptr<CWindow> a_pWindow, std::shared_ptr<C
 
 	SetDefaultInput();
 
-	glfwSetKeyCallback(pCurrWindow->GetWindow(), HandleKeys);
+	//glfwSetKeyCallback(pCurrWindow->GetWindow(), HandleKeys); //Used for old input
 	glfwSetCursorPosCallback(pCurrWindow->GetWindow(), MouseInput);
 	return I_SUCCESS;
 }
@@ -99,7 +101,7 @@ int CUserInput::Initialize(std::shared_ptr<CWindow> a_pWindow, std::shared_ptr<C
 int CUserInput::Update(float& a_fDeltaTime)
 {
 	m_fDeltaTime = a_fDeltaTime;
-
+	CheckKeys();
 	return I_SUCCESS;
 }
 
@@ -155,5 +157,36 @@ void CUserInput::SetDefaultInput(void) const
 	pDownInput = ([this]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * m_fDeltaTime * -pCCamera->GetUp())); });
 }
 
+void CUserInput::CheckKeys(void)
+{
+	if (glfwGetKey(pCurrWindow->GetWindow(), GLFW_KEY_ESCAPE) == GLFW_PRESS)
+	{
+		pExitInput();
+	}
+	if (glfwGetKey(pCurrWindow->GetWindow(), GLFW_KEY_W) == GLFW_PRESS)
+	{
+		pForwardInput();
+	}
+	if (glfwGetKey(pCurrWindow->GetWindow(), GLFW_KEY_S) == GLFW_PRESS)
+	{
+		pBackwardInput();
+	}
+	if (glfwGetKey(pCurrWindow->GetWindow(), GLFW_KEY_D) == GLFW_PRESS)
+	{
+		pRightInput();
+	}
+	if (glfwGetKey(pCurrWindow->GetWindow(), GLFW_KEY_A) == GLFW_PRESS)
+	{
+		pLeftInput();
+	}
+	if (glfwGetKey(pCurrWindow->GetWindow(), GLFW_KEY_E) == GLFW_PRESS)
+	{
+		pUpInput();
+	}
+	if (glfwGetKey(pCurrWindow->GetWindow(), GLFW_KEY_Q) == GLFW_PRESS)
+	{
+		pDownInput();
+	}
+}
 
 #pragma endregion

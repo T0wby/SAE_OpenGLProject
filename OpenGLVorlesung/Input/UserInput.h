@@ -24,6 +24,7 @@ public:
 
 private:
 	void SetDefaultInput(void) const;
+	void CheckKeys(void);
 	float m_fDeltaTime{ 0.0f };
 
 };

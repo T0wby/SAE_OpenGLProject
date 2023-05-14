@@ -45,7 +45,7 @@ private:
 	glm::vec3 m_pos = {};
 	glm::vec3 m_orientation = {};
 	glm::vec3 m_up = {};
-	float m_fSpeed = 50.0f;
+	float m_fSpeed = 5.0f;
 
 	struct
 	{
