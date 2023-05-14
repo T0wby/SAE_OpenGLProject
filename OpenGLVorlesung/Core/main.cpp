@@ -6,6 +6,7 @@
 #include "../Input/UserInput.h"
 #include "../Components/Mesh.h"
 #include "../Components/MeshPrimitives/House.h"
+#include "../Components/MeshPrimitives/Plane.h"
 #include "../Components/Material.h"
 #include <glm/glm.hpp>
 #include <memory>
@@ -24,7 +25,8 @@ std::unique_ptr<CTime> pTime = nullptr;
 std::shared_ptr<CCamera> pCamera = nullptr;
 std::unique_ptr<CUserInput> pUserInput = nullptr;
 std::unique_ptr<CMaterial> pMaterial = nullptr;
-std::unique_ptr<CMesh> pMesh = nullptr;
+std::unique_ptr<CHouse> pHouse = nullptr;
+//std::unique_ptr<CPlane> pPlane = nullptr;
 
 int Initialize()
 {
@@ -41,7 +43,8 @@ int Initialize()
 
 	// Components
 	pMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
-	pMesh = std::make_unique<CMesh>();
+	pHouse = std::make_unique<CHouse>();
+	//pPlane = std::make_unique<CPlane>();
 
 	auto iErrorMsg = pWindow->Initialize();
 
@@ -54,7 +57,8 @@ int Initialize()
 
 	iErrorMsg = pMaterial->Initialize();
 
-	iErrorMsg = pMesh->Initialize();
+	iErrorMsg = pHouse->Initialize();
+	//iErrorMsg = pPlane->Initialize();
 
 	glEnable(GL_DEPTH_TEST);
 	return iErrorMsg;
@@ -75,7 +79,8 @@ int Run()
 		pCamera->Update();
 
 		pMaterial->Draw();
-		pMesh->Draw();
+		pHouse->Draw();
+		//pPlane->Draw();
 
 		pWindow->UpdateSwapBuffers();
 	}

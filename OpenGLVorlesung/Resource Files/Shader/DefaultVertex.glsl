@@ -5,12 +5,13 @@ layout (location = 2) in vec2 uv;
 out vec3 vertexColor;
 out vec2 uvCoord;
 
-uniform mat4 camMatrix;
 uniform mat4 transform;
+uniform mat4 view;
+uniform mat4 projection;
 
 void main()
 {
-    gl_Position = camMatrix * transform * vec4(position, 1.0);
+    gl_Position = projection * view * transform * vec4(position, 1.0);
     vertexColor = color;
     uvCoord = uv;
 }

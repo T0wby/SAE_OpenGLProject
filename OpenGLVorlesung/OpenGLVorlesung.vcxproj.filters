@@ -78,6 +78,9 @@
     <ClCompile Include="Components\MeshPrimitives\House.cpp">
       <Filter>Components\MeshPrimitives</Filter>
     </ClCompile>
+    <ClCompile Include="Components\MeshPrimitives\Plane.cpp">
+      <Filter>Components\MeshPrimitives</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
@@ -114,6 +117,9 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Components\MeshPrimitives\House.h">
+      <Filter>Components\MeshPrimitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\MeshPrimitives\Plane.h">
       <Filter>Components\MeshPrimitives</Filter>
     </ClInclude>
   </ItemGroup>
