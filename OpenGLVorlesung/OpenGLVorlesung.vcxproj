@@ -136,8 +136,6 @@
     <ClCompile Include="Components\Camera.cpp" />
     <ClCompile Include="Components\Material.cpp" />
     <ClCompile Include="Components\Mesh.cpp" />
-    <ClCompile Include="Components\MeshPrimitives\House.cpp" />
-    <ClCompile Include="Components\MeshPrimitives\Plane.cpp" />
     <ClCompile Include="Core\General\Time.cpp" />
     <ClCompile Include="Core\General\Variables.cpp" />
     <ClCompile Include="Core\main.cpp" />
@@ -155,8 +153,6 @@
     <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Components\Material.h" />
     <ClInclude Include="Components\Mesh.h" />
-    <ClInclude Include="Components\MeshPrimitives\House.h" />
-    <ClInclude Include="Components\MeshPrimitives\Plane.h" />
     <ClInclude Include="Core\General\Time.h" />
     <ClInclude Include="Core\General\Variables.h" />
     <ClInclude Include="Core\System\DataManager.h" />

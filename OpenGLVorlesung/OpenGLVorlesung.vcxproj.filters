@@ -34,9 +34,6 @@
     <Filter Include="GameObject">
       <UniqueIdentifier>{a015ed1c-780d-4f61-9981-430c2637aa58}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Components\MeshPrimitives">
-      <UniqueIdentifier>{69bb12c4-14b8-4da4-9076-7ec3c4612c37}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Shader">
       <UniqueIdentifier>{0660a069-ff8d-4081-b746-382fa07b060d}</UniqueIdentifier>
     </Filter>
@@ -78,12 +75,6 @@
     <ClCompile Include="GameObject\GameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Components\MeshPrimitives\House.cpp">
-      <Filter>Components\MeshPrimitives</Filter>
-    </ClCompile>
-    <ClCompile Include="Components\MeshPrimitives\Plane.cpp">
-      <Filter>Components\MeshPrimitives</Filter>
-    </ClCompile>
     <ClCompile Include="Shader\Shader.cpp">
       <Filter>Shader</Filter>
     </ClCompile>
@@ -124,12 +115,6 @@
     </ClInclude>
     <ClInclude Include="GameObject\GameObject.h">
       <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\MeshPrimitives\House.h">
-      <Filter>Components\MeshPrimitives</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\MeshPrimitives\Plane.h">
-      <Filter>Components\MeshPrimitives</Filter>
     </ClInclude>
     <ClInclude Include="Shader\Shader.h">
       <Filter>Shader</Filter>

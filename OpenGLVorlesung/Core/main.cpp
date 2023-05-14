@@ -5,8 +5,6 @@
 #include "../Components/Camera.h"
 #include "../Input/UserInput.h"
 #include "../Components/Mesh.h"
-#include "../Components/MeshPrimitives/House.h"
-#include "../Components/MeshPrimitives/Plane.h"
 #include "../Components/Material.h"
 #include <glm/glm.hpp>
 #include <memory>
@@ -25,7 +23,9 @@ std::unique_ptr<CTime> pTime = nullptr;
 std::shared_ptr<CCamera> pCamera = nullptr;
 std::unique_ptr<CUserInput> pUserInput = nullptr;
 std::unique_ptr<CMaterial> pMaterial = nullptr;
-std::unique_ptr<CHouse> pHouse = nullptr;
+std::unique_ptr<CMesh> pMesh = nullptr;
+std::unique_ptr<CMaterial> pAmbientMaterial = nullptr;
+std::unique_ptr<CMesh> pAmbientMesh = nullptr;
 //std::unique_ptr<CPlane> pPlane = nullptr;
 
 int Initialize()
@@ -43,8 +43,9 @@ int Initialize()
 
 	// Components
 	pMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
-	pHouse = std::make_unique<CHouse>();
-	//pPlane = std::make_unique<CPlane>();
+	pMesh = std::make_unique<CMesh>(Transform{ 0.0f, 0.0f, 0.0f });
+	//pAmbientMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader, "Resource Files/Image/DEU_Voerde_COA.svg.png");
+	//pAmbientMesh = std::make_unique<CMesh>(Transform{ 0.0f, 1.0f, 0.0f });
 
 	auto iErrorMsg = pWindow->Initialize();
 
@@ -56,8 +57,10 @@ int Initialize()
 	//iErrorMsg = pCamera->Initialize();
 
 	iErrorMsg = pMaterial->Initialize();
+	iErrorMsg = pMesh->Initialize();
 
-	iErrorMsg = pHouse->Initialize();
+	//iErrorMsg = pAmbientMaterial->Initialize();
+	//iErrorMsg = pAmbientMesh->Initialize();
 	//iErrorMsg = pPlane->Initialize();
 
 	glEnable(GL_DEPTH_TEST);
@@ -79,8 +82,10 @@ int Run()
 		pCamera->Update();
 
 		pMaterial->Draw();
-		pHouse->Draw();
-		//pPlane->Draw();
+		pMesh->Draw();
+
+		//pAmbientMaterial->Draw();
+		//pAmbientMesh->Draw();
 
 		pWindow->UpdateSwapBuffers();
 	}
