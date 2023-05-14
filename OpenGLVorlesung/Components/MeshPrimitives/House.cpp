@@ -1,22 +1,14 @@
-#ifndef MESH_H
-#define MESH_H
+#include "House.h"
 
-#include "Component.h"
-#include <vector>
-#include "../Core/General/Variables.h"
-
-class CMesh : public IComponent
+CHouse::CHouse()
 {
-public:
+	SetVertices();
+	SetIndices();
+}
 
-	// Engine Loop
-	virtual const int Initialize(void) const override;
-	virtual const int Update(void) const override;
-	virtual void Draw(void) override;
-	virtual void Finalize(void) override;
-
-protected: 
-	std::vector<Vertex> m_vertices =
+void CHouse::SetVertices(void)
+{
+	m_vertices =
 	{
 		// Front
 		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f}, Vertex::Color::Red(),   Vertex::UVCoord{0.0f, 0.0f}}, // 0
@@ -38,7 +30,7 @@ protected:
 		Vertex{Vertex::Position{-0.5f, 0.5f, -0.5f}, Vertex::Color::Blue(),  Vertex::UVCoord{1.0f, 0.0f}}, // 12
 		Vertex{Vertex::Position{-0.5f, 0.5f, 0.5f},  Vertex::Color::White(), Vertex::UVCoord{1.0f, 1.0f}}, // 13
 		Vertex{Vertex::Position{0.0f, 1.0f, 0.0f},   Vertex::Color::Red(),   Vertex::UVCoord{1.0f, 1.0f}}, // 14
-		
+
 		// Back
 		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f}, Vertex::Color::Red(),   Vertex::UVCoord{0.0f, 0.0f}}, // 15
 		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f},Vertex::Color::Green(), Vertex::UVCoord{0.0f, 1.0f}}, // 16
@@ -52,8 +44,11 @@ protected:
 		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f}, Vertex::Color::Blue(),  Vertex::UVCoord{1.0f, 0.0f}}, // 22
 		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f},  Vertex::Color::White(), Vertex::UVCoord{1.0f, 1.0f}}, // 23
 	};
+}
 
-	std::vector<unsigned int> m_indices = 
+void CHouse::SetIndices(void)
+{
+	m_indices =
 	{
 		// Front
 		0, 1, 2,
@@ -75,8 +70,4 @@ protected:
 		20, 21, 22,
 		22, 21, 23
 	};
-};
-#endif // !MESH_H
-
-
-
+}

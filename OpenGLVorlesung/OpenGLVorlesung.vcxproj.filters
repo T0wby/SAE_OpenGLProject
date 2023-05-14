@@ -34,6 +34,9 @@
     <Filter Include="GameObject">
       <UniqueIdentifier>{a015ed1c-780d-4f61-9981-430c2637aa58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Components\MeshPrimitives">
+      <UniqueIdentifier>{69bb12c4-14b8-4da4-9076-7ec3c4612c37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\main.cpp">
@@ -72,6 +75,9 @@
     <ClCompile Include="GameObject\GameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="Components\MeshPrimitives\House.cpp">
+      <Filter>Components\MeshPrimitives</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
@@ -106,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="GameObject\GameObject.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\MeshPrimitives\House.h">
+      <Filter>Components\MeshPrimitives</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

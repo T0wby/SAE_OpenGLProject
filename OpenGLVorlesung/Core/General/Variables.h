@@ -1,5 +1,6 @@
 #ifndef VARIABLES_H
 #define VARIABLES_H
+
 struct Vertex
 {
 	/*struct // Also possible as anonymous

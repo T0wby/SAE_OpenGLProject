@@ -5,6 +5,7 @@
 #include "../Components/Camera.h"
 #include "../Input/UserInput.h"
 #include "../Components/Mesh.h"
+#include "../Components/MeshPrimitives/House.h"
 #include "../Components/Material.h"
 #include <glm/glm.hpp>
 #include <memory>
