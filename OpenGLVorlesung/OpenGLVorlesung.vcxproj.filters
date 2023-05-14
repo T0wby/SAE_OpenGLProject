@@ -31,6 +31,9 @@
     <Filter Include="Resource Files\Image">
       <UniqueIdentifier>{76402879-6348-4251-bf2b-ed8c0d4b31cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{a015ed1c-780d-4f61-9981-430c2637aa58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\main.cpp">
@@ -66,6 +69,9 @@
     <ClCompile Include="Core\General\Time.cpp">
       <Filter>Core\General</Filter>
     </ClCompile>
+    <ClCompile Include="GameObject\GameObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
@@ -97,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="Core\General\Time.h">
       <Filter>Core\General</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\GameObject.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -140,6 +140,7 @@
     <ClCompile Include="Core\General\Variables.cpp" />
     <ClCompile Include="Core\main.cpp" />
     <ClCompile Include="Core\System\DataManager.cpp" />
+    <ClCompile Include="GameObject\GameObject.cpp" />
     <ClCompile Include="glad\Loader.cpp" />
     <ClCompile Include="glad\src\glad.c" />
     <ClCompile Include="Input\UserInput.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="Core\General\Time.h" />
     <ClInclude Include="Core\General\Variables.h" />
     <ClInclude Include="Core\System\DataManager.h" />
+    <ClInclude Include="GameObject\GameObject.h" />
     <ClInclude Include="glad\Loader.h" />
     <ClInclude Include="Input\UserInput.h" />
     <ClInclude Include="Window\Window.h" />
