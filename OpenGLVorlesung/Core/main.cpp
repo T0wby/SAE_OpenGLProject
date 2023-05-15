@@ -8,6 +8,7 @@
 #include "../Components/Material.h"
 #include <glm/glm.hpp>
 #include <memory>
+#include <glm/gtc/type_ptr.hpp>
 
 const int I_SUCCESS = 0;
 const int I_WIDTH = 640;
@@ -31,7 +32,7 @@ std::unique_ptr<CMesh> pAmbientMesh = nullptr;
 int Initialize()
 {
 	auto vertexShader = CDataManager::ReadFile("Resource Files/Shader/DefaultVertex.glsl");
-	auto fragmentShader = CDataManager::ReadFile("Resource Files/Shader/DefaultFragment.glsl");
+	auto fragmentShader = CDataManager::ReadFile("Resource Files/Shader/AmbientFragment.glsl");
 
 	pCamera = std::make_shared<CCamera>(I_WIDTH, I_HEIGHT, glm::vec3(0.0f, 0.0f, 2.0f), glm::vec3(0.0f, 0.0f, -0.5f), glm::vec3(0.0f, 1.0f, 0.0f));
 
@@ -80,6 +81,9 @@ int Run()
 
 		pCamera->SetCameraData(45.0f, 0.1f, 1000.0f, pMaterial->GetShaderProgram(), "camMatrix");
 		pCamera->Update();
+
+		//glProgramUniform3f(pMaterial->GetShaderProgram(), glGetUniformLocation(pMaterial->GetShaderProgram(), "ambientLight"), 0.5f, 0.5f, 0.5f);
+		glUniformMatrix4fv(glGetUniformLocation(pMaterial->GetShaderProgram(), "ambientLight"), 1, GL_FALSE, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
 
 		pMaterial->Draw();
 		pMesh->Draw();

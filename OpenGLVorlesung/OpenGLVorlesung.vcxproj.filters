@@ -130,6 +130,12 @@
     <None Include="Resource Files\Shader\DefaultVertex.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
+    <None Include="Resource Files\Shader\AmbientFragment.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="Resource Files\Shader\AmbientVertex.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Image\SAE_Institute_Black_Logo.jpg">
