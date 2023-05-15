@@ -1,5 +1,14 @@
 #include "GameObject.h"
+#include <glad/glad.h>
+#include <glm/glm.hpp>
+#include <glm/gtx/transform.hpp>
 
+
+//TODO: Create own transform class/Component
+glm::mat4x4 TransformMatrix{};
+glm::mat4x4 PositionMatrix{};
+glm::mat4x4 RotationMatrix{};
+glm::mat4x4 ScaleMatrix{};
 
 void CGameObject::AddComponent(std::shared_ptr<IComponent> a_component)
 {
@@ -34,16 +43,22 @@ void CGameObject::Initialize(void)
 
 void CGameObject::Update(void)
 {
+	PositionMatrix = glm::translate(m_transform.position);
+
 	for (std::shared_ptr<IComponent> component : m_components)
 	{
 		component->Update(); // calls the update function of each component
 	}
 }
 
-void CGameObject::Draw(void)
+void CGameObject::Draw(DrawData a_drawData)
 {
 	for (std::shared_ptr<IComponent> component : m_components)
 	{
 		component->Draw(); // calls the draw function of each component
 	}
+
+	glUseProgram(m_pShader->GetShaderProgram());
+	m_pShader->SendMat4ToShader("camMatrix", a_drawData.m_projectionViewMatrix);
+	m_pShader->SendVec3ToShader("camPosition", a_drawData.m_cameraPosition);
 }

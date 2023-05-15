@@ -26,8 +26,11 @@ public:
 	inline void SetPosition(glm::vec3 a_pos) 
 	{ 
 		m_pos += a_pos; 
-		std::cout << "Camera Pos is X: " << m_pos.x << " Y: " << m_pos.y << " Z: " << m_pos.z << std::endl;
 	}
+
+	auto GetViewMatrix() const -> const glm::mat4;
+	auto GetProjectionMatrix() const -> const glm::mat4;
+	auto GetCamMatrix() const -> const glm::mat4;
 
 	// Inherited via IComponent
 	virtual const int Initialize(void) const override;
@@ -41,6 +44,9 @@ private:
 	//ScreenSize
 	int m_iWidth{ 0 };
 	int m_iHeight{ 0 };
+
+	glm::mat4 m_view{};
+	glm::mat4 m_projection{};
 
 	glm::vec3 m_pos = {};
 	glm::vec3 m_orientation = {};

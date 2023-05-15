@@ -1,6 +1,6 @@
 #ifndef SHADER_H
 #define SHADER_H
-
+#include <glm/glm.hpp>
 #include <string>
 
 class CShader
@@ -11,6 +11,8 @@ public:
 
 	auto GetShaderID(void) const -> const int;
 	auto GetShaderProgram(void) const -> const unsigned int;
+	void SendMat4ToShader(const std::string& a_sName, const glm::mat4& a_mat) const;
+	void SendVec3ToShader(const std::string& a_sName, const glm::vec3& a_vec) const;
 
 	void Initialize(void);
 	void Draw(void);

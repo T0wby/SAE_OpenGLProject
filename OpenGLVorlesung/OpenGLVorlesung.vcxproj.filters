@@ -122,6 +122,9 @@
     <ClInclude Include="Shader\Texture.h">
       <Filter>Shader</Filter>
     </ClInclude>
+    <ClInclude Include="Core\General\DrawData.h">
+      <Filter>Core\General</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resource Files\Shader\DefaultFragment.glsl">
