@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="Components\Camera.cpp" />
     <ClCompile Include="Components\Mesh.cpp" />
+    <ClCompile Include="Components\PrimitiveMeshes.cpp" />
     <ClCompile Include="Components\Transform.cpp" />
     <ClCompile Include="Core\General\Time.cpp" />
     <ClCompile Include="Core\General\Variables.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="Components\Camera.h" />
     <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Components\Mesh.h" />
+    <ClInclude Include="Components\PrimitiveMeshes.h" />
     <ClInclude Include="Components\Transform.h" />
     <ClInclude Include="Core\General\DrawData.h" />
     <ClInclude Include="Core\General\Time.h" />

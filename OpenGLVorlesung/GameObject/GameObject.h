@@ -11,11 +11,11 @@
 class CGameObject
 {
 public:
-	inline CGameObject(std::shared_ptr<CShader> a_pShader)
+	inline CGameObject(std::shared_ptr<CShader> a_pShader, CPrimitiveMeshes& a_meshStruct)
 		: m_pShader(a_pShader) 
 	{
 		m_pTransform = std::make_shared<CTransform>();
-		m_pMesh = std::make_shared<CMesh>();
+		m_pMesh = std::make_shared<CMesh>(a_meshStruct);
 		m_pMesh->Initialize();
 		m_components.push_back(m_pTransform);
 		m_components.push_back(m_pMesh);

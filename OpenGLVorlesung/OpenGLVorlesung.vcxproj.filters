@@ -81,6 +81,9 @@
     <ClCompile Include="Components\Transform.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Components\PrimitiveMeshes.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
@@ -123,6 +126,9 @@
       <Filter>Core\General</Filter>
     </ClInclude>
     <ClInclude Include="Components\Transform.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\PrimitiveMeshes.h">
       <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>

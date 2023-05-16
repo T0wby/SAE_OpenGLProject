@@ -38,34 +38,6 @@ struct Vertex
 	inline static const int GetSize(void) { return 8 * sizeof(float); }
 	inline static const int GetElemSize(void) { return 3 * sizeof(float); }
 };
-
-struct Transform 
-{
-	struct Position
-	{
-		float x, y, z;
-
-		static Position Zero(void);
-		static Position Forward(void);
-
-		//void operator += (float a_x, float a_y, float a_z);
-		void operator += (Position a_pos);
-	} position = Position::Zero();
-
-	struct Rotation
-	{
-		float x, y, z;
-
-		static Rotation Zero(void);
-	} rotation = Rotation::Zero();
-
-	struct Scale
-	{
-		float x, y, z;
-
-		static Scale One(void);
-	} scale = Scale::One();
-};
 #endif // !VARIABLES_H
 
 

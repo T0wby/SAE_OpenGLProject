@@ -57,10 +57,12 @@ int Initialize()
 
 	iErrorMsg = pGladLoader->Initialize();
 
-	pGameObject = std::make_unique<CGameObject>(pDefaultShader);
+
+	CPrimitiveMeshes house = CPrimitiveMeshes::GetHouse();
+	pGameObject = std::make_unique<CGameObject>(pDefaultShader, house);
 	pGameObject->GetTransform()->m_position = glm::vec3(1.0f, 0.0f, -3.0f);
 
-	pGameObject2 = std::make_unique<CGameObject>(pDefaultShader);
+	pGameObject2 = std::make_unique<CGameObject>(pDefaultShader, house);
 
 	auto deltaTime = pTime->GetDeltaTime();
 	iErrorMsg = pUserInput->Initialize(pWindow, pCamera, deltaTime);
