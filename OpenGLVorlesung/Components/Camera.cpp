@@ -28,7 +28,7 @@ const int CCamera::Initialize(void) const
     return 0;
 }
 
-const int CCamera::Update(void) const
+int CCamera::Update(void)
 {
 
     //m_view = glm::mat4x4(1.0f);

@@ -18,7 +18,7 @@ public:
 
 	// Engine Loop
 	virtual const int Initialize(void) const override;
-	virtual const int Update(void) const override;
+	virtual int Update(void) override;
 	virtual void Draw(void) override;
 	virtual void Finalize(void) override;
 

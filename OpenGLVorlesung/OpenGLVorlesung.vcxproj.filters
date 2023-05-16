@@ -81,6 +81,9 @@
     <ClCompile Include="Shader\Texture.cpp">
       <Filter>Shader</Filter>
     </ClCompile>
+    <ClCompile Include="Components\Transform.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
@@ -124,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="Core\General\DrawData.h">
       <Filter>Core\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Transform.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

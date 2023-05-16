@@ -6,6 +6,10 @@
 #include "../Input/UserInput.h"
 #include "../Components/Mesh.h"
 #include "../Components/Material.h"
+#include "../Shader/Shader.h"
+#include "../Shader/Texture.h"
+#include "../GameObject/GameObject.h"
+#include "../Core/General/DrawData.h"
 #include <glm/glm.hpp>
 #include <memory>
 #include <glm/gtc/type_ptr.hpp>
@@ -23,16 +27,14 @@ std::unique_ptr<CTime> pTime = nullptr;
 // Components
 std::shared_ptr<CCamera> pCamera = nullptr;
 std::unique_ptr<CUserInput> pUserInput = nullptr;
-std::unique_ptr<CMaterial> pMaterial = nullptr;
-std::unique_ptr<CMesh> pMesh = nullptr;
-std::unique_ptr<CMaterial> pAmbientMaterial = nullptr;
-std::unique_ptr<CMesh> pAmbientMesh = nullptr;
-//std::unique_ptr<CPlane> pPlane = nullptr;
+
+std::shared_ptr<CShader> pDefaultShader = nullptr;
+std::unique_ptr<CGameObject> pGameObject = nullptr;
 
 int Initialize()
 {
 	auto vertexShader = CDataManager::ReadFile("Resource Files/Shader/DefaultVertex.glsl");
-	auto fragmentShader = CDataManager::ReadFile("Resource Files/Shader/AmbientFragment.glsl");
+	auto fragmentShader = CDataManager::ReadFile("Resource Files/Shader/DefaultFragment.glsl");
 
 	pCamera = std::make_shared<CCamera>(I_WIDTH, I_HEIGHT, glm::vec3(0.0f, 0.0f, 2.0f), glm::vec3(0.0f, 0.0f, -0.5f), glm::vec3(0.0f, 1.0f, 0.0f));
 
@@ -43,10 +45,13 @@ int Initialize()
 	pTime = std::make_unique<CTime>();
 
 	// Components
-	pMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
-	pMesh = std::make_unique<CMesh>(Transform{ 0.0f, 0.0f, 0.0f });
+	pDefaultShader = std::make_shared<CShader>(vertexShader, fragmentShader);
+	//pMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
+	//pMesh = std::make_unique<CMesh>(Transform{ 0.0f, 0.0f, 0.0f });
 	//pAmbientMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader, "Resource Files/Image/DEU_Voerde_COA.svg.png");
 	//pAmbientMesh = std::make_unique<CMesh>(Transform{ 0.0f, 1.0f, 0.0f });
+
+	pGameObject = std::make_unique<CGameObject>(pDefaultShader);
 
 	auto iErrorMsg = pWindow->Initialize();
 
@@ -57,8 +62,10 @@ int Initialize()
 
 	//iErrorMsg = pCamera->Initialize();
 
-	iErrorMsg = pMaterial->Initialize();
-	iErrorMsg = pMesh->Initialize();
+	pDefaultShader->Initialize();
+	pGameObject->Initialize();
+	//iErrorMsg = pMaterial->Initialize();
+	//iErrorMsg = pMesh->Initialize();
 
 	//iErrorMsg = pAmbientMaterial->Initialize();
 	//iErrorMsg = pAmbientMesh->Initialize();
@@ -79,17 +86,22 @@ int Run()
 
 		pUserInput->Update(deltaTime);
 
-		pCamera->SetCameraData(45.0f, 0.1f, 1000.0f, pMaterial->GetShaderProgram(), "camMatrix");
+		pCamera->SetCameraData(45.0f, 0.1f, 1000.0f, pDefaultShader->GetShaderProgram(), "camMatrix");
 		pCamera->Update();
 
 		//glProgramUniform3f(pMaterial->GetShaderProgram(), glGetUniformLocation(pMaterial->GetShaderProgram(), "ambientLight"), 0.5f, 0.5f, 0.5f);
-		glUniformMatrix4fv(glGetUniformLocation(pMaterial->GetShaderProgram(), "ambientLight"), 1, GL_FALSE, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
+		//glUniformMatrix4fv(glGetUniformLocation(pMaterial->GetShaderProgram(), "ambientLight"), 1, GL_FALSE, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
 
-		pMaterial->Draw();
-		pMesh->Draw();
+		pGameObject->Update();
 
-		//pAmbientMaterial->Draw();
-		//pAmbientMesh->Draw();
+		DrawData drawData
+		{
+			pCamera->GetCamMatrix(),
+			pCamera->GetPos()
+		};
+
+		pGameObject->Draw(drawData);
+
 
 		pWindow->UpdateSwapBuffers();
 	}

@@ -36,10 +36,12 @@ const int CMesh::Initialize(void) const
 	glVertexAttribPointer(I_THIRD_IDX, 2, GL_FLOAT, GL_FALSE, Vertex::GetSize(), (void*)(Vertex::GetElemSize() * 2));
 	glEnableVertexAttribArray(I_THIRD_IDX);
 
+	
+
 	return 0;
 }
 
-const int CMesh::Update(void) const
+int CMesh::Update(void)
 {
 	return 0;
 }

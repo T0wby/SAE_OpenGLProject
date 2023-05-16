@@ -17,6 +17,7 @@ public:
 	inline auto GetOrientation(void) const -> const glm::vec3 { return m_orientation; }
 	inline auto GetUp(void) const -> const glm::vec3 { return m_up; }
 	inline auto GetSpeed(void) const -> const float { return m_fSpeed; }
+	inline auto GetPos(void) const -> const glm::vec3 { return m_pos; }
 
 	inline void SetCameraData(float a_fFOVdegree, float a_fNearPlane, float a_fFarPlane, GLuint a_iShaderID, const GLchar* a_sName)
 	{
@@ -34,7 +35,7 @@ public:
 
 	// Inherited via IComponent
 	virtual const int Initialize(void) const override;
-	virtual const int Update(void) const override;
+	virtual int Update(void) override;
 	virtual void Draw(void) override;
 	virtual void Finalize(void) override;
 

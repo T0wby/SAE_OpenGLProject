@@ -33,6 +33,16 @@ void CGameObject::RemoveComponent(std::shared_ptr<IComponent> a_component)
 	}
 }
 
+std::shared_ptr<CMesh> CGameObject::GetMesh(void)
+{
+	return m_pMesh;
+}
+
+std::shared_ptr<CShader> CGameObject::GetShader(void)
+{
+	return m_pShader;
+}
+
 void CGameObject::Initialize(void)
 {
 	for (std::shared_ptr<IComponent> component : m_components)
@@ -43,7 +53,7 @@ void CGameObject::Initialize(void)
 
 void CGameObject::Update(void)
 {
-	PositionMatrix = glm::translate(m_transform.position);
+	//m_pTransform->Update();
 
 	for (std::shared_ptr<IComponent> component : m_components)
 	{
@@ -53,12 +63,15 @@ void CGameObject::Update(void)
 
 void CGameObject::Draw(DrawData a_drawData)
 {
+	//glUseProgram(m_pShader->GetShaderProgram()); // same as m_pShader->Draw();
+	m_pShader->Draw();
+	m_pShader->SendMat4ToShader("camMatrix", a_drawData.m_projectionViewMatrix);
+	m_pShader->SendVec3ToShader("camPosition", a_drawData.m_cameraPosition);
+	m_pShader->SendMat4ToShader("transform", m_pTransform->m_transformMatrix);
+	//m_pMesh->Draw(); // done in for loop
+
 	for (std::shared_ptr<IComponent> component : m_components)
 	{
 		component->Draw(); // calls the draw function of each component
 	}
-
-	glUseProgram(m_pShader->GetShaderProgram());
-	m_pShader->SendMat4ToShader("camMatrix", a_drawData.m_projectionViewMatrix);
-	m_pShader->SendVec3ToShader("camPosition", a_drawData.m_cameraPosition);
 }

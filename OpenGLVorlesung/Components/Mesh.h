@@ -8,30 +8,13 @@
 class CMesh : public IComponent
 {
 public:
-	inline CMesh(Transform a_transform) : m_transform(a_transform)
-	{
-		for (auto&& vertex : m_vertices)
-		{
-			Vertex vert = Vertex();
-			vert.position.x = m_transform.position.x;
-			vert.position.y = m_transform.position.y;
-			vert.position.z = m_transform.position.z;
-			vertex.position += vert.position;
-		}
-	}
-
-	inline void SetPosition(float a_x, float a_y, float a_z)
-	{
-		m_transform.position.x = a_x;
-		m_transform.position.y = a_y;
-		m_transform.position.z = a_z;
-	}
 
 	// Engine Loop
 	virtual const int Initialize(void) const override;
-	virtual const int Update(void) const override;
+	virtual int Update(void) override;
 	virtual void Draw(void) override;
 	virtual void Finalize(void) override;
+
 
 protected: 
 	std::vector<Vertex> m_vertices =
@@ -93,8 +76,6 @@ protected:
 		20, 21, 22,
 		22, 21, 23
 	};
-
-	Transform m_transform{};
 };
 #endif // !MESH_H
 
