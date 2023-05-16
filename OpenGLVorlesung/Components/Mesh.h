@@ -12,10 +12,10 @@ class CMesh : public IComponent
 {
 public:
 
-	inline CMesh(CPrimitiveMeshes& a_meshStruct) 
+	inline CMesh(CPrimitiveMeshes* a_meshStruct) 
 	{
-		m_vertices = a_meshStruct.GetVertices();
-		m_indices = a_meshStruct.GetIndices();
+		m_vertices = a_meshStruct->GetVertices();
+		m_indices = a_meshStruct->GetIndices();
 	}
 
 	// Engine Loop

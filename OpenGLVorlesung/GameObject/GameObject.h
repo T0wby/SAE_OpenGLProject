@@ -2,8 +2,10 @@
 #define GAMEOBJECT_H
 #include <memory>
 #include <vector>
+#include <string>
 #include "../Components/Component.h"
 #include "../Shader/Shader.h"
+#include "../Shader/Texture.h"
 #include "../Components/Transform.h"
 #include "../Components/Mesh.h"
 #include "../Core/General/DrawData.h"
@@ -11,12 +13,18 @@
 class CGameObject
 {
 public:
-	inline CGameObject(std::shared_ptr<CShader> a_pShader, CPrimitiveMeshes& a_meshStruct)
+	inline CGameObject(std::shared_ptr<CShader> a_pShader, CPrimitiveMeshes* a_meshStruct, const std::string& a_sTextureLocation = "")
 		: m_pShader(a_pShader) 
 	{
 		m_pTransform = std::make_shared<CTransform>();
 		m_pMesh = std::make_shared<CMesh>(a_meshStruct);
-		m_pMesh->Initialize();
+
+		if (!a_sTextureLocation.empty())
+		{
+			m_pTexture = std::make_shared<CTexture>(a_sTextureLocation);
+			m_pTexture->Initialize();
+		}
+
 		m_components.push_back(m_pTransform);
 		m_components.push_back(m_pMesh);
 	}
@@ -36,6 +44,7 @@ public:
 private:
 	std::vector<std::shared_ptr<IComponent>> m_components{};
 	std::shared_ptr<CShader> m_pShader{ nullptr };
+	std::shared_ptr<CTexture> m_pTexture{ nullptr };
 	std::shared_ptr<CMesh> m_pMesh{ nullptr };
 	std::shared_ptr<CTransform> m_pTransform{ nullptr };
 };

@@ -51,8 +51,8 @@ int Initialize()
 
 	// Components
 	pDefaultShader = std::make_shared<CShader>(vertexShader, fragmentShader);
-	pDefaultShader2 = std::make_shared<CShader>(vertexShader, fragmentShader);
-	pDefaultShader3 = std::make_shared<CShader>(vertexShader, fragmentShader);
+	//pDefaultShader2 = std::make_shared<CShader>(vertexShader, fragmentShader);
+	//pDefaultShader3 = std::make_shared<CShader>(vertexShader, fragmentShader);
 	//pMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
 	//pMesh = std::make_unique<CMesh>(Transform{ 0.0f, 0.0f, 0.0f });
 	//pAmbientMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader, "Resource Files/Image/DEU_Voerde_COA.svg.png");
@@ -66,23 +66,23 @@ int Initialize()
 	CPrimitiveMeshes house = CPrimitiveMeshes::GetHouse();
 	CPrimitiveMeshes cube = CPrimitiveMeshes::GetCube();
 	CPrimitiveMeshes plane = CPrimitiveMeshes::GetPlane();
-	pGameObject = std::make_unique<CGameObject>(pDefaultShader, plane);
-	pGameObject->GetTransform()->m_position = glm::vec3(1.0f, 0.0f, -3.0f);
+	pGameObject = std::make_unique<CGameObject>(pDefaultShader, &house, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
+	pGameObject->GetTransform()->m_position = glm::vec3(0.0f, 0.0f, -3.0f);
 
-	pGameObject2 = std::make_unique<CGameObject>(pDefaultShader2, cube);
-	pGameObject2->GetTransform()->m_position = glm::vec3(-1.0f, 0.0f, -3.0f);
+	//pGameObject2 = std::make_unique<CGameObject>(pDefaultShader2, &cube);
+	//pGameObject2->GetTransform()->m_position = glm::vec3(-1.0f, 0.0f, -3.0f);
 
-	//pGameObject3 = std::make_unique<CGameObject>(pDefaultShader3, house);
+	//pGameObject3 = std::make_unique<CGameObject>(pDefaultShader3, &house);
 
 	auto deltaTime = pTime->GetDeltaTime();
 	iErrorMsg = pUserInput->Initialize(pWindow, pCamera, deltaTime);
 
 
 	pDefaultShader->Initialize();
-	pDefaultShader2->Initialize();
-	pDefaultShader3->Initialize();
+	//pDefaultShader2->Initialize();
+	//pDefaultShader3->Initialize();
 	pGameObject->Initialize();
-	pGameObject2->Initialize();
+	//pGameObject2->Initialize();
 	//pGameObject3->Initialize();
 
 	glEnable(GL_DEPTH_TEST);
@@ -105,8 +105,8 @@ int Run()
 
 
 		pGameObject->Update();
-		pGameObject2->GetTransform()->m_rotation = glm::vec3(1.0f + static_cast<float>(glfwGetTime()), static_cast<float>(glfwGetTime()), 0.0f);
-		pGameObject2->Update();
+		//pGameObject2->GetTransform()->m_rotation = glm::vec3(1.0f + static_cast<float>(glfwGetTime()), static_cast<float>(glfwGetTime()), 0.0f);
+		//pGameObject2->Update();
 		//pGameObject3->Update();
 
 		DrawData drawData
@@ -115,8 +115,8 @@ int Run()
 			pCamera->GetPos()
 		};
 
+		//pGameObject2->Draw(drawData);
 		pGameObject->Draw(drawData);
-		pGameObject2->Draw(drawData);
 		//pGameObject3->Draw(drawData);
 
 
