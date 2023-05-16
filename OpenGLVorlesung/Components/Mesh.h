@@ -5,6 +5,8 @@
 #include <vector>
 #include "../Core/General/Variables.h"
 
+//TODO: vertices etc shouldn't be set in here but taken on construction instead
+
 class CMesh : public IComponent
 {
 public:

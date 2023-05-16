@@ -54,9 +54,6 @@
     <ClCompile Include="Components\Mesh.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Components\Material.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="Core\System\DataManager.cpp">
       <Filter>Core\System</Filter>
     </ClCompile>
@@ -96,9 +93,6 @@
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Components\Component.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\Material.h">
       <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Core\System\DataManager.h">

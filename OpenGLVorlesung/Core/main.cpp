@@ -5,7 +5,6 @@
 #include "../Components/Camera.h"
 #include "../Input/UserInput.h"
 #include "../Components/Mesh.h"
-#include "../Components/Material.h"
 #include "../Shader/Shader.h"
 #include "../Shader/Texture.h"
 #include "../GameObject/GameObject.h"
@@ -90,6 +89,7 @@ int Run()
 
 
 		pGameObject->Update();
+		pGameObject2->GetTransform()->m_rotation = glm::vec3(1.0f + static_cast<float>(glfwGetTime()), static_cast<float>(glfwGetTime()), 0.0f);
 		pGameObject2->Update();
 
 		DrawData drawData
