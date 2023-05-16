@@ -33,6 +33,11 @@ void CGameObject::RemoveComponent(std::shared_ptr<IComponent> a_component)
 	}
 }
 
+std::shared_ptr<CTransform> CGameObject::GetTransform(void)
+{
+	return m_pTransform;
+}
+
 std::shared_ptr<CMesh> CGameObject::GetMesh(void)
 {
 	return m_pMesh;

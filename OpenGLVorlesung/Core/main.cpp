@@ -30,6 +30,7 @@ std::unique_ptr<CUserInput> pUserInput = nullptr;
 
 std::shared_ptr<CShader> pDefaultShader = nullptr;
 std::unique_ptr<CGameObject> pGameObject = nullptr;
+std::unique_ptr<CGameObject> pGameObject2 = nullptr;
 
 int Initialize()
 {
@@ -58,6 +59,9 @@ int Initialize()
 	iErrorMsg = pGladLoader->Initialize();
 
 	pGameObject = std::make_unique<CGameObject>(pDefaultShader);
+	pGameObject->GetTransform()->m_position = glm::vec3(1.0f, 0.0f, -3.0f);
+
+	pGameObject2 = std::make_unique<CGameObject>(pDefaultShader);
 
 	auto deltaTime = pTime->GetDeltaTime();
 	iErrorMsg = pUserInput->Initialize(pWindow, pCamera, deltaTime);
@@ -86,6 +90,7 @@ int Run()
 
 
 		pGameObject->Update();
+		pGameObject2->Update();
 
 		DrawData drawData
 		{
@@ -94,6 +99,7 @@ int Run()
 		};
 
 		pGameObject->Draw(drawData);
+		pGameObject2->Draw(drawData);
 
 
 		pWindow->UpdateSwapBuffers();

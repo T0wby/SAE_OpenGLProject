@@ -25,6 +25,7 @@ public:
 	void AddComponent(std::shared_ptr<IComponent> a_component);
 	void RemoveComponent(std::shared_ptr<IComponent> a_component);
 
+	std::shared_ptr<CTransform> GetTransform(void);
 	std::shared_ptr<CMesh> GetMesh(void);
 	std::shared_ptr<CShader> GetShader(void);
 
