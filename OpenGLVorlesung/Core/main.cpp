@@ -44,6 +44,8 @@ int Initialize()
 	pUserInput = std::make_unique<CUserInput>();
 	pTime = std::make_unique<CTime>();
 
+	auto iErrorMsg = pWindow->Initialize();
+
 	// Components
 	pDefaultShader = std::make_shared<CShader>(vertexShader, fragmentShader);
 	//pMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
@@ -51,25 +53,18 @@ int Initialize()
 	//pAmbientMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader, "Resource Files/Image/DEU_Voerde_COA.svg.png");
 	//pAmbientMesh = std::make_unique<CMesh>(Transform{ 0.0f, 1.0f, 0.0f });
 
-	pGameObject = std::make_unique<CGameObject>(pDefaultShader);
 
-	auto iErrorMsg = pWindow->Initialize();
 
 	iErrorMsg = pGladLoader->Initialize();
+
+	pGameObject = std::make_unique<CGameObject>(pDefaultShader);
 
 	auto deltaTime = pTime->GetDeltaTime();
 	iErrorMsg = pUserInput->Initialize(pWindow, pCamera, deltaTime);
 
-	//iErrorMsg = pCamera->Initialize();
 
 	pDefaultShader->Initialize();
 	pGameObject->Initialize();
-	//iErrorMsg = pMaterial->Initialize();
-	//iErrorMsg = pMesh->Initialize();
-
-	//iErrorMsg = pAmbientMaterial->Initialize();
-	//iErrorMsg = pAmbientMesh->Initialize();
-	//iErrorMsg = pPlane->Initialize();
 
 	glEnable(GL_DEPTH_TEST);
 	return iErrorMsg;
@@ -89,8 +84,6 @@ int Run()
 		pCamera->SetCameraData(45.0f, 0.1f, 1000.0f, pDefaultShader->GetShaderProgram(), "camMatrix");
 		pCamera->Update();
 
-		//glProgramUniform3f(pMaterial->GetShaderProgram(), glGetUniformLocation(pMaterial->GetShaderProgram(), "ambientLight"), 0.5f, 0.5f, 0.5f);
-		//glUniformMatrix4fv(glGetUniformLocation(pMaterial->GetShaderProgram(), "ambientLight"), 1, GL_FALSE, glm::value_ptr(glm::vec3(0.5f, 0.5f, 0.5f)));
 
 		pGameObject->Update();
 
