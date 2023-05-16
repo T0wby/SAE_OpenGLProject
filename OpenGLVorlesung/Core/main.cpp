@@ -28,6 +28,7 @@ std::shared_ptr<CCamera> pCamera = nullptr;
 std::unique_ptr<CUserInput> pUserInput = nullptr;
 
 std::shared_ptr<CShader> pDefaultShader = nullptr;
+std::shared_ptr<CShader> pDefaultShader2 = nullptr;
 std::unique_ptr<CGameObject> pGameObject = nullptr;
 std::unique_ptr<CGameObject> pGameObject2 = nullptr;
 
@@ -48,6 +49,7 @@ int Initialize()
 
 	// Components
 	pDefaultShader = std::make_shared<CShader>(vertexShader, fragmentShader);
+	pDefaultShader2 = std::make_shared<CShader>(vertexShader, fragmentShader);
 	//pMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
 	//pMesh = std::make_unique<CMesh>(Transform{ 0.0f, 0.0f, 0.0f });
 	//pAmbientMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader, "Resource Files/Image/DEU_Voerde_COA.svg.png");
@@ -59,16 +61,19 @@ int Initialize()
 
 
 	CPrimitiveMeshes house = CPrimitiveMeshes::GetHouse();
-	pGameObject = std::make_unique<CGameObject>(pDefaultShader, house);
+	CPrimitiveMeshes cube = CPrimitiveMeshes::GetCube();
+	CPrimitiveMeshes plane = CPrimitiveMeshes::GetPlane();
+	pGameObject = std::make_unique<CGameObject>(pDefaultShader, plane);
 	pGameObject->GetTransform()->m_position = glm::vec3(1.0f, 0.0f, -3.0f);
 
-	pGameObject2 = std::make_unique<CGameObject>(pDefaultShader, house);
+	pGameObject2 = std::make_unique<CGameObject>(pDefaultShader2, cube);
 
 	auto deltaTime = pTime->GetDeltaTime();
 	iErrorMsg = pUserInput->Initialize(pWindow, pCamera, deltaTime);
 
 
 	pDefaultShader->Initialize();
+	pDefaultShader2->Initialize();
 	pGameObject->Initialize();
 
 	glEnable(GL_DEPTH_TEST);
