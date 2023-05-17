@@ -28,7 +28,7 @@ public:
 	unsigned int GetVAO();
 
 protected: 
-	std::vector<Vertex> m_vertices{	};
+	std::vector<Vertex> m_vertices{};
 
 	std::vector<unsigned int> m_indices{};
 

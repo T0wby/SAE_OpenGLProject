@@ -71,16 +71,13 @@ int Initialize()
 	CPrimitiveMeshes house = CPrimitiveMeshes::GetHouse();
 	CPrimitiveMeshes cube = CPrimitiveMeshes::GetCube();
 	CPrimitiveMeshes plane = CPrimitiveMeshes::GetPlane();
-	pMesh = std::make_shared<CMesh>(&house);
-	pMesh2 = std::make_shared<CMesh>(&cube);
-	pMesh3 = std::make_shared<CMesh>(&plane);
-	pGameObject = std::make_unique<CGameObject>(pDefaultShader, pMesh, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
+	pGameObject = std::make_unique<CGameObject>(pDefaultShader, &house, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
 	pGameObject->GetTransform()->m_position = glm::vec3(1.5f, 0.0f, -3.0f);
 
-	pGameObject2 = std::make_unique<CGameObject>(pDefaultShader2, pMesh2, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
+	pGameObject2 = std::make_unique<CGameObject>(pDefaultShader2, &cube, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
 	pGameObject2->GetTransform()->m_position = glm::vec3(-1.5f, 0.0f, -3.0f);
 
-	pGameObject3 = std::make_unique<CGameObject>(pDefaultShader3, pMesh3, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
+	pGameObject3 = std::make_unique<CGameObject>(pDefaultShader3, &plane, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
 
 	auto deltaTime = pTime->GetDeltaTime();
 	iErrorMsg = pUserInput->Initialize(pWindow, pCamera, deltaTime);
