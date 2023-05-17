@@ -30,6 +30,9 @@ std::unique_ptr<CUserInput> pUserInput = nullptr;
 std::shared_ptr<CShader> pDefaultShader = nullptr;
 std::shared_ptr<CShader> pDefaultShader2 = nullptr;
 std::shared_ptr<CShader> pDefaultShader3 = nullptr;
+std::shared_ptr<CMesh> pMesh = nullptr;
+std::shared_ptr<CMesh> pMesh2 = nullptr;
+std::shared_ptr<CMesh> pMesh3 = nullptr;
 std::unique_ptr<CGameObject> pGameObject = nullptr;
 std::unique_ptr<CGameObject> pGameObject2 = nullptr;
 std::unique_ptr<CGameObject> pGameObject3 = nullptr;
@@ -52,7 +55,7 @@ int Initialize()
 	// Components
 	pDefaultShader = std::make_shared<CShader>(vertexShader, fragmentShader);
 	pDefaultShader2 = std::make_shared<CShader>(vertexShader, fragmentShader);
-	//pDefaultShader3 = std::make_shared<CShader>(vertexShader, fragmentShader);
+	pDefaultShader3 = std::make_shared<CShader>(vertexShader, fragmentShader);
 	
 	// Old Code
 	//pMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
@@ -68,14 +71,16 @@ int Initialize()
 	CPrimitiveMeshes house = CPrimitiveMeshes::GetHouse();
 	CPrimitiveMeshes cube = CPrimitiveMeshes::GetCube();
 	CPrimitiveMeshes plane = CPrimitiveMeshes::GetPlane();
-	//pGameObject = std::make_unique<CGameObject>(pDefaultShader, &house);
-	pGameObject = std::make_unique<CGameObject>(pDefaultShader, &plane, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
-	pGameObject->GetTransform()->m_position = glm::vec3(0.0f, 0.0f, -3.0f);
+	pMesh = std::make_shared<CMesh>(&house);
+	pMesh2 = std::make_shared<CMesh>(&cube);
+	pMesh3 = std::make_shared<CMesh>(&plane);
+	pGameObject = std::make_unique<CGameObject>(pDefaultShader, pMesh, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
+	pGameObject->GetTransform()->m_position = glm::vec3(1.5f, 0.0f, -3.0f);
 
-	pGameObject2 = std::make_unique<CGameObject>(pDefaultShader2, &cube, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
-	pGameObject2->GetTransform()->m_position = glm::vec3(-1.0f, 0.0f, -3.0f);
+	pGameObject2 = std::make_unique<CGameObject>(pDefaultShader2, pMesh2, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
+	pGameObject2->GetTransform()->m_position = glm::vec3(-1.5f, 0.0f, -3.0f);
 
-	//pGameObject3 = std::make_unique<CGameObject>(pDefaultShader3, &house);
+	pGameObject3 = std::make_unique<CGameObject>(pDefaultShader3, pMesh3, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
 
 	auto deltaTime = pTime->GetDeltaTime();
 	iErrorMsg = pUserInput->Initialize(pWindow, pCamera, deltaTime);
@@ -83,10 +88,10 @@ int Initialize()
 
 	pDefaultShader->Initialize();
 	pDefaultShader2->Initialize();
-	//pDefaultShader3->Initialize();
+	pDefaultShader3->Initialize();
 	pGameObject->Initialize();
 	pGameObject2->Initialize();
-	//pGameObject3->Initialize();
+	pGameObject3->Initialize();
 
 	glEnable(GL_DEPTH_TEST);
 	return iErrorMsg;
@@ -110,7 +115,7 @@ int Run()
 		pGameObject->Update();
 		pGameObject2->GetTransform()->m_rotation = glm::vec3(1.0f + static_cast<float>(glfwGetTime()), static_cast<float>(glfwGetTime()), 0.0f);
 		pGameObject2->Update();
-		//pGameObject3->Update();
+		pGameObject3->Update();
 
 		DrawData drawData
 		{
@@ -120,7 +125,7 @@ int Run()
 
 		pGameObject2->Draw(drawData);
 		pGameObject->Draw(drawData);
-		//pGameObject3->Draw(drawData);
+		pGameObject3->Draw(drawData);
 
 
 		pWindow->UpdateSwapBuffers();

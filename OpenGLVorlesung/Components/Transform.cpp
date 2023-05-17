@@ -3,7 +3,7 @@
 #include <glm/gtx/euler_angles.hpp>
 #include <glm/gtx/transform.hpp>
 
-const int CTransform::Initialize(void) const
+int CTransform::Initialize(void)
 {
     return 0;
 }

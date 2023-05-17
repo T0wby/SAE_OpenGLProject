@@ -13,11 +13,11 @@
 class CGameObject
 {
 public:
-	inline CGameObject(std::shared_ptr<CShader> a_pShader, CPrimitiveMeshes* a_meshStruct, const std::string& a_sTextureLocation = "")
-		: m_pShader(a_pShader) 
+	inline CGameObject(std::shared_ptr<CShader> a_pShader, std::shared_ptr<CMesh> a_pMesh, const std::string& a_sTextureLocation = "")
+		: m_pShader(a_pShader), m_pMesh(a_pMesh)
 	{
 		m_pTransform = std::make_shared<CTransform>();
-		m_pMesh = std::make_shared<CMesh>(a_meshStruct);
+		//m_pMesh = std::make_shared<CMesh>(a_meshStruct);
 
 		if (!a_sTextureLocation.empty())
 		{
@@ -26,7 +26,7 @@ public:
 		}
 
 		m_components.push_back(m_pTransform);
-		m_components.push_back(m_pMesh);
+		m_components.push_back(a_pMesh);
 	}
 
 	//TODO: GetComponent

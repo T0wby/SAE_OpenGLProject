@@ -73,6 +73,7 @@ void CGameObject::Draw(DrawData a_drawData)
 	m_pShader->SendMat4ToShader("camMatrix", a_drawData.m_projectionViewMatrix);
 	m_pShader->SendVec3ToShader("camPosition", a_drawData.m_cameraPosition);
 	m_pShader->SendMat4ToShader("transform", m_pTransform->m_transformMatrix);
+	glBindVertexArray(m_pMesh->GetVAO());
 	//m_pMesh->Draw(); // done in for loop
 
 	for (std::shared_ptr<IComponent> component : m_components)

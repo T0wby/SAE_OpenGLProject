@@ -9,7 +9,7 @@ class CTransform : public IComponent
 public:
 
 	// Inherited via IComponent
-	virtual const int Initialize(void) const override;
+	virtual int Initialize(void) override;
 	virtual int Update(void) override;
 	virtual void Draw(void) override;
 	virtual void Finalize(void) override;

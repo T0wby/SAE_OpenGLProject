@@ -22,7 +22,7 @@ auto CCamera::GetCamMatrix() const -> const glm::mat4
 	return projection * view;
 }
 
-const int CCamera::Initialize(void) const
+int CCamera::Initialize(void)
 {
 	/*glUseProgram(m_cameraData.iShaderID);
 	glUniform1i(glGetUniformLocation(m_cameraData.iShaderID, "texture1"), 0);
