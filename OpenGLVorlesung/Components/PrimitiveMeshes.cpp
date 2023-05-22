@@ -87,6 +87,72 @@ CPrimitiveMeshes CPrimitiveMeshes::GetCube()
 	return CubeMesh;
 }
 
+CPrimitiveMeshes CPrimitiveMeshes::GetLightCube()
+{
+	CPrimitiveMeshes CubeMesh = CPrimitiveMeshes();
+
+	CubeMesh.SetVertices({
+		// Front
+		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f}, Vertex::Color::White(),   Vertex::UVCoord{0.0f, 0.0f}}, // 0
+		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f},  Vertex::Color::White(), Vertex::UVCoord{0.0f, 0.0f}}, // 1
+		Vertex{Vertex::Position{-0.5f, 0.5f, 0.5f},  Vertex::Color::White(),  Vertex::UVCoord{0.0f, 0.0f}}, // 2
+		Vertex{Vertex::Position{0.5f, 0.5f, 0.5f},   Vertex::Color::White(), Vertex::UVCoord{0.0f, 0.0f}}, // 3
+
+		// Right
+		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f},  Vertex::Color::White(),   Vertex::UVCoord{0.0f, 0.0f}}, // 4
+		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f}, Vertex::Color::White(),   Vertex::UVCoord{0.0f, 0.0f}}, // 5
+		Vertex{Vertex::Position{0.5f, 0.5f, 0.5f},   Vertex::Color::White(),   Vertex::UVCoord{0.0f, 0.0f}}, // 6
+		Vertex{Vertex::Position{0.5f, 0.5f, -0.5f},  Vertex::Color::White(),   Vertex::UVCoord{0.0f, 0.0f}}, // 7
+
+		// Left
+		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f},Vertex::Color::White(),   Vertex::UVCoord{0.0f, 0.0f}}, // 8
+		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f}, Vertex::Color::White(), Vertex::UVCoord{0.0f, 0.0f}}, // 9
+		Vertex{Vertex::Position{-0.5f, 0.5f, -0.5f}, Vertex::Color::White(),  Vertex::UVCoord{0.0f, 0.0f}}, // 10
+		Vertex{Vertex::Position{-0.5f, 0.5f, 0.5f},  Vertex::Color::White(), Vertex::UVCoord{0.0f, 0.0f}}, // 11
+
+		// Back
+		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f}, Vertex::Color::White(),   Vertex::UVCoord{0.0f, 0.0f}}, // 12
+		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f},Vertex::Color::White(), Vertex::UVCoord{0.0f, 0.0f}}, // 13
+		Vertex{Vertex::Position{0.5f, 0.5f, -0.5f},  Vertex::Color::White(),  Vertex::UVCoord{0.0f, 0.0f}}, // 14
+		Vertex{Vertex::Position{-0.5f, 0.5f, -0.5f}, Vertex::Color::White(), Vertex::UVCoord{0.0f, 0.0f}}, // 15
+
+		// Bottom
+		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f},Vertex::Color::White(),   Vertex::UVCoord{0.0f, 0.0f}}, // 16
+		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f}, Vertex::Color::White(), Vertex::UVCoord{0.0f, 0.0f}}, // 17
+		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f}, Vertex::Color::White(),  Vertex::UVCoord{0.0f, 0.0f}}, // 18
+		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f},  Vertex::Color::White(), Vertex::UVCoord{0.0f, 0.0f}}, // 19
+
+		// Top
+		Vertex{Vertex::Position{-0.5f, 0.5f, 0.5f},  Vertex::Color::White(),   Vertex::UVCoord{0.0f, 0.0f}}, // 20
+		Vertex{Vertex::Position{0.5f, 0.5f, 0.5f},   Vertex::Color::White(), Vertex::UVCoord{0.0f, 0.0f}}, // 21
+		Vertex{Vertex::Position{-0.5f, 0.5f, -0.5f}, Vertex::Color::White(),  Vertex::UVCoord{0.0f, 0.0f}}, // 22
+		Vertex{Vertex::Position{0.5f, 0.5f, -0.5f},  Vertex::Color::White(), Vertex::UVCoord{0.0f, 0.0f}}  // 23
+		});
+
+	CubeMesh.SetIndices({
+		// Front
+		0, 1, 2,
+		2, 1, 3,
+		// Right
+		4, 5, 6,
+		6, 5, 7,
+		// Left
+		8, 9, 10,
+		10, 9, 11,
+		// Back
+		12, 13, 14,
+		14, 13, 15,
+		// Bottom
+		16, 17, 18,
+		18, 17, 19,
+		// Top
+		20, 21, 22,
+		22, 21, 23
+		});
+
+	return CubeMesh;
+}
+
 CPrimitiveMeshes CPrimitiveMeshes::GetHouse()
 {
 	CPrimitiveMeshes HouseMesh = CPrimitiveMeshes();

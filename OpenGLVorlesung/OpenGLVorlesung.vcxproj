@@ -171,6 +171,8 @@
     <None Include="Resource Files\Shader\AmbientVertex.glsl" />
     <None Include="Resource Files\Shader\DefaultFragment.glsl" />
     <None Include="Resource Files\Shader\DefaultVertex.glsl" />
+    <None Include="Resource Files\Shader\LightFragment.glsl" />
+    <None Include="Resource Files\Shader\LightVertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resource Files\Image\SAE_Institute_Black_Logo.jpg" />

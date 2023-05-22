@@ -8,6 +8,7 @@ class CPrimitiveMeshes
 public:
 	static CPrimitiveMeshes GetPlane();
 	static CPrimitiveMeshes GetCube();
+	static CPrimitiveMeshes GetLightCube();
 	static CPrimitiveMeshes GetHouse();
 
 	auto GetVertices(void) const -> const std::vector<Vertex>;

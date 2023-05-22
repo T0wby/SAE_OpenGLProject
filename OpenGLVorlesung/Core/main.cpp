@@ -39,9 +39,13 @@ std::unique_ptr<CGameObject> pGameObject3 = nullptr;
 
 int Initialize()
 {
+	// Shader Files
 	auto vertexShader = CDataManager::ReadFile("Resource Files/Shader/DefaultVertex.glsl");
 	auto fragmentShader = CDataManager::ReadFile("Resource Files/Shader/DefaultFragment.glsl");
-
+	auto vertexAmbientShader = CDataManager::ReadFile("Resource Files/Shader/AmbientVertex.glsl");
+	auto fragmentAmbientShader = CDataManager::ReadFile("Resource Files/Shader/AmbientFragment.glsl");
+	auto vertexLightShader = CDataManager::ReadFile("Resource Files/Shader/LightVertex.glsl");
+	auto fragmentLightShader = CDataManager::ReadFile("Resource Files/Shader/LightFragment.glsl");
 	pCamera = std::make_shared<CCamera>(I_WIDTH, I_HEIGHT, glm::vec3(0.0f, 0.0f, 2.0f), glm::vec3(0.0f, 0.0f, -0.5f), glm::vec3(0.0f, 1.0f, 0.0f));
 
 	// System
@@ -54,8 +58,8 @@ int Initialize()
 
 	// Components
 	pDefaultShader = std::make_shared<CShader>(vertexShader, fragmentShader);
-	pDefaultShader2 = std::make_shared<CShader>(vertexShader, fragmentShader);
-	pDefaultShader3 = std::make_shared<CShader>(vertexShader, fragmentShader);
+	pDefaultShader2 = std::make_shared<CShader>(vertexAmbientShader, fragmentAmbientShader);
+	pDefaultShader3 = std::make_shared<CShader>(vertexLightShader, fragmentLightShader);
 	
 	// Old Code
 	//pMaterial = std::make_unique<CMaterial>(vertexShader, fragmentShader, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
@@ -67,17 +71,22 @@ int Initialize()
 
 	iErrorMsg = pGladLoader->Initialize();
 
-
+	// VerticeInformation
 	CPrimitiveMeshes house = CPrimitiveMeshes::GetHouse();
 	CPrimitiveMeshes cube = CPrimitiveMeshes::GetCube();
 	CPrimitiveMeshes plane = CPrimitiveMeshes::GetPlane();
+	CPrimitiveMeshes lightCube = CPrimitiveMeshes::GetLightCube();
+
+	// Create Scene Objects
 	pGameObject = std::make_unique<CGameObject>(pDefaultShader, &house, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
 	pGameObject->GetTransform()->m_position = glm::vec3(1.5f, 0.0f, -3.0f);
 
 	pGameObject2 = std::make_unique<CGameObject>(pDefaultShader2, &cube, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
 	pGameObject2->GetTransform()->m_position = glm::vec3(-1.5f, 0.0f, -3.0f);
 
-	pGameObject3 = std::make_unique<CGameObject>(pDefaultShader3, &plane, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
+	pGameObject3 = std::make_unique<CGameObject>(pDefaultShader3, &lightCube, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
+	pGameObject3->GetTransform()->m_position = glm::vec3(-0.0f, 2.0f, -7.0f);
+	pGameObject3->GetTransform()->m_scale = glm::vec3(0.5f, 0.5f, 0.5f);
 
 	auto deltaTime = pTime->GetDeltaTime();
 	iErrorMsg = pUserInput->Initialize(pWindow, pCamera, deltaTime);
@@ -110,7 +119,7 @@ int Run()
 
 
 		pGameObject->Update();
-		pGameObject2->GetTransform()->m_rotation = glm::vec3(1.0f + static_cast<float>(glfwGetTime()), static_cast<float>(glfwGetTime()), 0.0f);
+		//pGameObject2->GetTransform()->m_rotation = glm::vec3(1.0f + static_cast<float>(glfwGetTime()), static_cast<float>(glfwGetTime()), 0.0f);
 		pGameObject2->Update();
 		pGameObject3->Update();
 

@@ -1,5 +1,6 @@
 #ifndef SHADER_H
 #define SHADER_H
+#include <glad/glad.h>
 #include <glm/glm.hpp>
 #include <string>
 
@@ -20,6 +21,9 @@ public:
 private:
 	std::string m_sVertexShader{ "" };
 	std::string m_sFragmentShader{ "" };
+
+	GLsizei m_iShaderID{1};
+	unsigned int m_iShaderProgram{0};
 };
 
 #endif // !SHADER_H
