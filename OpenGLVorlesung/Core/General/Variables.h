@@ -29,13 +29,22 @@ struct Vertex
 
 	} color = Color::Black();
 
+	struct Normal
+	{
+		float x, y, z;
+		
+		static Normal Zero(void);
+		static Normal One(void);
+
+	} normal = Normal::Zero();
+	
 	struct UVCoord
 	{
 		float u, v;
 
 	} uv{ 0.0f,0.0f };
 
-	inline static const int GetSize(void) { return 8 * sizeof(float); }
+	inline static const int GetSize(void) { return 11 * sizeof(float); }
 	inline static const int GetElemSize(void) { return 3 * sizeof(float); }
 };
 #endif // !VARIABLES_H

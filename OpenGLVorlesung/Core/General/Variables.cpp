@@ -43,3 +43,12 @@ Vertex::Color Vertex::Color::Blue(void)
 {
     return Color{ F_ZERO, F_ZERO, F_ONE };
 }
+
+Vertex::Normal Vertex::Normal::Zero()
+{
+    return Normal{ F_ZERO, F_ZERO, F_ZERO };
+}
+Vertex::Normal Vertex::Normal::One()
+{
+    return Normal{ F_ONE, F_ONE, F_ONE };
+}
