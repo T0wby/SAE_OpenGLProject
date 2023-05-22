@@ -72,6 +72,7 @@ void CGameObject::Draw(DrawData a_drawData)
 	m_pShader->Draw();
 	m_pShader->SendMat4ToShader("camMatrix", a_drawData.m_projectionViewMatrix);
 	m_pShader->SendVec3ToShader("camPosition", a_drawData.m_cameraPosition);
+	m_pShader->SendVec3ToShader("lightPos", a_drawData.m_lightPosition);
 	m_pShader->SendVec3ToShader("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
 	m_pShader->SendMat4ToShader("transform", m_pTransform->m_transformMatrix);
 	glBindVertexArray(m_pMesh->GetVAO());
