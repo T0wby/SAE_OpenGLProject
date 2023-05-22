@@ -1,5 +1,7 @@
 #include "PrimitiveMeshes.h"
 
+//TODO: Calculate all Normals :)
+
 CPrimitiveMeshes CPrimitiveMeshes::GetPlane()
 {
 	CPrimitiveMeshes PlaneMesh = CPrimitiveMeshes();
