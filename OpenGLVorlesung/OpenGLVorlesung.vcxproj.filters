@@ -10,23 +10,32 @@
     <Filter Include="glad">
       <UniqueIdentifier>{adfc8dc7-74dd-40f5-aa77-3a0620fab0bd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game">
-      <UniqueIdentifier>{7b69a2bc-2b0c-47cb-87ad-bc3b12616989}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component">
-      <UniqueIdentifier>{68d328bf-0173-4482-beb3-cfb88aa21869}</UniqueIdentifier>
+    <Filter Include="Components">
+      <UniqueIdentifier>{d3a6e7f0-c2a4-48d9-ac57-8f969892730c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\System">
-      <UniqueIdentifier>{29ed46d5-ed71-44af-a0e0-bbadd984ed9a}</UniqueIdentifier>
+      <UniqueIdentifier>{cdeb5d5d-241a-4b91-9e40-76b2fe0b20f7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{a0b97cd2-7853-4206-ae00-ea6865ee8ced}</UniqueIdentifier>
+      <UniqueIdentifier>{124fe819-8be0-4bcc-835f-7a7dfcac81a9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files\Shader">
-      <UniqueIdentifier>{694b636b-957c-4604-8d51-98bb299f9fba}</UniqueIdentifier>
+      <UniqueIdentifier>{d7be506b-5549-4107-83c9-88018efec1e4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Core\General">
-      <UniqueIdentifier>{b3aa2126-7d63-4e64-bc72-d4f3ce79716e}</UniqueIdentifier>
+      <UniqueIdentifier>{e06577c0-c687-4929-a933-e3053ac18496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{2739dea7-f609-4fef-a46e-002fdeb62ea0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Image">
+      <UniqueIdentifier>{76402879-6348-4251-bf2b-ed8c0d4b31cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{a015ed1c-780d-4f61-9981-430c2637aa58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{0660a069-ff8d-4081-b746-382fa07b060d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -36,61 +45,91 @@
     <ClCompile Include="Window\Window.cpp">
       <Filter>Window</Filter>
     </ClCompile>
-    <ClCompile Include="..\Libs\glad\src\glad.c">
+    <ClCompile Include="glad\src\glad.c">
       <Filter>glad</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Component\Mesh.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Component\Material.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Component\Component.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\System\DataManager.cpp">
-      <Filter>Core\System</Filter>
     </ClCompile>
     <ClCompile Include="glad\Loader.cpp">
       <Filter>glad</Filter>
     </ClCompile>
+    <ClCompile Include="Components\Mesh.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\System\DataManager.cpp">
+      <Filter>Core\System</Filter>
+    </ClCompile>
     <ClCompile Include="Core\General\Variables.cpp">
       <Filter>Core\General</Filter>
     </ClCompile>
-    <ClCompile Include="Component\Camera.cpp">
-      <Filter>Component</Filter>
+    <ClCompile Include="Components\Camera.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\UserInput.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\General\Time.cpp">
+      <Filter>Core\General</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\GameObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\Shader.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader\Texture.cpp">
+      <Filter>Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Transform.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\PrimitiveMeshes.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
       <Filter>Window</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
-      <Filter>Game</Filter>
+    <ClInclude Include="glad\Loader.h">
+      <Filter>glad</Filter>
     </ClInclude>
-    <ClInclude Include="Component\Mesh.h">
-      <Filter>Component</Filter>
+    <ClInclude Include="Components\Mesh.h">
+      <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Component\Material.h">
-      <Filter>Component</Filter>
-    </ClInclude>
-    <ClInclude Include="Component\Component.h">
-      <Filter>Component</Filter>
+    <ClInclude Include="Components\Component.h">
+      <Filter>Components</Filter>
     </ClInclude>
     <ClInclude Include="Core\System\DataManager.h">
       <Filter>Core\System</Filter>
     </ClInclude>
-    <ClInclude Include="glad\Loader.h">
-      <Filter>glad</Filter>
-    </ClInclude>
     <ClInclude Include="Core\General\Variables.h">
       <Filter>Core\General</Filter>
     </ClInclude>
-    <ClInclude Include="Component\Camera.h">
-      <Filter>Component</Filter>
+    <ClInclude Include="Components\Camera.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\UserInput.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\General\Time.h">
+      <Filter>Core\General</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\GameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\Shader.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader\Texture.h">
+      <Filter>Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\General\DrawData.h">
+      <Filter>Core\General</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Transform.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\PrimitiveMeshes.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -100,5 +139,16 @@
     <None Include="Resource Files\Shader\DefaultVertex.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
+    <None Include="Resource Files\Shader\AmbientFragment.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="Resource Files\Shader\AmbientVertex.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resource Files\Image\SAE_Institute_Black_Logo.jpg">
+      <Filter>Resource Files\Image</Filter>
+    </Image>
   </ItemGroup>
 </Project>

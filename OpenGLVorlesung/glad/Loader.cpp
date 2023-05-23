@@ -1,15 +1,16 @@
 #include "Loader.h"
+#include <iostream>
 
 const int I_SUCCESS = 0;
-const int I_GLAD_INIT_FAILED = 3;
+const int I_ERR_GLAD_INIT_FAILED = -3;
 
-const int CLoader::Intialize(void) const
+auto CLoader::Initialize(void) const -> const int
 {
-	auto iVersion = gladLoadGl();
+	auto iVersion = gladLoadGL();
 	if (iVersion == 0)
 	{
-		std::cout << "Err: Failed to open glad!" << std::endl;
-		return I_GLAD_INIT_FAILED;
+		std::cout << "Err: Failed to load glad!" << std::endl;
+		return I_ERR_GLAD_INIT_FAILED;
 	}
 
 	glViewport(0, 0, m_iWidth, m_iHeight);
@@ -17,15 +18,7 @@ const int CLoader::Intialize(void) const
 	return I_SUCCESS;
 }
 
-const int CLoader::Update(void) const
+auto CLoader::Finalize(void) const -> const int
 {
 	return I_SUCCESS;
-}
-
-void CLoader::Draw(void) const
-{
-}
-
-void CLoader::Finalize(void)
-{
 }

@@ -9,6 +9,7 @@ out vec2 uvCoord;
 
 uniform mat4 transform;
 uniform mat4 camMatrix;
+uniform vec3 camPosition;
 
 void main()
 {
