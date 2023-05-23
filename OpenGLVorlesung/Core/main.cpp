@@ -38,10 +38,12 @@ std::shared_ptr<CMesh> pMesh = nullptr;
 std::shared_ptr<CMesh> pMesh2 = nullptr;
 std::shared_ptr<CMesh> pMesh3 = nullptr;
 std::shared_ptr<CMaterial> pMat = nullptr;
+std::shared_ptr<CMaterial> pMatGO2 = nullptr;
 std::shared_ptr<CMaterial> pMatLight = nullptr;
 std::shared_ptr<CMaterial> pMatDefault = nullptr;
 std::unique_ptr<CGameObject> pGameObject = nullptr;
 std::unique_ptr<CGameObject> pGameObject2 = nullptr;
+std::unique_ptr<CGameObject> pGameObject3 = nullptr;
 std::unique_ptr<CGameObject> pLightObject = nullptr;
 
 int Initialize()
@@ -80,6 +82,13 @@ int Initialize()
 		glm::vec3(1.0f, 1.0f, 1.0f),
 		64.0f
 	};
+	pMatGO2 = std::make_shared<CMaterial>();
+	*pMatGO2 = {
+		glm::vec3(0.0f, 1.0f, 0.3f),
+		glm::vec3(0.0f, 1.0f, 0.3f),
+		glm::vec3(1.0f, 1.0f, 1.0f),
+		32.0f
+	};
 
 	iErrorMsg = pGladLoader->Initialize();
 
@@ -95,6 +104,8 @@ int Initialize()
 
 	pGameObject2 = std::make_unique<CGameObject>(pPhongShader, &cube, pMat, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
 	pGameObject2->GetTransform()->m_position = glm::vec3(0.0f, -1.0f, -4.0f);
+	pGameObject3 = std::make_unique<CGameObject>(pPhongShader, &cube, pMatGO2, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
+	pGameObject3->GetTransform()->m_position = glm::vec3(-2.0f, 0.0f, -7.0f);
 
 	pLightObject = std::make_unique<CGameObject>(pLightShader, &lightCube, pMatLight);
 	pLightObject->GetTransform()->m_position = glm::vec3(-0.0f, -1.0f, -4.0f);
@@ -109,6 +120,7 @@ int Initialize()
 	pLightShader->Initialize();
 	pGameObject->Initialize();
 	pGameObject2->Initialize();
+	pGameObject3->Initialize();
 	pLightObject->Initialize();
 
 	glEnable(GL_DEPTH_TEST);
@@ -134,6 +146,7 @@ int Run()
 		pGameObject2->Update();
 		pGameObject2->GetTransform()->m_position = glm::vec3(sin(glfwGetTime()) * 0.5f,cos(glfwGetTime()) * 0.5f,  -4.0f);
 		pGameObject2->GetTransform()->m_rotation = glm::vec3(1.0f + static_cast<float>(glfwGetTime()), static_cast<float>(glfwGetTime()), 0.0f);
+		pGameObject3->Update();
 		pLightObject->Update();
 		pLightObject->GetTransform()->m_position = pGameObject2->GetTransform()->m_position + glm::vec3(cos(glfwGetTime()) * 2.0f,sin(glfwGetTime()) * 1.5f,  sin(glfwGetTime()) * 1.5f);
 
@@ -150,6 +163,7 @@ int Run()
 		};
 
 		pGameObject2->Draw(drawData);
+		pGameObject3->Draw(drawData);
 		pGameObject->Draw(drawData);
 		pLightObject->Draw(drawData);
 
