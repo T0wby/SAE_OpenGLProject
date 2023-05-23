@@ -26,12 +26,12 @@ int CMesh::Initialize(void)
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_iEBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indices.size() * sizeof(unsigned int), &m_indices[0], GL_STATIC_DRAW);
 
-	// Defining how we go through the Data(Start at 0, size of the variable, Data in Float, not normalized, One data set contains 6 floats in Pos and Color(stride size), Start pos for the stride; 0 for pos 3 for Color)
+	// Defining how we go through the Data(Start at 0, size of the variable, Data in Float, not normalized, One data set contains 11 floats(stride size), Start pos for the stride)
 	glVertexAttribPointer(I_FIRST_IDX, I_VARIABLE_SIZE, GL_FLOAT, GL_FALSE, Vertex::GetSize(), (void*)I_DEFAULT);
 	glEnableVertexAttribArray(I_FIRST_IDX);
 	glVertexAttribPointer(I_SECOND_IDX, I_VARIABLE_SIZE, GL_FLOAT, GL_FALSE, Vertex::GetSize(), reinterpret_cast<void*>(Vertex::GetElemSize()));
 	glEnableVertexAttribArray(I_SECOND_IDX);
-	glVertexAttribPointer(I_THIRD_IDX, I_VARIABLE_SIZE, GL_FLOAT, GL_FALSE, Vertex::GetSize(), reinterpret_cast<void*>(Vertex::GetElemSize()));
+	glVertexAttribPointer(I_THIRD_IDX, I_VARIABLE_SIZE, GL_FLOAT, GL_FALSE, Vertex::GetSize(), reinterpret_cast<void*>(Vertex::GetElemSize()* 2));
 	glEnableVertexAttribArray(I_THIRD_IDX);
 	glVertexAttribPointer(I_FOURTH_IDX, 2, GL_FLOAT, GL_FALSE, Vertex::GetSize(), reinterpret_cast<void*>(Vertex::GetElemSize() * 3));
 	glEnableVertexAttribArray(I_FOURTH_IDX);

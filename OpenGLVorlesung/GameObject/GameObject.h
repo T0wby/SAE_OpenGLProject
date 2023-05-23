@@ -8,13 +8,14 @@
 #include "../Shader/Texture.h"
 #include "../Components/Transform.h"
 #include "../Components/Mesh.h"
+#include "../Components/Material.h"
 #include "../Core/General/DrawData.h"
 
 class CGameObject
 {
 public:
-	inline CGameObject(std::shared_ptr<CShader> a_pShader, CPrimitiveMeshes* a_meshStruct, const std::string& a_sTextureLocation = "")
-		: m_pShader(a_pShader)
+	inline CGameObject(const std::shared_ptr<CShader>& a_pShader, CPrimitiveMeshes* a_meshStruct, const std::shared_ptr<CMaterial>& a_pMaterial , const std::string& a_sTextureLocation = "")
+		: m_pShader(a_pShader), m_pMaterial(a_pMaterial)
 	{
 		m_pTransform = std::make_shared<CTransform>();
 		m_pMesh = std::make_shared<CMesh>(a_meshStruct);
@@ -46,6 +47,7 @@ private:
 	std::shared_ptr<CShader> m_pShader{ nullptr };
 	std::shared_ptr<CTexture> m_pTexture{ nullptr };
 	std::shared_ptr<CMesh> m_pMesh{ nullptr };
+	std::shared_ptr<CMaterial> m_pMaterial{ nullptr };
 	std::shared_ptr<CTransform> m_pTransform{ nullptr };
 };
 

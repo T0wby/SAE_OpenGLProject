@@ -11,13 +11,12 @@ out vec2 uvCoord;
 
 uniform mat4 transform;
 uniform mat4 camMatrix;
-uniform vec3 camPosition;
 
 void main()
 {
     gl_Position = camMatrix * transform * vec4(position, 1.0);
     fragPos = vec3(transform * vec4(position, 1.0)); // Calculate the position of the fragment in world space
     vertexColor = color;
-    Normal = normal;
+    Normal = mat3(transpose(inverse(transform))) * normal; // Normal matrix used for non-uniform scale
     uvCoord = uv;
 }

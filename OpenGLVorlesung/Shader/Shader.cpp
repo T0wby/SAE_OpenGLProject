@@ -27,6 +27,11 @@ void CShader::SendVec3ToShader(const std::string& a_sName, const glm::vec3& a_ve
     glUniform3fv(glGetUniformLocation(m_iShaderProgram, a_sName.c_str()), 1, glm::value_ptr(a_vec));
 }
 
+void CShader::SendFloatToShader(const std::string& a_sName, const float& a_float) const
+{
+    glUniform1f(glGetUniformLocation(m_iShaderProgram, a_sName.c_str()), a_float);
+}
+
 void CShader::Initialize(void)
 {
     const int buffersize{ 1024 };

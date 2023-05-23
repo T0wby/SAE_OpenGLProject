@@ -14,6 +14,7 @@ public:
 	auto GetShaderProgram(void) const -> const unsigned int;
 	void SendMat4ToShader(const std::string& a_sName, const glm::mat4& a_mat) const;
 	void SendVec3ToShader(const std::string& a_sName, const glm::vec3& a_vec) const;
+	void SendFloatToShader(const std::string& a_sName, const float& a_float) const;
 
 	void Initialize(void);
 	void Draw(void);

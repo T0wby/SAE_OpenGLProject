@@ -72,9 +72,19 @@ void CGameObject::Draw(DrawData a_drawData)
 	m_pShader->Draw();
 	m_pShader->SendMat4ToShader("camMatrix", a_drawData.m_projectionViewMatrix);
 	m_pShader->SendVec3ToShader("camPosition", a_drawData.m_cameraPosition);
-	m_pShader->SendVec3ToShader("lightPos", a_drawData.m_lightPosition);
-	m_pShader->SendVec3ToShader("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
 	m_pShader->SendMat4ToShader("transform", m_pTransform->m_transformMatrix);
+
+	// Send Struct Material
+	m_pShader->SendVec3ToShader("material.ambient", m_pMaterial->m_vAmbient);
+	m_pShader->SendVec3ToShader("material.diffuse", m_pMaterial->m_vDiffuse);
+	m_pShader->SendVec3ToShader("material.specular", m_pMaterial->m_vSpecular);
+	m_pShader->SendFloatToShader("material.shininess", m_pMaterial->m_fShininess);
+	// Send Struct Light
+	m_pShader->SendVec3ToShader("light.position", a_drawData.m_lightPosition);
+	m_pShader->SendVec3ToShader("light.ambient", a_drawData.m_lightAmbient);
+	m_pShader->SendVec3ToShader("light.diffuse", a_drawData.m_lightDiffuse);
+	m_pShader->SendVec3ToShader("light.specular", a_drawData.m_lightSpecular);
+	
 	glBindVertexArray(m_pMesh->GetVAO());
 	//m_pMesh->Draw(); // done in for loop
 
