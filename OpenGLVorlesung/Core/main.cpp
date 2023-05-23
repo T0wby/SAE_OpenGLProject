@@ -19,7 +19,7 @@ constexpr int I_HEIGHT = 640;
 
 // Light properties
 constexpr glm::vec3 V3_LIGHT_AMBIENT = glm::vec3(0.2f, 0.2f, 0.2f);
-constexpr glm::vec3 V3_LIGHT_DIFFUSE = glm::vec3(0.5f, 0.5f, 0.5f);
+constexpr glm::vec3 V3_LIGHT_DIFFUSE = glm::vec3(1.0f, 1.0f, 1.0f);
 constexpr glm::vec3 V3_LIGHT_SPECULAR = glm::vec3(1.0f, 1.0f, 1.0f);
 
 // System
@@ -49,8 +49,8 @@ int Initialize()
 	// Shader Files
 	auto vertexShader = CDataManager::ReadFile("Resource Files/Shader/DefaultVertex.glsl");
 	auto fragmentShader = CDataManager::ReadFile("Resource Files/Shader/DefaultFragment.glsl");
-	auto vertexAmbientShader = CDataManager::ReadFile("Resource Files/Shader/AmbientVertex.glsl");
-	auto fragmentAmbientShader = CDataManager::ReadFile("Resource Files/Shader/AmbientFragment.glsl");
+	auto vertexPhongShader = CDataManager::ReadFile("Resource Files/Shader/PhongVertex.glsl");
+	auto fragmentPhongShader = CDataManager::ReadFile("Resource Files/Shader/PhongFragment.glsl");
 	auto vertexLightShader = CDataManager::ReadFile("Resource Files/Shader/LightVertex.glsl");
 	auto fragmentLightShader = CDataManager::ReadFile("Resource Files/Shader/LightFragment.glsl");
 	pCamera = std::make_shared<CCamera>(I_WIDTH, I_HEIGHT, glm::vec3(0.0f, 0.0f, 2.0f), glm::vec3(0.0f, 0.0f, -0.5f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -65,7 +65,7 @@ int Initialize()
 
 	// Components
 	pDefaultShader = std::make_shared<CShader>(vertexShader, fragmentShader);
-	pPhongShader = std::make_shared<CShader>(vertexAmbientShader, fragmentAmbientShader);
+	pPhongShader = std::make_shared<CShader>(vertexPhongShader, fragmentPhongShader);
 	pLightShader = std::make_shared<CShader>(vertexLightShader, fragmentLightShader);
 	pMatDefault = std::make_shared<CMaterial>();
 	pMatLight = std::make_shared<CMaterial>();
@@ -94,10 +94,10 @@ int Initialize()
 	pGameObject->GetTransform()->m_position = glm::vec3(2.5f, 0.0f, -3.0f);
 
 	pGameObject2 = std::make_unique<CGameObject>(pPhongShader, &cube, pMat, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
-	pGameObject2->GetTransform()->m_position = glm::vec3(0.0f, -1.0f, -2.0f);
+	pGameObject2->GetTransform()->m_position = glm::vec3(0.0f, -1.0f, -4.0f);
 
 	pLightObject = std::make_unique<CGameObject>(pLightShader, &lightCube, pMatLight);
-	pLightObject->GetTransform()->m_position = glm::vec3(-0.0f, -1.0f, -2.0f);
+	pLightObject->GetTransform()->m_position = glm::vec3(-0.0f, -1.0f, -4.0f);
 	pLightObject->GetTransform()->m_scale = glm::vec3(0.5f, 0.5f, 0.5f);
 
 	auto deltaTime = pTime->GetDeltaTime();
@@ -132,7 +132,7 @@ int Run()
 
 		pGameObject->Update();
 		pGameObject2->Update();
-		//pGameObject2->GetTransform()->m_position = glm::vec3(sin(glfwGetTime()) * 2.0f,cos(glfwGetTime()) * 1.5f,  cos(glfwGetTime()) * 1.5f);
+		pGameObject2->GetTransform()->m_position = glm::vec3(sin(glfwGetTime()) * 0.5f,cos(glfwGetTime()) * 0.5f,  -4.0f);
 		pGameObject2->GetTransform()->m_rotation = glm::vec3(1.0f + static_cast<float>(glfwGetTime()), static_cast<float>(glfwGetTime()), 0.0f);
 		pLightObject->Update();
 		pLightObject->GetTransform()->m_position = pGameObject2->GetTransform()->m_position + glm::vec3(cos(glfwGetTime()) * 2.0f,sin(glfwGetTime()) * 1.5f,  sin(glfwGetTime()) * 1.5f);
@@ -143,9 +143,9 @@ int Run()
 			pCamera->GetPos(),
 			pLightObject->GetTransform()->m_position,
 			V3_LIGHT_AMBIENT,
-			V3_LIGHT_DIFFUSE,
+			//V3_LIGHT_DIFFUSE,
 			//V3_LIGHT_AMBIENT * glm::vec3(sin(glfwGetTime() * 2.0f), sin(glfwGetTime() * 0.7f), sin(glfwGetTime() * 1.3f)),
-			//V3_LIGHT_DIFFUSE * glm::vec3(sin(glfwGetTime() * 1.0f), sin(glfwGetTime() * 0.3f), sin(glfwGetTime() * 0.6f)),
+			V3_LIGHT_DIFFUSE * glm::vec3(sin(glfwGetTime() * 1.0f), sin(glfwGetTime() * 0.3f), sin(glfwGetTime() * 0.6f)),
 			V3_LIGHT_SPECULAR
 		};
 

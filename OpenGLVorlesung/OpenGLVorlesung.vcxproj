@@ -169,8 +169,8 @@
     <ClInclude Include="Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resource Files\Shader\AmbientFragment.glsl" />
-    <None Include="Resource Files\Shader\AmbientVertex.glsl" />
+    <None Include="Resource Files\Shader\PhongFragment.glsl" />
+    <None Include="Resource Files\Shader\PhongVertex.glsl" />
     <None Include="Resource Files\Shader\DefaultFragment.glsl" />
     <None Include="Resource Files\Shader\DefaultVertex.glsl" />
     <None Include="Resource Files\Shader\LightFragment.glsl" />
