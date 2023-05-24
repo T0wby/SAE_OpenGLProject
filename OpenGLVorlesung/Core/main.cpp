@@ -127,6 +127,7 @@ int Initialize()
 	pLightObject->Initialize();
 
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
 	return iErrorMsg;
 }
 
