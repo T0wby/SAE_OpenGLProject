@@ -30,7 +30,6 @@ public:
 		m_components.push_back(m_pMesh);
 	}
 
-	//TODO: GetComponent
 	void AddComponent(std::shared_ptr<IComponent> a_component);
 	void RemoveComponent(std::shared_ptr<IComponent> a_component);
 

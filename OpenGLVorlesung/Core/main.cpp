@@ -33,6 +33,7 @@ std::unique_ptr<CUserInput> pUserInput = nullptr;
 
 std::shared_ptr<CShader> pDefaultShader = nullptr;
 std::shared_ptr<CShader> pPhongShader = nullptr;
+std::shared_ptr<CShader> pPhongShader2 = nullptr;
 std::shared_ptr<CShader> pLightShader = nullptr;
 std::shared_ptr<CMesh> pMesh = nullptr;
 std::shared_ptr<CMesh> pMesh2 = nullptr;
@@ -68,6 +69,7 @@ int Initialize()
 	// Components
 	pDefaultShader = std::make_shared<CShader>(vertexShader, fragmentShader);
 	pPhongShader = std::make_shared<CShader>(vertexPhongShader, fragmentPhongShader);
+	pPhongShader2 = std::make_shared<CShader>(vertexPhongShader, fragmentPhongShader);
 	pLightShader = std::make_shared<CShader>(vertexLightShader, fragmentLightShader);
 	pMatDefault = std::make_shared<CMaterial>();
 	pMatLight = std::make_shared<CMaterial>();
@@ -104,7 +106,7 @@ int Initialize()
 
 	pGameObject2 = std::make_unique<CGameObject>(pPhongShader, &cube, pMat, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
 	pGameObject2->GetTransform()->m_position = glm::vec3(0.0f, -1.0f, -4.0f);
-	pGameObject3 = std::make_unique<CGameObject>(pPhongShader, &cube, pMatGO2, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
+	pGameObject3 = std::make_unique<CGameObject>(pPhongShader2, &cube, pMatGO2, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
 	pGameObject3->GetTransform()->m_position = glm::vec3(-2.0f, 0.0f, -7.0f);
 
 	pLightObject = std::make_unique<CGameObject>(pLightShader, &lightCube, pMatLight);
@@ -117,6 +119,7 @@ int Initialize()
 
 	pDefaultShader->Initialize();
 	pPhongShader->Initialize();
+	pPhongShader2->Initialize();
 	pLightShader->Initialize();
 	pGameObject->Initialize();
 	pGameObject2->Initialize();
