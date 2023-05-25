@@ -34,10 +34,12 @@ std::unique_ptr<CUserInput> pUserInput = nullptr;
 std::shared_ptr<CShader> pDefaultShader = nullptr;
 std::shared_ptr<CShader> pPhongShader = nullptr;
 std::shared_ptr<CShader> pPhongShader2 = nullptr;
+std::shared_ptr<CShader> pPhongShaderPlane = nullptr;
 std::shared_ptr<CShader> pLightShader = nullptr;
 std::shared_ptr<CMesh> pMesh = nullptr;
 std::shared_ptr<CMesh> pMesh2 = nullptr;
 std::shared_ptr<CMesh> pMesh3 = nullptr;
+std::shared_ptr<CMesh> pMeshPlane = nullptr;
 std::shared_ptr<CMaterial> pMat = nullptr;
 std::shared_ptr<CMaterial> pMatGO2 = nullptr;
 std::shared_ptr<CMaterial> pMatLight = nullptr;
@@ -191,6 +193,7 @@ void CEngine::CreateComponents()
 	pDefaultShader = std::make_shared<CShader>(vertexPhongShader, fragmentPhongShader);
 	pPhongShader = std::make_shared<CShader>(vertexPhongShader, fragmentPhongShader);
 	pPhongShader2 = std::make_shared<CShader>(vertexPhongShader, fragmentPhongShader);
+	pPhongShaderPlane = std::make_shared<CShader>(vertexPhongShader, fragmentPhongShader);
 	pLightShader = std::make_shared<CShader>(vertexLightShader, fragmentLightShader);
 
 	CreateMaterials();
