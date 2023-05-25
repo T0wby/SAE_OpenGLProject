@@ -1,6 +1,20 @@
 #include "PrimitiveMeshes.h"
+#include <glm/glm.hpp>
 
 //TODO: Calculate all Normals :)
+
+glm::vec3 CalculateFaceNormal(const glm::vec3& v1, const glm::vec3& v2, const glm::vec3& v3)
+{
+	glm::vec3 edge1 = v2 - v1;
+	glm::vec3 edge2 = v3 - v1;
+
+	// Calculate the cross product of the edges to get the face normal
+	glm::vec3 normal = glm::cross(edge1, edge2);
+	normal = glm::normalize(normal);
+
+	return normal;
+}
+
 
 CPrimitiveMeshes CPrimitiveMeshes::GetPlane()
 {
@@ -8,10 +22,10 @@ CPrimitiveMeshes CPrimitiveMeshes::GetPlane()
 
 	PlaneMesh.SetVertices({
 		// Bottom
-		Vertex{Vertex::Position{-0.5f, 0.0f, -0.5f},Vertex::Color::Red(),   Vertex::Normal::Zero(),Vertex::UVCoord{0.0f, 0.0f}}, // 1
-		Vertex{Vertex::Position{0.5f, 0.0f, -0.5f}, Vertex::Color::Green(), Vertex::Normal::Zero(),Vertex::UVCoord{0.0f, 1.0f}}, // 2
-		Vertex{Vertex::Position{-0.5f, 0.0f, 0.5f}, Vertex::Color::Blue(),  Vertex::Normal::Zero(),Vertex::UVCoord{1.0f, 0.0f}}, // 3
-		Vertex{Vertex::Position{0.5f, 0.0f, 0.5f},  Vertex::Color::White(), Vertex::Normal::Zero(),Vertex::UVCoord{1.0f, 1.0f}} // 4
+		Vertex{Vertex::Position{-0.5f, 0.0f, -0.5f},Vertex::Color::Red(),   Vertex::Normal{0.0f, 0.0f, 1.0f},Vertex::UVCoord{0.0f, 0.0f}}, // 1
+		Vertex{Vertex::Position{0.5f, 0.0f, -0.5f}, Vertex::Color::Green(), Vertex::Normal{0.0f, 0.0f, 1.0f},Vertex::UVCoord{0.0f, 1.0f}}, // 2
+		Vertex{Vertex::Position{-0.5f, 0.0f, 0.5f}, Vertex::Color::Blue(),  Vertex::Normal{0.0f, 0.0f, 1.0f},Vertex::UVCoord{1.0f, 0.0f}}, // 3
+		Vertex{Vertex::Position{0.5f, 0.0f, 0.5f},  Vertex::Color::White(), Vertex::Normal{0.0f, 0.0f, 1.0f},Vertex::UVCoord{1.0f, 1.0f}} // 4
 		});
 
 	PlaneMesh.SetIndices({
@@ -161,38 +175,43 @@ CPrimitiveMeshes CPrimitiveMeshes::GetHouse()
 
 	HouseMesh.SetVertices({
 		// Front
-		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f}, Vertex::Color::Red(),   Vertex::Normal::Zero(), Vertex::UVCoord{0.0f, 0.0f}}, // 0
-		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f},  Vertex::Color::Green(), Vertex::Normal::Zero(), Vertex::UVCoord{0.0f, 1.0f}}, // 1
-		Vertex{Vertex::Position{-0.5f, 0.5f, 0.5f},  Vertex::Color::Blue(),  Vertex::Normal::Zero(), Vertex::UVCoord{1.0f, 0.0f}}, // 2
-		Vertex{Vertex::Position{0.5f, 0.5f, 0.5f},   Vertex::Color::White(), Vertex::Normal::Zero(), Vertex::UVCoord{1.0f, 1.0f}}, // 3
+		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f}, Vertex::Color::Red(),   Vertex::Normal{0.0f, 0.0f, 1.0f}, Vertex::UVCoord{0.0f, 0.0f}}, // 0
+		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f},  Vertex::Color::Green(), Vertex::Normal{0.0f, 0.0f, 1.0f}, Vertex::UVCoord{0.0f, 1.0f}}, // 1
+		Vertex{Vertex::Position{-0.5f, 0.5f, 0.5f},  Vertex::Color::Blue(),  Vertex::Normal{0.0f, 0.0f, 1.0f}, Vertex::UVCoord{1.0f, 0.0f}}, // 2
+		Vertex{Vertex::Position{0.5f, 0.5f, 0.5f},   Vertex::Color::White(), Vertex::Normal{0.0f, 0.0f, 1.0f}, Vertex::UVCoord{1.0f, 1.0f}}, // 3
 		Vertex{Vertex::Position{0.0f, 1.0f, 0.0f},   Vertex::Color::Red(),   Vertex::Normal::Zero(), Vertex::UVCoord{1.0f, 1.0f}}, // 4
 
 		// Right
-		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f},  Vertex::Color::Red(),   Vertex::Normal::Zero(), Vertex::UVCoord{0.0f, 0.0f}}, // 5
-		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f}, Vertex::Color::Green(), Vertex::Normal::Zero(), Vertex::UVCoord{0.0f, 1.0f}}, // 6
-		Vertex{Vertex::Position{0.5f, 0.5f, 0.5f},   Vertex::Color::Blue(),  Vertex::Normal::Zero(), Vertex::UVCoord{1.0f, 0.0f}}, // 7
-		Vertex{Vertex::Position{0.5f, 0.5f, -0.5f},  Vertex::Color::White(), Vertex::Normal::Zero(), Vertex::UVCoord{1.0f, 1.0f}}, // 8
+		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f},  Vertex::Color::Red(),   Vertex::Normal{1.0f, 0.0f, 0.0f}, Vertex::UVCoord{0.0f, 0.0f}}, // 5
+		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f}, Vertex::Color::Green(), Vertex::Normal{1.0f, 0.0f, 0.0f}, Vertex::UVCoord{0.0f, 1.0f}}, // 6
+		Vertex{Vertex::Position{0.5f, 0.5f, 0.5f},   Vertex::Color::Blue(),  Vertex::Normal{1.0f, 0.0f, 0.0f}, Vertex::UVCoord{1.0f, 0.0f}}, // 7
+		Vertex{Vertex::Position{0.5f, 0.5f, -0.5f},  Vertex::Color::White(), Vertex::Normal{1.0f, 0.0f, 0.0f}, Vertex::UVCoord{1.0f, 1.0f}}, // 8
 		Vertex{Vertex::Position{0.0f, 1.0f, 0.0f},   Vertex::Color::Red(),   Vertex::Normal::Zero(), Vertex::UVCoord{1.0f, 1.0f}}, // 9
 
 		// Left
-		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f},Vertex::Color::Red(),   Vertex::Normal::Zero(), Vertex::UVCoord{0.0f, 0.0f}}, // 10
-		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f}, Vertex::Color::Green(), Vertex::Normal::Zero(), Vertex::UVCoord{0.0f, 1.0f}}, // 11
-		Vertex{Vertex::Position{-0.5f, 0.5f, -0.5f}, Vertex::Color::Blue(),  Vertex::Normal::Zero(), Vertex::UVCoord{1.0f, 0.0f}}, // 12
-		Vertex{Vertex::Position{-0.5f, 0.5f, 0.5f},  Vertex::Color::White(), Vertex::Normal::Zero(), Vertex::UVCoord{1.0f, 1.0f}}, // 13
+		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f},Vertex::Color::Red(),   Vertex::Normal{-1.0f, 0.0f, 0.0f}, Vertex::UVCoord{0.0f, 0.0f}}, // 10
+		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f}, Vertex::Color::Green(), Vertex::Normal{-1.0f, 0.0f, 0.0f}, Vertex::UVCoord{0.0f, 1.0f}}, // 11
+		Vertex{Vertex::Position{-0.5f, 0.5f, -0.5f}, Vertex::Color::Blue(),  Vertex::Normal{-1.0f, 0.0f, 0.0f}, Vertex::UVCoord{1.0f, 0.0f}}, // 12
+		Vertex{Vertex::Position{-0.5f, 0.5f, 0.5f},  Vertex::Color::White(), Vertex::Normal{-1.0f, 0.0f, 0.0f}, Vertex::UVCoord{1.0f, 1.0f}}, // 13
 		Vertex{Vertex::Position{0.0f, 1.0f, 0.0f},   Vertex::Color::Red(),   Vertex::Normal::Zero(), Vertex::UVCoord{1.0f, 1.0f}}, // 14
 
 		// Back
-		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f}, Vertex::Color::Red(),   Vertex::Normal::Zero(), Vertex::UVCoord{0.0f, 0.0f}}, // 15
-		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f},Vertex::Color::Green(), Vertex::Normal::Zero(), Vertex::UVCoord{0.0f, 1.0f}}, // 16
-		Vertex{Vertex::Position{0.5f, 0.5f, -0.5f},  Vertex::Color::Blue(),  Vertex::Normal::Zero(), Vertex::UVCoord{1.0f, 0.0f}}, // 17
-		Vertex{Vertex::Position{-0.5f, 0.5f, -0.5f}, Vertex::Color::White(), Vertex::Normal::Zero(), Vertex::UVCoord{1.0f, 1.0f}}, // 18
+		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f}, Vertex::Color::Red(),   Vertex::Normal{0.0f, 0.0f, -1.0f}, Vertex::UVCoord{0.0f, 0.0f}}, // 15
+		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f},Vertex::Color::Green(), Vertex::Normal{0.0f, 0.0f, -1.0f}, Vertex::UVCoord{0.0f, 1.0f}}, // 16
+		Vertex{Vertex::Position{0.5f, 0.5f, -0.5f},  Vertex::Color::Blue(),  Vertex::Normal{0.0f, 0.0f, -1.0f}, Vertex::UVCoord{1.0f, 0.0f}}, // 17
+		Vertex{Vertex::Position{-0.5f, 0.5f, -0.5f}, Vertex::Color::White(), Vertex::Normal{0.0f, 0.0f, -1.0f}, Vertex::UVCoord{1.0f, 1.0f}}, // 18
 		Vertex{Vertex::Position{0.0f, 1.0f, 0.0f},   Vertex::Color::Red(),   Vertex::Normal::Zero(), Vertex::UVCoord{1.0f, 1.0f}}, // 19
 
 		// Bottom
-		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f},Vertex::Color::Red(),   Vertex::Normal::Zero(), Vertex::UVCoord{0.0f, 0.0f}}, // 20
-		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f}, Vertex::Color::Green(), Vertex::Normal::Zero(), Vertex::UVCoord{0.0f, 1.0f}}, // 21
-		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f}, Vertex::Color::Blue(),  Vertex::Normal::Zero(), Vertex::UVCoord{1.0f, 0.0f}}, // 22
-		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f},  Vertex::Color::White(), Vertex::Normal::Zero(), Vertex::UVCoord{1.0f, 1.0f}}, // 23
+		Vertex{Vertex::Position{-0.5f, -0.5f, -0.5f},Vertex::Color::Red(),   Vertex::Normal{0.0f, -1.0f, 0.0f}, Vertex::UVCoord{0.0f, 0.0f}}, // 20
+		Vertex{Vertex::Position{0.5f, -0.5f, -0.5f}, Vertex::Color::Green(), Vertex::Normal{0.0f, -1.0f, 0.0f}, Vertex::UVCoord{0.0f, 1.0f}}, // 21
+		Vertex{Vertex::Position{-0.5f, -0.5f, 0.5f}, Vertex::Color::Blue(),  Vertex::Normal{0.0f, -1.0f, 0.0f}, Vertex::UVCoord{1.0f, 0.0f}}, // 22
+		Vertex{Vertex::Position{0.5f, -0.5f, 0.5f},  Vertex::Color::White(), Vertex::Normal{0.0f, -1.0f, 0.0f}, Vertex::UVCoord{1.0f, 1.0f}}, // 23
+
+		//TriangleFront
+		//TriangleRight
+		//TriangleLeft
+		//TriangleBack
 		});
 
 	HouseMesh.SetIndices({

@@ -5,15 +5,16 @@
 class CScene
 {
 public:
-    void AddScene(std::shared_ptr<CGameObject> a_gameObject);
-    void RemoveScene(std::shared_ptr<CGameObject> a_gameObject);
+    void AddGameObject(std::shared_ptr<CGameObject> a_gameObject);
+    void RemoveGameObject(std::shared_ptr<CGameObject> a_gameObject);
 
     void Initialize(void);
-    void Run(void);
+    void Update(void);
+    void Draw(const DrawData& a_drawData);
     void Finalize(void);
 
 private:
-    std::vector<std::shared_ptr<CGameObject>> a_gameObjects{};
+    std::vector<std::shared_ptr<CGameObject>> m_gameObjects{};
 
 };
 #endif

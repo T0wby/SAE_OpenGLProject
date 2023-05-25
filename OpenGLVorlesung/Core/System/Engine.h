@@ -14,8 +14,17 @@ public:
     void Finalize(void);
 
 private:
-    std::vector<std::shared_ptr<CScene>> a_scenes{};
+    std::vector<std::shared_ptr<CScene>> m_scenes{};
     int m_iWidth{640};
     int m_iHeight{640};
+
+    void InitializeScenes(void);
+    void UpdateScenes(const DrawData& a_drawData);
+
+    void CreateSystemPointer(void);
+    void CreateScenes(void);
+    void CreateComponents(void);
+    void CreateGameObjects(void);
+    
 };
 #endif

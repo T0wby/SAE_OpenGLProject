@@ -39,7 +39,7 @@ public:
 
 	void Initialize(void);
 	void Update(void);
-	void Draw(DrawData);
+	void Draw(const DrawData&);
 
 private:
 	std::vector<std::shared_ptr<IComponent>> m_components{};
