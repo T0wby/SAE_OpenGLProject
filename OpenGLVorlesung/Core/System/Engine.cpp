@@ -41,7 +41,7 @@ std::shared_ptr<CMesh> pMesh3 = nullptr;
 std::shared_ptr<CMaterial> pMat = nullptr;
 std::shared_ptr<CMaterial> pMatGO2 = nullptr;
 std::shared_ptr<CMaterial> pMatLight = nullptr;
-std::shared_ptr<CMaterial> pMatDefault = nullptr;
+std::shared_ptr<CMaterial> pMatHouse = nullptr;
 std::shared_ptr<CGameObject> pGameObject = nullptr;
 std::shared_ptr<CGameObject> pGameObject2 = nullptr;
 std::shared_ptr<CGameObject> pGameObject3 = nullptr;
@@ -188,11 +188,24 @@ void CEngine::CreateComponents()
 	const auto fragmentLightShader = CDataManager::ReadFile("Resource Files/Shader/LightFragment.glsl");
 	
 	// Components
-	pDefaultShader = std::make_shared<CShader>(vertexShader, fragmentShader);
+	pDefaultShader = std::make_shared<CShader>(vertexPhongShader, fragmentPhongShader);
 	pPhongShader = std::make_shared<CShader>(vertexPhongShader, fragmentPhongShader);
 	pPhongShader2 = std::make_shared<CShader>(vertexPhongShader, fragmentPhongShader);
 	pLightShader = std::make_shared<CShader>(vertexLightShader, fragmentLightShader);
-	pMatDefault = std::make_shared<CMaterial>();
+
+	CreateMaterials();
+	
+}
+
+void CEngine::CreateMaterials()
+{
+	pMatHouse = std::make_shared<CMaterial>();
+	*pMatHouse = {
+		glm::vec3(0.5f, 0.7f, 0.7f),
+		glm::vec3(0.5f, 0.7f, 0.7f),
+		glm::vec3(1.0f, 1.0f, 1.0f),
+		128.0f
+	};
 	pMatLight = std::make_shared<CMaterial>();
 	*pMatLight = {
 		V3_LIGHT_AMBIENT,
@@ -223,7 +236,7 @@ void CEngine::CreateGameObjects()
 	CPrimitiveMeshes lightCube = CPrimitiveMeshes::GetLightCube();
 
 	// Create Scene Objects
-	pGameObject = std::make_shared<CGameObject>(pDefaultShader, &house, pMatDefault, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
+	pGameObject = std::make_shared<CGameObject>(pDefaultShader, &house, pMatHouse, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
 	pGameObject->GetTransform()->m_position = glm::vec3(2.5f, 0.0f, -3.0f);
 
 	pGameObject2 = std::make_shared<CGameObject>(pPhongShader, &cube, pMat, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");

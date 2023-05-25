@@ -24,6 +24,7 @@ private:
     void CreateSystemPointer(void);
     void CreateScenes(void);
     void CreateComponents(void);
+    void CreateMaterials(void);
     void CreateGameObjects(void);
     
 };
