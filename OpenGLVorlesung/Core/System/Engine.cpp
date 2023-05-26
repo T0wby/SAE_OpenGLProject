@@ -78,11 +78,12 @@ int CEngine::Initialize()
 
 	auto iErrorMsg = pWindow->Initialize();
 
+	// Create Components that are later used for the game objects
 	CreateComponents();
 
 	iErrorMsg = pGladLoader->Initialize();
 
-	//
+	// Create and Add all game objects to a scene
 	CreateGameObjects();
 
 	auto deltaTime = pTime->GetDeltaTime();
@@ -145,6 +146,9 @@ void CEngine::Finalize()
 	pWindow->Finalize();
 }
 
+/**
+ * \brief Initializes all scenes in the Engine
+ */
 void CEngine::InitializeScenes()
 {
 	for (std::shared_ptr<CScene> scene : m_scenes)
@@ -153,6 +157,10 @@ void CEngine::InitializeScenes()
 	}
 }
 
+/**
+ * \brief Calls the Update and then the Draw function of all scenes in the Engine.
+ * \param a_drawData Data used in the draw of GameObjects
+ */
 void CEngine::UpdateScenes(const DrawData& a_drawData)
 {
 	for (std::shared_ptr<CScene> scene : m_scenes)
@@ -173,12 +181,18 @@ void CEngine::CreateSystemPointer()
 	pTime = std::make_unique<CTime>();
 }
 
+/**
+ * \brief Create a scene and add it to the Engine
+ */
 void CEngine::CreateScenes()
 {
 	const std::shared_ptr<CScene> pScene = std::make_shared<CScene>();
 	m_scenes.push_back(pScene);
 }
 
+/**
+ * \brief Create Shader and Components that are later used on GameObjects
+ */
 void CEngine::CreateComponents()
 {
 	// Shader
@@ -200,6 +214,9 @@ void CEngine::CreateComponents()
 	
 }
 
+/**
+ * \brief Create Materials that are later used on GameObjects
+ */
 void CEngine::CreateMaterials()
 {
 	pMatHouse = std::make_shared<CMaterial>();
@@ -230,6 +247,9 @@ void CEngine::CreateMaterials()
 	};
 }
 
+/**
+ * \brief Create Game Objects and add them to the scene.
+ */
 void CEngine::CreateGameObjects()
 {
 	// VerticesInformation

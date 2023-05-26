@@ -185,17 +185,17 @@ CPrimitiveMeshes CPrimitiveMeshes::GetHouse()
 	const auto v_MiddleUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
 	// Normals for Triangles
-	const auto n_frontLeftTri = CalculateFaceNormal(v_FrontUpperLeft, v_FrontUpperRight, v_MiddleUp);
-	const auto n_frontRightTri = CalculateFaceNormal(v_FrontUpperRight, v_FrontUpperLeft, v_MiddleUp);
-	const auto n_frontMidTri = CalculateFaceNormal(v_MiddleUp, v_FrontUpperRight, v_FrontUpperLeft);
+	const auto n_frontLeftTri = -CalculateFaceNormal(v_FrontUpperLeft, v_MiddleUp, v_FrontUpperRight);
+	const auto n_frontRightTri = -CalculateFaceNormal(v_FrontUpperRight, v_FrontUpperLeft, v_MiddleUp);
+	const auto n_frontMidTri = -CalculateFaceNormal(v_MiddleUp, v_FrontUpperRight, v_FrontUpperLeft);
 	const auto n_rightLeftTri = CalculateFaceNormal(v_FrontUpperRight, v_BackUpperRight, v_MiddleUp);
-	const auto n_rightRightTri = CalculateFaceNormal(v_BackUpperRight, v_FrontUpperRight, v_MiddleUp);
+	const auto n_rightRightTri = CalculateFaceNormal(v_BackUpperRight, v_MiddleUp, v_FrontUpperRight);
 	const auto n_rightMidTri = CalculateFaceNormal(v_MiddleUp, v_FrontUpperRight, v_BackUpperRight);
 	const auto n_leftLeftTri  = CalculateFaceNormal(v_BackUpperLeft, v_FrontUpperLeft, v_MiddleUp);
-	const auto n_leftRightTri = CalculateFaceNormal(v_FrontUpperLeft, v_BackUpperLeft, v_MiddleUp);
+	const auto n_leftRightTri = CalculateFaceNormal(v_FrontUpperLeft, v_MiddleUp, v_BackUpperLeft);
 	const auto n_leftMidTri = CalculateFaceNormal(v_MiddleUp, v_BackUpperLeft, v_FrontUpperLeft);
 	const auto n_backLeftTri  = CalculateFaceNormal(v_BackUpperRight, v_BackUpperLeft, v_MiddleUp);
-	const auto n_backRightTri = CalculateFaceNormal(v_BackUpperLeft, v_BackUpperRight, v_MiddleUp);
+	const auto n_backRightTri = CalculateFaceNormal(v_BackUpperLeft, v_MiddleUp, v_BackUpperRight);
 	const auto n_backMidTri = CalculateFaceNormal(v_MiddleUp, v_BackUpperRight, v_BackUpperLeft);
 	
 	HouseMesh.SetVertices({
