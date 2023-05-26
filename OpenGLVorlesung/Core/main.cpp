@@ -1,6 +1,5 @@
 #include "System/Engine.h"
 
-
 std::unique_ptr<CEngine> pEngine{nullptr};
 
 int main(void)
@@ -9,10 +8,8 @@ int main(void)
 	auto iErrorMsg = static_cast<int>(0);
 
 	iErrorMsg = pEngine->Initialize();
-	//if (iErrorMsg != 0) return iErrorMsg;
 
 	iErrorMsg = pEngine->Run();
-	//if (iErrorMsg != 0) return iErrorMsg;
 
 	pEngine->Finalize();
 	

@@ -126,14 +126,14 @@ int CEngine::Run()
 			V3_LIGHT_AMBIENT,
 			//V3_LIGHT_DIFFUSE,
 			//V3_LIGHT_AMBIENT * glm::vec3(sin(glfwGetTime() * 2.0f), sin(glfwGetTime() * 0.7f), sin(glfwGetTime() * 1.3f)),
-			V3_LIGHT_DIFFUSE * glm::vec3(sin(glfwGetTime() * 1.0f), sin(glfwGetTime() * 0.3f), sin(glfwGetTime() * 0.6f)),
+			V3_LIGHT_DIFFUSE * glm::vec3(static_cast<float>(sin(glfwGetTime())), static_cast<float>(sin(glfwGetTime()))* 0.3f, static_cast<float>(sin(glfwGetTime())) * 0.6f),
 			V3_LIGHT_SPECULAR
 		};
 
 		UpdateScenes(drawData);
-		pGameObject2->GetTransform()->m_position = glm::vec3(sin(glfwGetTime()) * 0.5f,cos(glfwGetTime()) * 0.5f,  -4.0f);
+		pGameObject2->GetTransform()->m_position = glm::vec3(static_cast<float>(sin(glfwGetTime())) * 0.5f,static_cast<float>(cos(glfwGetTime())) * 0.5f,  -4.0f);
 		pGameObject2->GetTransform()->m_rotation = glm::vec3(1.0f + static_cast<float>(glfwGetTime()), static_cast<float>(glfwGetTime()), 0.0f);
-		pLightObject->GetTransform()->m_position = pGameObject2->GetTransform()->m_position + glm::vec3(cos(glfwGetTime()) * 2.0f,sin(glfwGetTime()) * 1.5f,  sin(glfwGetTime()) * 1.5f);
+		pLightObject->GetTransform()->m_position = pGameObject2->GetTransform()->m_position + glm::vec3(static_cast<float>(cos(glfwGetTime())) * 2.0f,static_cast<float>(sin(glfwGetTime())) * 1.5f,  static_cast<float>(sin(glfwGetTime())) * 1.5f);
 
 
 		pWindow->UpdateSwapBuffers();
