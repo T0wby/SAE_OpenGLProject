@@ -18,7 +18,7 @@
 constexpr int I_SUCCESS = 0;
 
 // Light properties
-constexpr glm::vec3 V3_LIGHT_AMBIENT = glm::vec3(0.2f, 0.2f, 0.2f);
+constexpr glm::vec3 V3_LIGHT_AMBIENT = glm::vec3(1.0f, 1.0f, 1.0f);
 constexpr glm::vec3 V3_LIGHT_DIFFUSE = glm::vec3(1.0f, 1.0f, 1.0f);
 constexpr glm::vec3 V3_LIGHT_SPECULAR = glm::vec3(1.0f, 1.0f, 1.0f);
 
@@ -125,16 +125,16 @@ int CEngine::Run()
 			pCamera->GetPos(),
 			pLightObject->GetTransform()->m_position,
 			V3_LIGHT_AMBIENT,
-			//V3_LIGHT_DIFFUSE,
+			V3_LIGHT_DIFFUSE,
 			//V3_LIGHT_AMBIENT * glm::vec3(sin(glfwGetTime() * 2.0f), sin(glfwGetTime() * 0.7f), sin(glfwGetTime() * 1.3f)),
-			V3_LIGHT_DIFFUSE * glm::vec3(static_cast<float>(sin(glfwGetTime())), static_cast<float>(sin(glfwGetTime()))* 0.3f, static_cast<float>(sin(glfwGetTime())) * 0.6f),
+			//V3_LIGHT_DIFFUSE * glm::vec3(static_cast<float>(sin(glfwGetTime())), static_cast<float>(sin(glfwGetTime()))* 0.3f, static_cast<float>(sin(glfwGetTime())) * 0.6f),
 			V3_LIGHT_SPECULAR
 		};
 
 		UpdateScenes(drawData);
 		pCubeObject->GetTransform()->m_position = glm::vec3(static_cast<float>(sin(glfwGetTime())) * 0.5f,static_cast<float>(cos(glfwGetTime())) * 0.5f,  -4.0f);
 		pCubeObject->GetTransform()->m_rotation = glm::vec3(1.0f + static_cast<float>(glfwGetTime()), static_cast<float>(glfwGetTime()), 0.0f);
-		pLightObject->GetTransform()->m_position = pCubeObject->GetTransform()->m_position + glm::vec3(static_cast<float>(cos(glfwGetTime())) * 2.0f,static_cast<float>(sin(glfwGetTime())) * 1.5f,  static_cast<float>(sin(glfwGetTime())) * 1.5f);
+		pLightObject->GetTransform()->m_position = pCubeObject->GetTransform()->m_position + glm::vec3(static_cast<float>(cos(glfwGetTime())) * 4.0f,static_cast<float>(sin(glfwGetTime())) * 3.5f,  static_cast<float>(sin(glfwGetTime())) * 3.5f);
 
 
 		pWindow->UpdateSwapBuffers();
@@ -226,10 +226,10 @@ void CEngine::CreateMaterials()
 {
 	pMatHouse = std::make_shared<CMaterial>();
 	*pMatHouse = {
-		glm::vec3(0.5f, 0.7f, 0.7f),
-		glm::vec3(0.5f, 0.7f, 0.7f),
-		glm::vec3(1.0f, 1.0f, 1.0f),
-		128.0f
+		glm::vec3(0.1745f, 0.01175f, 0.01175f),
+		glm::vec3(0.61424f, 0.04136f, 0.04136f),
+		glm::vec3(0.727811f, 0.626959f, 0.626959f),
+		32.0f
 	};
 	
 	pMatLight = std::make_shared<CMaterial>();
@@ -240,17 +240,17 @@ void CEngine::CreateMaterials()
 	
 	pMatCube = std::make_shared<CMaterial>();
 	*pMatCube = {
-		glm::vec3(1.0f, 0.3f, 0.3f),
-		glm::vec3(1.0f, 0.3f, 0.3f),
-		glm::vec3(1.0f, 1.0f, 1.0f),
+		glm::vec3(0.24725f, 0.1995f, 0.0745f),
+		glm::vec3(0.75164f, 0.60648f, 0.22648f),
+		glm::vec3(0.628281f, 0.555802f, 0.366065f),
 		64.0f
 	};
 	
 	pMatCube2 = std::make_shared<CMaterial>();
 	*pMatCube2 = {
-		glm::vec3(0.0f, 1.0f, 0.3f),
-		glm::vec3(0.0f, 1.0f, 0.3f),
-		glm::vec3(1.0f, 1.0f, 1.0f),
+		glm::vec3(0.0215f, 0.1745f, 0.0215f),
+		glm::vec3(0.07568f, 0.61424f, 0.07568f),
+		glm::vec3(0.633f, 0.727811f, 0.633f),
 		32.0f
 	};
 	
@@ -259,7 +259,7 @@ void CEngine::CreateMaterials()
 		glm::vec3(0.5f, 1.0f, 0.3f),
 		glm::vec3(0.5f, 1.0f, 0.3f),
 		glm::vec3(1.0f, 1.0f, 1.0f),
-		64.0f
+		1024.0f
 	};
 }
 
@@ -279,11 +279,11 @@ void CEngine::CreateGameObjects()
 	pHouseObject->GetTransform()->m_position = glm::vec3(0.0f, 0.0f, 0.0f);
 
 	pCubeObject = std::make_shared<CGameObject>(pPhongShaderCube, &cube, pMatCube, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
-	pCubeObject->GetTransform()->m_position = glm::vec3(0.0f, -1.0f, -4.0f);
+	pCubeObject->GetTransform()->m_position = glm::vec3(0.0f, -1.0f, 0.0f);
 	pCubeObject2 = std::make_shared<CGameObject>(pPhongShaderCube2, &cube, pMatCube2, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
-	pCubeObject2->GetTransform()->m_position = glm::vec3(-2.0f, 0.0f, -7.0f);
+	pCubeObject2->GetTransform()->m_position = glm::vec3(-2.0f, 0.0f, 0.0f);
 	pCubeObject3 = std::make_shared<CGameObject>(pPhongShaderCube3, &cube, pMatCube3, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
-	pCubeObject3->GetTransform()->m_position = glm::vec3(0.0f, -3.0f, 0.0f);
+	pCubeObject3->GetTransform()->m_position = glm::vec3(0.0f, -5.0f, 0.0f);
 	pCubeObject3->GetTransform()->m_scale = glm::vec3(20.0f, 0.01f, 20.0f);
 
 	
