@@ -152,10 +152,11 @@ void CEngine::Finalize()
  */
 void CEngine::InitializeScenes()
 {
-	for (std::shared_ptr<CScene> scene : m_scenes)
-	{
-		scene->Initialize();
-	}
+	// for (std::shared_ptr<CScene> scene : m_scenes)
+	// {
+	// 	scene->Initialize();
+	// }
+	m_activeScene->Initialize();
 }
 
 /**
@@ -164,11 +165,13 @@ void CEngine::InitializeScenes()
  */
 void CEngine::UpdateScenes(const DrawData& a_drawData)
 {
-	for (std::shared_ptr<CScene> scene : m_scenes)
-	{
-		scene->Update();
-		scene->Draw(a_drawData);
-	}
+	// for (std::shared_ptr<CScene> scene : m_scenes)
+	// {
+	// 	scene->Update();
+	// 	scene->Draw(a_drawData);
+	// }
+	m_activeScene->Update();
+	m_activeScene->Draw(a_drawData);
 }
 
 void CEngine::CreateSystemPointer()
@@ -187,8 +190,9 @@ void CEngine::CreateSystemPointer()
  */
 void CEngine::CreateScenes()
 {
-	const std::shared_ptr<CScene> pScene = std::make_shared<CScene>();
+	std::shared_ptr<CScene> pScene = std::make_shared<CScene>();
 	m_scenes.push_back(pScene);
+	m_activeScene = pScene;
 }
 
 /**
@@ -287,9 +291,9 @@ void CEngine::CreateGameObjects()
 	pLightObject->GetTransform()->m_position = glm::vec3(-0.0f, -1.0f, -4.0f);
 	pLightObject->GetTransform()->m_scale = glm::vec3(0.5f, 0.5f, 0.5f);
 
-	m_scenes[0]->AddGameObject(pHouseObject);
-	m_scenes[0]->AddGameObject(pCubeObject);
-	m_scenes[0]->AddGameObject(pCubeObject2);
-	m_scenes[0]->AddGameObject(pCubeObject3);
-	m_scenes[0]->AddGameObject(pLightObject);
+	m_activeScene->AddGameObject(pHouseObject);
+	m_activeScene->AddGameObject(pCubeObject);
+	m_activeScene->AddGameObject(pCubeObject2);
+	m_activeScene->AddGameObject(pCubeObject3);
+	m_activeScene->AddGameObject(pLightObject);
 }

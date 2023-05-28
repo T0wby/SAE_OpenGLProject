@@ -15,6 +15,7 @@ public:
 
 private:
     std::vector<std::shared_ptr<CScene>> m_scenes{};
+    std::shared_ptr<CScene> m_activeScene{};
     int m_iWidth{1280};
     int m_iHeight{1280};
 
