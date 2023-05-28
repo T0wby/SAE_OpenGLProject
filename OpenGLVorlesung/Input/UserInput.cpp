@@ -15,6 +15,7 @@ std::function<void(void)> pRightInput = nullptr;
 std::function<void(void)> pLeftInput = nullptr;
 std::function<void(void)> pUpInput = nullptr;
 std::function<void(void)> pDownInput = nullptr;
+std::function<void(void)> pMouseMode = nullptr;
 
 // Mouse Input
 float fPitch { 0.0f };
@@ -146,9 +147,31 @@ void CUserInput::SetDownInput(std::function<void(void)> a_pDownInput)
 	pDownInput = a_pDownInput;
 }
 
-void CUserInput::SetDefaultInput(void) const
+void CUserInput::SetMouseMode(std::function<void()> a_pMouseMode)
+{
+	pMouseMode = a_pMouseMode;
+}
+
+void CUserInput::ChangeMouseMode()
+{
+	m_bMouseOn = !m_bMouseOn;
+}
+
+void CUserInput::SetDefaultInput(void)
 {
 	pExitInput = ([]() { pCurrWindow->SetWindowShouldClose(true); });
+	pMouseMode = ([this]()
+	{
+		if (m_bMouseOn)
+		{
+			glfwSetInputMode(pCurrWindow->GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		}
+		else
+		{
+			glfwSetInputMode(pCurrWindow->GetWindow(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		}
+		ChangeMouseMode();
+	});
 	pForwardInput = ([this]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * m_fDeltaTime * pCCamera->GetOrientation())); });
 	pBackwardInput = ([this]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * m_fDeltaTime * -pCCamera->GetOrientation())); });
 	pRightInput = ([this]() { pCCamera->SetPosition(glm::vec3(pCCamera->GetSpeed() * m_fDeltaTime * glm::normalize(glm::cross(pCCamera->GetOrientation(), pCCamera->GetUp())))); });
@@ -162,6 +185,10 @@ void CUserInput::CheckKeys(void)
 	if (glfwGetKey(pCurrWindow->GetWindow(), GLFW_KEY_ESCAPE) == GLFW_PRESS)
 	{
 		pExitInput();
+	}
+	if (glfwGetKey(pCurrWindow->GetWindow(), GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
+	{
+		pMouseMode();
 	}
 	if (glfwGetKey(pCurrWindow->GetWindow(), GLFW_KEY_W) == GLFW_PRESS)
 	{

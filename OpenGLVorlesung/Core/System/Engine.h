@@ -15,8 +15,8 @@ public:
 
 private:
     std::vector<std::shared_ptr<CScene>> m_scenes{};
-    int m_iWidth{640};
-    int m_iHeight{640};
+    int m_iWidth{1280};
+    int m_iHeight{1280};
 
     void InitializeScenes(void);
     void UpdateScenes(const DrawData& a_drawData);

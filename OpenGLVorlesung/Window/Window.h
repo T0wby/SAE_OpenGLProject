@@ -30,7 +30,7 @@ private:
 	GLuint m_iHeight{ 0 };
 	std::string m_sTitle{ "" };
 
-	void SetCamera(std::shared_ptr<CCamera> a_pCamera);
+	void SetCamera(const std::shared_ptr<CCamera>& a_pCamera);
 };
 
 #endif // !WINDOW_H

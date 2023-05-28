@@ -75,7 +75,7 @@ GLFWwindow* CWindow::GetWindow(void)
 	return pWindow;
 }
 
-void CWindow::SetCamera(std::shared_ptr<CCamera> a_pCamera)
+void CWindow::SetCamera(const std::shared_ptr<CCamera>& a_pCamera)
 {
 	pCurrCamera = a_pCamera;
 }

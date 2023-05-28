@@ -20,12 +20,14 @@ public:
 	void SetLeftInput(std::function<void(void)> a_pLeftInput);
 	void SetUpInput(std::function<void(void)> a_pUpInput);
 	void SetDownInput(std::function<void(void)> a_pDownInput);
+	void SetMouseMode(std::function<void(void)> a_pMouseMode);
 
-
+	void ChangeMouseMode();
 private:
-	void SetDefaultInput(void) const;
+	void SetDefaultInput(void);
 	void CheckKeys(void);
 	float m_fDeltaTime{ 0.0f };
+	bool m_bMouseOn {false};
 
 };
 #endif // !USERINPUT_H
