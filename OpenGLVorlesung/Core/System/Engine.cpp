@@ -26,10 +26,10 @@ constexpr glm::vec3 V3_LIGHT_SPECULAR = glm::vec3(1.0f, 1.0f, 1.0f);
 std::shared_ptr<CWindow> pWindow = nullptr;
 std::unique_ptr<CLoader> pGladLoader = nullptr;
 std::unique_ptr<CTime> pTime = nullptr;
+std::unique_ptr<CUserInput> pUserInput = nullptr;
 
 // Components
 std::shared_ptr<CCamera> pCamera = nullptr;
-std::unique_ptr<CUserInput> pUserInput = nullptr;
 
 std::shared_ptr<CShader> pPhongShaderHouse = nullptr;
 std::shared_ptr<CShader> pPhongShaderCube = nullptr;

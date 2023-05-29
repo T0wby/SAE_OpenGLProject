@@ -11,12 +11,12 @@ public:
 
     std::shared_ptr<CGameObject> GetGameObject(const int& a_iIndex);
     
-    void Initialize(void);
-    void Update(void);
-    void Draw(const DrawData& a_drawData);
-    void Finalize(void);
+    virtual void Initialize(void);
+    virtual void Update(void);
+    virtual void Draw(const DrawData& a_drawData);
+    virtual void Finalize(void);
 
-private:
+protected:
     std::vector<std::shared_ptr<CGameObject>> m_gameObjects{};
 
 };
