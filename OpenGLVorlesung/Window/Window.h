@@ -9,7 +9,7 @@
 class CWindow
 {
 public:
-	inline CWindow(GLuint a_iWidth, GLuint a_iHeight, std::string a_sTitle, std::shared_ptr<CCamera> a_pCamera)
+	inline CWindow(int a_iWidth, int a_iHeight, const std::string& a_sTitle, const std::shared_ptr<CCamera>& a_pCamera)
 		: m_iWidth(a_iWidth), m_iHeight(a_iHeight), m_sTitle(a_sTitle) 
 	{
 		SetCamera(a_pCamera);
@@ -26,9 +26,9 @@ public:
 	GLFWwindow* GetWindow(void);
 
 private:
-	GLuint m_iWidth{ 0 };
-	GLuint m_iHeight{ 0 };
-	std::string m_sTitle{ "" };
+	int m_iWidth{ 0 };
+	int m_iHeight{ 0 };
+	std::string m_sTitle{};
 
 	void SetCamera(const std::shared_ptr<CCamera>& a_pCamera);
 };
