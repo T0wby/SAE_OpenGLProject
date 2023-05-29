@@ -1,7 +1,6 @@
 ﻿#include "PhongScene.h"
 #include "../DataManager.h"
 
-constexpr int I_SUCCESS = 0;
 constexpr int I_WIDTH = 1920;
 constexpr int I_HEIGHT = 1080;
 

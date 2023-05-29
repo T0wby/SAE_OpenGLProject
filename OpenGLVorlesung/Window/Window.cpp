@@ -1,8 +1,8 @@
 #include "Window.h"
 
-const int I_SUCCESS = 0;
-const int I_ERR_GLFW_INIT_FAILED = -1;
-const int I_ERR_WIN_INIT_FAILED = -2;
+constexpr int I_SUCCESS = 0;
+constexpr int I_ERR_GLFW_INIT_FAILED = -1;
+constexpr int I_ERR_WIN_INIT_FAILED = -2;
 
 GLFWwindow* pWindow = nullptr;
 

@@ -9,8 +9,6 @@
 #include "../../Core/General/DrawData.h"
 #include <memory>
 
-constexpr int I_SUCCESS = 0;
-
 // System
 std::shared_ptr<CWindow> pWindow = nullptr;
 std::shared_ptr<CLoader> pGladLoader = nullptr;
@@ -61,10 +59,11 @@ int CEngine::Initialize()
 
 int CEngine::Run()
 {
+	auto iErrorMsg{0};
 	float deltaTime{ 0.0f };
 	while (!pWindow->GetWindowShouldClose())
 	{
-		pWindow->Update();
+		iErrorMsg = pWindow->Update();
 		pTime->Update();
 		deltaTime = pTime->GetDeltaTime();
 
@@ -80,7 +79,7 @@ int CEngine::Run()
 
 		pWindow->UpdateSwapBuffers();
 	}
-	return I_SUCCESS;
+	return iErrorMsg;
 }
 
 void CEngine::Finalize()
