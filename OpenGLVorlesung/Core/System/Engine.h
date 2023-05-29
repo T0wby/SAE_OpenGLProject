@@ -2,6 +2,7 @@
 #define ENGINE_H
 #include <memory>
 #include "Scene.h"
+#include "../../Components/Camera.h"
 
 class CEngine
 {
@@ -16,6 +17,7 @@ public:
 private:
     std::vector<std::shared_ptr<CScene>> m_scenes{};
     std::shared_ptr<CScene> m_activeScene{};
+    std::shared_ptr<CCamera> m_pCamera{};
     int m_iWidth{1280};
     int m_iHeight{1280};
 
@@ -24,9 +26,6 @@ private:
 
     void CreateSystemPointer(void);
     void CreateScenes(void);
-    void CreateComponents(void);
-    void CreateMaterials(void);
-    void CreateGameObjects(void);
     
 };
 #endif

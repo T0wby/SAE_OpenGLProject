@@ -1,53 +1,21 @@
 ﻿#include "Engine.h"
 #include "../../glad/Loader.h"
-#include "DataManager.h"
 #include "Scene.h"
+#include "Scenes/PhongScene.h"
 #include "../General/Time.h"
 #include "../../Window/Window.h"
-#include "../../Components/Camera.h"
 #include "../../Input/UserInput.h"
 #include "../../Components/Mesh.h"
-#include "../../Components/Material.h"
-#include "../../Shader/Shader.h"
-#include "../../GameObject/GameObject.h"
 #include "../../Core/General/DrawData.h"
-#include <glm/glm.hpp>
 #include <memory>
-#include <glm/gtc/type_ptr.hpp>
 
 constexpr int I_SUCCESS = 0;
 
-// Light properties
-constexpr glm::vec3 V3_LIGHT_AMBIENT = glm::vec3(1.0f, 1.0f, 1.0f);
-constexpr glm::vec3 V3_LIGHT_DIFFUSE = glm::vec3(1.0f, 1.0f, 1.0f);
-constexpr glm::vec3 V3_LIGHT_SPECULAR = glm::vec3(1.0f, 1.0f, 1.0f);
-
 // System
 std::shared_ptr<CWindow> pWindow = nullptr;
-std::unique_ptr<CLoader> pGladLoader = nullptr;
-std::unique_ptr<CTime> pTime = nullptr;
-std::unique_ptr<CUserInput> pUserInput = nullptr;
-
-// Components
-std::shared_ptr<CCamera> pCamera = nullptr;
-
-std::shared_ptr<CShader> pPhongShaderHouse = nullptr;
-std::shared_ptr<CShader> pPhongShaderCube = nullptr;
-std::shared_ptr<CShader> pPhongShaderCube2 = nullptr;
-std::shared_ptr<CShader> pPhongShaderCube3 = nullptr;
-std::shared_ptr<CShader> pLightShader = nullptr;
-
-std::shared_ptr<CMaterial> pMatCube = nullptr;
-std::shared_ptr<CMaterial> pMatCube2 = nullptr;
-std::shared_ptr<CMaterial> pMatCube3 = nullptr;
-std::shared_ptr<CMaterial> pMatLight = nullptr;
-std::shared_ptr<CMaterial> pMatHouse = nullptr;
-
-std::shared_ptr<CGameObject> pHouseObject = nullptr;
-std::shared_ptr<CGameObject> pCubeObject = nullptr;
-std::shared_ptr<CGameObject> pCubeObject2 = nullptr;
-std::shared_ptr<CGameObject> pCubeObject3 = nullptr;
-std::shared_ptr<CGameObject> pLightObject = nullptr;
+std::shared_ptr<CLoader> pGladLoader = nullptr;
+std::shared_ptr<CTime> pTime = nullptr;
+std::shared_ptr<CUserInput> pUserInput = nullptr;
 
 void CEngine::AddScene(std::shared_ptr<CScene> a_scene)
 {
@@ -73,28 +41,15 @@ void CEngine::RemoveScene(std::shared_ptr<CScene> a_scene)
 
 int CEngine::Initialize()
 {
-	CreateScenes();
 	CreateSystemPointer();
+	CreateScenes();
 
 	auto iErrorMsg = pWindow->Initialize();
 
-	// Create Components that are later used for the game objects
-	CreateComponents();
-
 	iErrorMsg = pGladLoader->Initialize();
 
-	// Create and Add all game objects to a scene
-	CreateGameObjects();
-
 	auto deltaTime = pTime->GetDeltaTime();
-	iErrorMsg = pUserInput->Initialize(pWindow, pCamera, deltaTime);
-
-
-	pPhongShaderHouse->Initialize();
-	pPhongShaderCube->Initialize();
-	pPhongShaderCube2->Initialize();
-	pPhongShaderCube3->Initialize();
-	pLightShader->Initialize();
+	iErrorMsg = pUserInput->Initialize(pWindow, m_pCamera, deltaTime);
 
 	InitializeScenes();
 
@@ -115,26 +70,12 @@ int CEngine::Run()
 
 		pUserInput->Update(deltaTime);
 
-		pCamera->SetCameraData(45.0f, 0.1f, 1000.0f, pPhongShaderHouse->GetShaderProgram(), "camMatrix");
-		pCamera->Update();
-
-
 		DrawData drawData
 		{
-			pCamera->GetCamMatrix(),
-			pCamera->GetPos(),
-			pLightObject->GetTransform()->m_position,
-			V3_LIGHT_AMBIENT,
-			V3_LIGHT_DIFFUSE,
-			//V3_LIGHT_AMBIENT * glm::vec3(sin(glfwGetTime() * 2.0f), sin(glfwGetTime() * 0.7f), sin(glfwGetTime() * 1.3f)),
-			//V3_LIGHT_DIFFUSE * glm::vec3(static_cast<float>(sin(glfwGetTime())), static_cast<float>(sin(glfwGetTime()))* 0.3f, static_cast<float>(sin(glfwGetTime())) * 0.6f),
-			V3_LIGHT_SPECULAR
+			
 		};
 
 		UpdateScenes(drawData);
-		pCubeObject->GetTransform()->m_position = glm::vec3(static_cast<float>(sin(glfwGetTime())) * 0.5f,static_cast<float>(cos(glfwGetTime())) * 0.5f,  -4.0f);
-		pCubeObject->GetTransform()->m_rotation = glm::vec3(1.0f + static_cast<float>(glfwGetTime()), static_cast<float>(glfwGetTime()), 0.0f);
-		pLightObject->GetTransform()->m_position = pCubeObject->GetTransform()->m_position + glm::vec3(static_cast<float>(cos(glfwGetTime())) * 4.0f,static_cast<float>(sin(glfwGetTime())) * 3.5f,  static_cast<float>(sin(glfwGetTime())) * 3.5f);
 
 
 		pWindow->UpdateSwapBuffers();
@@ -176,13 +117,11 @@ void CEngine::UpdateScenes(const DrawData& a_drawData)
 
 void CEngine::CreateSystemPointer()
 {
-	pCamera = std::make_shared<CCamera>(m_iWidth, m_iHeight, glm::vec3(0.0f, 3.0f, 7.0f), glm::vec3(0.0f, 0.0f, -0.5f), glm::vec3(0.0f, 1.0f, 0.0f));
-
 	// System
-	pWindow = std::make_shared<CWindow>(m_iWidth, m_iHeight, "SAE_Tobi_Engine", pCamera);
-	pGladLoader = std::make_unique<CLoader>(m_iWidth, m_iHeight);
-	pUserInput = std::make_unique<CUserInput>();
-	pTime = std::make_unique<CTime>();
+	pWindow = std::make_shared<CWindow>(m_iWidth, m_iHeight, "SAE_Tobi_Engine", m_pCamera);
+	pGladLoader = std::make_shared<CLoader>(m_iWidth, m_iHeight);
+	pUserInput = std::make_shared<CUserInput>();
+	pTime = std::make_shared<CTime>();
 }
 
 /**
@@ -190,110 +129,9 @@ void CEngine::CreateSystemPointer()
  */
 void CEngine::CreateScenes()
 {
-	std::shared_ptr<CScene> pScene = std::make_shared<CScene>();
-	m_scenes.push_back(pScene);
-	m_activeScene = pScene;
-}
-
-/**
- * \brief Create Shader and Components that are later used on GameObjects
- */
-void CEngine::CreateComponents()
-{
-	// Shader
-	const auto vertexShader = CDataManager::ReadFile("Resource Files/Shader/DefaultVertex.glsl");
-	const auto fragmentShader = CDataManager::ReadFile("Resource Files/Shader/DefaultFragment.glsl");
-	const auto vertexPhongShader = CDataManager::ReadFile("Resource Files/Shader/PhongVertex.glsl");
-	const auto fragmentPhongShader = CDataManager::ReadFile("Resource Files/Shader/PhongFragment.glsl");
-	const auto vertexLightShader = CDataManager::ReadFile("Resource Files/Shader/LightVertex.glsl");
-	const auto fragmentLightShader = CDataManager::ReadFile("Resource Files/Shader/LightFragment.glsl");
-	
-	// Components
-	pPhongShaderHouse = std::make_shared<CShader>(vertexPhongShader, fragmentPhongShader);
-	pPhongShaderCube = std::make_shared<CShader>(vertexPhongShader, fragmentPhongShader);
-	pPhongShaderCube2 = std::make_shared<CShader>(vertexPhongShader, fragmentPhongShader);
-	pPhongShaderCube3 = std::make_shared<CShader>(vertexPhongShader, fragmentPhongShader);
-	pLightShader = std::make_shared<CShader>(vertexLightShader, fragmentLightShader);
-
-	CreateMaterials();
-	
-}
-
-/**
- * \brief Create Materials that are later used on GameObjects
- */
-void CEngine::CreateMaterials()
-{
-	pMatHouse = std::make_shared<CMaterial>();
-	*pMatHouse = {
-		glm::vec3(0.1745f, 0.01175f, 0.01175f),
-		glm::vec3(0.61424f, 0.04136f, 0.04136f),
-		glm::vec3(0.727811f, 0.626959f, 0.626959f),
-		32.0f
-	};
-	
-	pMatLight = std::make_shared<CMaterial>();
-	*pMatLight = {
-		V3_LIGHT_AMBIENT,
-		V3_LIGHT_DIFFUSE
-	};
-	
-	pMatCube = std::make_shared<CMaterial>();
-	*pMatCube = {
-		glm::vec3(0.24725f, 0.1995f, 0.0745f),
-		glm::vec3(0.75164f, 0.60648f, 0.22648f),
-		glm::vec3(0.628281f, 0.555802f, 0.366065f),
-		64.0f
-	};
-	
-	pMatCube2 = std::make_shared<CMaterial>();
-	*pMatCube2 = {
-		glm::vec3(0.0215f, 0.1745f, 0.0215f),
-		glm::vec3(0.07568f, 0.61424f, 0.07568f),
-		glm::vec3(0.633f, 0.727811f, 0.633f),
-		32.0f
-	};
-	
-	pMatCube3 = std::make_shared<CMaterial>();
-	*pMatCube3 = {
-		glm::vec3(0.5f, 1.0f, 0.3f),
-		glm::vec3(0.5f, 1.0f, 0.3f),
-		glm::vec3(1.0f, 1.0f, 1.0f),
-		1024.0f
-	};
-}
-
-/**
- * \brief Create Game Objects and add them to the scene.
- */
-void CEngine::CreateGameObjects()
-{
-	// VerticesInformation
-	CPrimitiveMeshes house = CPrimitiveMeshes::GetHouse();
-	CPrimitiveMeshes cube = CPrimitiveMeshes::GetCube();
-	CPrimitiveMeshes plane = CPrimitiveMeshes::GetPlane();
-	CPrimitiveMeshes lightCube = CPrimitiveMeshes::GetLightCube();
-
-	// Create Scene Objects
-	pHouseObject = std::make_shared<CGameObject>(pPhongShaderHouse, &house, pMatHouse, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
-	pHouseObject->GetTransform()->m_position = glm::vec3(0.0f, 0.0f, 0.0f);
-
-	pCubeObject = std::make_shared<CGameObject>(pPhongShaderCube, &cube, pMatCube, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
-	pCubeObject->GetTransform()->m_position = glm::vec3(0.0f, -1.0f, 0.0f);
-	pCubeObject2 = std::make_shared<CGameObject>(pPhongShaderCube2, &cube, pMatCube2, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
-	pCubeObject2->GetTransform()->m_position = glm::vec3(-2.0f, 0.0f, 0.0f);
-	pCubeObject3 = std::make_shared<CGameObject>(pPhongShaderCube3, &cube, pMatCube3, "Resource Files/Image/SAE_Institute_Black_Logo.jpg");
-	pCubeObject3->GetTransform()->m_position = glm::vec3(0.0f, -5.0f, 0.0f);
-	pCubeObject3->GetTransform()->m_scale = glm::vec3(20.0f, 0.01f, 20.0f);
-
-	
-	pLightObject = std::make_shared<CGameObject>(pLightShader, &lightCube, pMatLight);
-	pLightObject->GetTransform()->m_position = glm::vec3(-0.0f, -1.0f, -4.0f);
-	pLightObject->GetTransform()->m_scale = glm::vec3(0.5f, 0.5f, 0.5f);
-
-	m_activeScene->AddGameObject(pHouseObject);
-	m_activeScene->AddGameObject(pCubeObject);
-	m_activeScene->AddGameObject(pCubeObject2);
-	m_activeScene->AddGameObject(pCubeObject3);
-	m_activeScene->AddGameObject(pLightObject);
+	//std::shared_ptr<CScene> pScene = std::make_shared<CScene>();
+	const std::shared_ptr<CPhongScene> phong_scene = std::make_shared<CPhongScene>(pWindow, pGladLoader, pUserInput, pTime);
+	m_pCamera = phong_scene->GetCamera();
+	m_scenes.push_back(phong_scene);
+	m_activeScene = phong_scene;
 }

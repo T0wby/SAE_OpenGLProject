@@ -21,13 +21,14 @@ public:
     void Draw(const DrawData& a_drawData) override;
     void Finalize(void) override;
 
+    auto GetCamera() -> const std::shared_ptr<CCamera>;
+
 private:
     void CreateSystems();
     void CreateComponents();
     void CreateMaterials();
     void CreateGameObjects();
 
-    void InitializeSystems();
     void InitializeComponents();
 
     
