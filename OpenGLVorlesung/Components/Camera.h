@@ -27,6 +27,8 @@ public:
 	inline void SetPosition(glm::vec3 a_pos) 
 	{ 
 		m_pos += a_pos;
+		std::cout << "PosX: " << m_pos.x << " PosY: " << m_pos.y << " PosZ: " << m_pos.z << std::endl;
+		std::cout << "OrientX: " << m_orientation.x << " OrientY: " << m_orientation.y << " OrientZ: " << m_orientation.z << std::endl;
 	}
 
 	auto GetViewMatrix() const -> const glm::mat4;
