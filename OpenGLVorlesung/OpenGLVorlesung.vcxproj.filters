@@ -84,6 +84,18 @@
     <ClCompile Include="Components\PrimitiveMeshes.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Core\System\Engine.cpp">
+      <Filter>Core\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\System\Scene.cpp">
+      <Filter>Core\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\System\Scenes\PhongScene.cpp">
+      <Filter>Core\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Material.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window\Window.h">
@@ -131,6 +143,18 @@
     <ClInclude Include="Components\PrimitiveMeshes.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Core\System\Engine.h">
+      <Filter>Core\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\System\Scene.h">
+      <Filter>Core\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\System\Scenes\PhongScene.h">
+      <Filter>Core\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Material.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resource Files\Shader\DefaultFragment.glsl">
@@ -139,10 +163,16 @@
     <None Include="Resource Files\Shader\DefaultVertex.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
-    <None Include="Resource Files\Shader\AmbientFragment.glsl">
+    <None Include="Resource Files\Shader\PhongVertex.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
-    <None Include="Resource Files\Shader\AmbientVertex.glsl">
+    <None Include="Resource Files\Shader\LightFragment.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="Resource Files\Shader\LightVertex.glsl">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="Resource Files\Shader\PhongFragment.glsl">
       <Filter>Resource Files\Shader</Filter>
     </None>
   </ItemGroup>

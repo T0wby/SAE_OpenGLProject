@@ -30,7 +30,6 @@ public:
 		m_components.push_back(m_pMesh);
 	}
 
-	//TODO: GetComponent
 	void AddComponent(std::shared_ptr<IComponent> a_component);
 	void RemoveComponent(std::shared_ptr<IComponent> a_component);
 
@@ -40,7 +39,7 @@ public:
 
 	void Initialize(void);
 	void Update(void);
-	void Draw(DrawData);
+	void Draw(const DrawData&);
 
 private:
 	std::vector<std::shared_ptr<IComponent>> m_components{};

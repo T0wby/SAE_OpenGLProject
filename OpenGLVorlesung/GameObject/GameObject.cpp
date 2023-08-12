@@ -66,7 +66,7 @@ void CGameObject::Update(void)
 	}
 }
 
-void CGameObject::Draw(DrawData a_drawData)
+void CGameObject::Draw(const DrawData& a_drawData)
 {
 	//glUseProgram(m_pShader->GetShaderProgram()); // same as m_pShader->Draw();
 	m_pShader->Draw();

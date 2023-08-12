@@ -141,7 +141,10 @@
     <ClCompile Include="Core\General\Time.cpp" />
     <ClCompile Include="Core\General\Variables.cpp" />
     <ClCompile Include="Core\main.cpp" />
+    <ClCompile Include="Core\System\Scene.cpp" />
+    <ClCompile Include="Core\System\Engine.cpp" />
     <ClCompile Include="Core\System\DataManager.cpp" />
+    <ClCompile Include="Core\System\Scenes\PhongScene.cpp" />
     <ClCompile Include="GameObject\GameObject.cpp" />
     <ClCompile Include="glad\Loader.cpp" />
     <ClCompile Include="glad\src\glad.c" />
@@ -160,7 +163,10 @@
     <ClInclude Include="Core\General\DrawData.h" />
     <ClInclude Include="Core\General\Time.h" />
     <ClInclude Include="Core\General\Variables.h" />
+    <ClInclude Include="Core\System\Scene.h" />
+    <ClInclude Include="Core\System\Engine.h" />
     <ClInclude Include="Core\System\DataManager.h" />
+    <ClInclude Include="Core\System\Scenes\PhongScene.h" />
     <ClInclude Include="GameObject\GameObject.h" />
     <ClInclude Include="glad\Loader.h" />
     <ClInclude Include="Input\UserInput.h" />

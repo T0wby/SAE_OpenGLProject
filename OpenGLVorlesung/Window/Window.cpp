@@ -1,8 +1,8 @@
 #include "Window.h"
 
-const int I_SUCCESS = 0;
-const int I_ERR_GLFW_INIT_FAILED = -1;
-const int I_ERR_WIN_INIT_FAILED = -2;
+constexpr int I_SUCCESS = 0;
+constexpr int I_ERR_GLFW_INIT_FAILED = -1;
+constexpr int I_ERR_WIN_INIT_FAILED = -2;
 
 GLFWwindow* pWindow = nullptr;
 
@@ -35,7 +35,7 @@ auto CWindow::Initialize(void) const -> const int
 auto CWindow::Update(void) const -> const int
 {
 	glfwPollEvents();
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glClearColor(0.1f, 0.1f, 0.1f, 0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	return I_SUCCESS;
@@ -75,7 +75,7 @@ GLFWwindow* CWindow::GetWindow(void)
 	return pWindow;
 }
 
-void CWindow::SetCamera(std::shared_ptr<CCamera> a_pCamera)
+void CWindow::SetCamera(const std::shared_ptr<CCamera>& a_pCamera)
 {
 	pCurrCamera = a_pCamera;
 }
