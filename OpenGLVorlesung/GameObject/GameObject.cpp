@@ -4,7 +4,6 @@
 #include <glm/gtx/transform.hpp>
 
 
-//TODO: Create own transform class/Component
 glm::mat4x4 TransformMatrix{};
 glm::mat4x4 PositionMatrix{};
 glm::mat4x4 RotationMatrix{};
@@ -58,8 +57,6 @@ void CGameObject::Initialize(void)
 
 void CGameObject::Update(void)
 {
-	//m_pTransform->Update();
-
 	for (std::shared_ptr<IComponent> component : m_components)
 	{
 		component->Update(); // calls the update function of each component
@@ -68,7 +65,6 @@ void CGameObject::Update(void)
 
 void CGameObject::Draw(const DrawData& a_drawData)
 {
-	//glUseProgram(m_pShader->GetShaderProgram()); // same as m_pShader->Draw();
 	m_pShader->Draw();
 	m_pShader->SendMat4ToShader("camMatrix", a_drawData.m_projectionViewMatrix);
 	m_pShader->SendVec3ToShader("camPosition", a_drawData.m_cameraPosition);
@@ -86,7 +82,6 @@ void CGameObject::Draw(const DrawData& a_drawData)
 	m_pShader->SendVec3ToShader("light.specular", a_drawData.m_lightSpecular);
 	
 	glBindVertexArray(m_pMesh->GetVAO());
-	//m_pMesh->Draw(); // done in for loop
 
 	for (std::shared_ptr<IComponent> component : m_components)
 	{

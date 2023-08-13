@@ -64,10 +64,8 @@ auto CPhongScene::GetCamera() -> const std::shared_ptr<CCamera>
 void CPhongScene::CreateSystems()
 {
     if (m_pCamera != nullptr) return;
-    //m_pCamera = std::make_shared<CCamera>(I_WIDTH, I_HEIGHT, glm::vec3(-26.2851f, 15.3976f, 0.0501986f), glm::vec3(-0.0447699f, -0.482519f, -0.874741f),
-    //                                      glm::vec3(0.0f, 1.0f, 0.0f));
-    //m_pCamera->CalcOrientation(glm::vec3(-0.0447699f, -0.482519f, -0.874741f));
 
+    // Create Camera with initial position
     m_pCamera = std::make_shared<CCamera>(I_WIDTH, I_HEIGHT, glm::vec3(0.0f, 3.0f, 20.0f), glm::vec3(0.0f, 0.0f, -0.5f),
                                           glm::vec3(0.0f, 1.0f, 0.0f));
 }
