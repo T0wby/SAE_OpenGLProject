@@ -45,3 +45,9 @@ void CCamera::CalcOrientation(glm::vec3 a_front)
 {
 	m_orientation = glm::normalize(a_front);
 }
+
+void CCamera::UpdateSizeValues(const int& a_iWidth, const int& a_iHeight)
+{
+	m_iWidth = a_iWidth;
+	m_iHeight = a_iHeight;
+}

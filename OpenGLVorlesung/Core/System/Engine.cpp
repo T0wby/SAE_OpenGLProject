@@ -26,7 +26,6 @@ void CEngine::RemoveScene(std::shared_ptr<CScene> a_scene)
 {
 	if (a_scene == nullptr) return;
 
-
 	for (int i = 0; i < m_scenes.size(); i++)
 	{
 		if (a_scene == m_scenes[i])
@@ -92,10 +91,6 @@ void CEngine::Finalize()
  */
 void CEngine::InitializeScenes()
 {
-	// for (std::shared_ptr<CScene> scene : m_scenes)
-	// {
-	// 	scene->Initialize();
-	// }
 	m_activeScene->Initialize();
 }
 
@@ -105,11 +100,6 @@ void CEngine::InitializeScenes()
  */
 void CEngine::UpdateScenes(const DrawData& a_drawData)
 {
-	// for (std::shared_ptr<CScene> scene : m_scenes)
-	// {
-	// 	scene->Update();
-	// 	scene->Draw(a_drawData);
-	// }
 	m_activeScene->Update();
 	m_activeScene->Draw(a_drawData);
 }
@@ -128,7 +118,6 @@ void CEngine::CreateSystemPointer()
  */
 void CEngine::CreateScenes()
 {
-	//std::shared_ptr<CScene> pScene = std::make_shared<CScene>();
 	const std::shared_ptr<CPhongScene> phong_scene = std::make_shared<CPhongScene>(pWindow, pGladLoader, pUserInput, pTime);
 	m_pCamera = phong_scene->GetCamera();
 	m_scenes.push_back(phong_scene);

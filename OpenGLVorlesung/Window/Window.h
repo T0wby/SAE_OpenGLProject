@@ -14,6 +14,11 @@ public:
 	{
 		SetCamera(a_pCamera);
 	}
+	CWindow(const CWindow&) = default;
+	CWindow(CWindow&&) = default;
+	CWindow& operator= (const CWindow&) = default;
+	CWindow& operator= (CWindow&&) = default;
+	~CWindow() = default;
 
 	auto Initialize(void) const->const int;
 	auto Update(void) const->const int;

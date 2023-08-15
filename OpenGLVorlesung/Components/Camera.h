@@ -14,6 +14,13 @@ public:
 	inline CCamera(int a_iWidth, int a_iHeight, glm::vec3 a_pos, glm::vec3 a_orient, glm::vec3 a_up)
 		: m_iWidth(a_iWidth), m_iHeight(a_iHeight), m_pos(a_pos), m_orientation(a_orient), m_up(a_up) {}
 
+	
+	CCamera(const CCamera&) = default;
+	CCamera(CCamera&&) = default;
+	CCamera& operator= (const CCamera&) = default;
+	CCamera& operator= (CCamera&&) = default;
+	virtual ~CCamera() = default;
+
 	inline auto GetOrientation(void) const -> const glm::vec3 { return m_orientation; }
 	inline auto GetUp(void) const -> const glm::vec3 { return m_up; }
 	inline auto GetSpeed(void) const -> const float { return m_fSpeed; }
@@ -27,8 +34,6 @@ public:
 	inline void SetPosition(glm::vec3 a_pos) 
 	{ 
 		m_pos += a_pos;
-		//std::cout << "PosX: " << m_pos.x << " PosY: " << m_pos.y << " PosZ: " << m_pos.z << std::endl;
-		//std::cout << "OrientX: " << m_orientation.x << " OrientY: " << m_orientation.y << " OrientZ: " << m_orientation.z << std::endl;
 	}
 
 	auto GetViewMatrix() const -> const glm::mat4;
@@ -42,6 +47,7 @@ public:
 	virtual void Finalize(void) override;
 
 	void CalcOrientation(glm::vec3 a_front);
+	void UpdateSizeValues(const int& a_iWidth, const int& a_iHeight);
 
 private:
 	//ScreenSize

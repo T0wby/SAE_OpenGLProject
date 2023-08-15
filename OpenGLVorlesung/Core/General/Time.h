@@ -5,9 +5,16 @@ class CTime
 {
 public:
 	CTime();
+	CTime(const CTime&) = default;
+	CTime(CTime&&) = default;
+	CTime& operator= (const CTime&) = default;
+	CTime& operator= (CTime&&) = default;
+	~CTime() = default;
+
+	
 	void Update();
 
-	inline float GetDeltaTime()
+	inline float GetDeltaTime() const
 	{
 		return m_fDeltaTime;
 	}

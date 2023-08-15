@@ -9,6 +9,13 @@
 class CUserInput
 {
 public:
+	CUserInput() = default;
+	CUserInput(const CUserInput&) = default;
+	CUserInput(CUserInput&&) = default;
+	CUserInput& operator= (const CUserInput&) = default;
+	CUserInput& operator= (CUserInput&&) = default;
+	~CUserInput() = default;
+	
 	int Initialize(std::shared_ptr<CWindow> a_pWindow, std::shared_ptr<CCamera> a_pCamera, float& a_fDeltaTime);
 	int Update(float& a_fDeltaTime);
 	void Finalize(void);

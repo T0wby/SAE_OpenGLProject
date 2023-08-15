@@ -5,7 +5,14 @@
 class CScene
 {
 public:
+
+    CScene() = default;
+    CScene(const CScene&) = default;
+    CScene(CScene&&) = default;
+    CScene& operator= (const CScene&) = default;
+    CScene& operator= (CScene&&) = default;
     virtual ~CScene() = default;
+    
     void AddGameObject(std::shared_ptr<CGameObject> a_gameObject);
     void AddGameObject(const std::shared_ptr<CShader>& a_pShader, CPrimitiveMeshes* a_meshStruct, const std::shared_ptr<CMaterial>& a_pMaterial , const std::string& a_sTextureLocation = "");
     void RemoveGameObject(std::shared_ptr<CGameObject> a_gameObject);

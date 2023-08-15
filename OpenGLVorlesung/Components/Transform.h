@@ -8,6 +8,13 @@ class CTransform : public IComponent
 {
 public:
 
+	CTransform() = default;
+	CTransform(const CTransform&) = default;
+	CTransform(CTransform&&) = default;
+	CTransform& operator= (const CTransform&) = default;
+	CTransform& operator= (CTransform&&) = default;
+	virtual ~CTransform() = default;
+	
 	// Inherited via IComponent
 	virtual int Initialize(void) override;
 	virtual int Update(void) override;

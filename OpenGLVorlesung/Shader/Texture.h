@@ -5,13 +5,18 @@
 class CTexture
 {
 public:
-	inline CTexture(std::string a_sTexture)
+	inline CTexture(const std::string& a_sTexture)
 		: m_sTexture(a_sTexture) {}
-
+	CTexture(const CTexture&) = default;
+	CTexture(CTexture&&) = default;
+	CTexture& operator= (const CTexture&) = default;
+	CTexture& operator= (CTexture&&) = default;
+	~CTexture() = default;
+	
 	void Initialize(void);
 
 private:
-	std::string m_sTexture{ "" };
+	std::string m_sTexture{};
 };
 
 #endif // !TEXTURE_H
