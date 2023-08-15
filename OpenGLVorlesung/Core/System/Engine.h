@@ -7,6 +7,13 @@
 class CEngine
 {
 public:
+    CEngine() = default;
+    CEngine(const CEngine&) = default;
+    CEngine(CEngine&&) = default;
+    CEngine& operator= (const CEngine&) = default;
+    CEngine& operator= (CEngine&&) = default;
+    ~CEngine() = default;
+    
     void AddScene(std::shared_ptr<CScene> a_scene);
     void RemoveScene(std::shared_ptr<CScene> a_scene);
 
@@ -18,8 +25,8 @@ private:
     std::vector<std::shared_ptr<CScene>> m_scenes{};
     std::shared_ptr<CScene> m_activeScene{};
     std::shared_ptr<CCamera> m_pCamera{};
-    int m_iWidth{1280};
-    int m_iHeight{1280};
+    int m_iWidth{800};
+    int m_iHeight{800};
 
     void InitializeScenes(void);
     void UpdateScenes(const DrawData& a_drawData);

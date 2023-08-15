@@ -30,6 +30,12 @@ public:
 		m_components.push_back(m_pMesh);
 	}
 
+	CGameObject(const CGameObject&) = default;
+	CGameObject(CGameObject&&) = default;
+	CGameObject& operator= (const CGameObject&) = default;
+	CGameObject& operator= (CGameObject&&) = default;
+	virtual ~CGameObject() = default;
+
 	void AddComponent(std::shared_ptr<IComponent> a_component);
 	void RemoveComponent(std::shared_ptr<IComponent> a_component);
 
@@ -37,9 +43,9 @@ public:
 	std::shared_ptr<CMesh> GetMesh(void);
 	std::shared_ptr<CShader> GetShader(void);
 
-	void Initialize(void);
-	void Update(void);
-	void Draw(const DrawData&);
+	virtual void Initialize(void);
+	virtual void Update(void);
+	virtual void Draw(const DrawData&);
 
 private:
 	std::vector<std::shared_ptr<IComponent>> m_components{};

@@ -10,6 +10,12 @@ public:
 	inline CShader(const std::string& a_sVertexShader, const std::string& a_sFragmentShader)
 		: m_sVertexShader(a_sVertexShader), m_sFragmentShader(a_sFragmentShader) {}
 
+	CShader(const CShader&) = default;
+	CShader(CShader&&) = default;
+	CShader& operator= (const CShader&) = default;
+	CShader& operator= (CShader&&) = default;
+	~CShader() = default;
+	
 	auto GetShaderID(void) const -> const int;
 	auto GetShaderProgram(void) const -> const unsigned int;
 	void SendMat4ToShader(const std::string& a_sName, const glm::mat4& a_mat) const;

@@ -7,7 +7,6 @@
 #include <vector>
 #include "../Core/General/Variables.h"
 
-//TODO: vertices etc shouldn't be set in here but taken on construction instead
 
 class CMesh : public IComponent
 {
@@ -18,6 +17,12 @@ public:
 		m_vertices = a_meshStruct->GetVertices();
 		m_indices = a_meshStruct->GetIndices();
 	}
+
+	CMesh(const CMesh&) = default;
+	CMesh(CMesh&&) = default;
+	CMesh& operator= (const CMesh&) = default;
+	CMesh& operator= (CMesh&&) = default;
+	virtual ~CMesh() = default;
 
 	// Engine Loop
 	virtual int Initialize(void) override;

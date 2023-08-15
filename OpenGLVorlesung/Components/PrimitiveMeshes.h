@@ -6,6 +6,14 @@
 class CPrimitiveMeshes
 {
 public:
+
+	CPrimitiveMeshes() = default;
+	CPrimitiveMeshes(const CPrimitiveMeshes&) = default;
+	CPrimitiveMeshes(CPrimitiveMeshes&&) = default;
+	CPrimitiveMeshes& operator= (const CPrimitiveMeshes&) = default;
+	CPrimitiveMeshes& operator= (CPrimitiveMeshes&&) = default;
+	~CPrimitiveMeshes() = default;
+	
 	static CPrimitiveMeshes GetPlane();
 	static CPrimitiveMeshes GetCube();
 	static CPrimitiveMeshes GetLightCube();

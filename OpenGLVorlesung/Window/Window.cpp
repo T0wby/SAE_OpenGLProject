@@ -8,6 +8,13 @@ GLFWwindow* pWindow = nullptr;
 
 std::shared_ptr<CCamera> pCurrCamera = nullptr;
 
+void OnWindowSizeChange(GLFWwindow* window, int width, int height)
+{
+	glViewport(0, 0, width, height);
+	if (pCurrCamera == nullptr) return;
+	pCurrCamera->UpdateSizeValues(width, height);
+}
+
 auto CWindow::Initialize(void) const -> const int
 {
 	if (!glfwInit()) return I_ERR_GLFW_INIT_FAILED;
@@ -15,7 +22,7 @@ auto CWindow::Initialize(void) const -> const int
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+	glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
 	if (pWindow == nullptr) pWindow = glfwCreateWindow(m_iWidth, m_iHeight, m_sTitle.c_str(), nullptr, nullptr);
 
@@ -27,8 +34,9 @@ auto CWindow::Initialize(void) const -> const int
 
 	glfwMakeContextCurrent(pWindow);
 
+	glfwSetWindowSizeCallback(pWindow, OnWindowSizeChange);
+	
 	glfwSetInputMode(pWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-	//glfwSetKeyCallback(pWindow, HandleKeys);
 	return I_SUCCESS;
 }
 
@@ -79,4 +87,6 @@ void CWindow::SetCamera(const std::shared_ptr<CCamera>& a_pCamera)
 {
 	pCurrCamera = a_pCamera;
 }
+
+
 

@@ -15,6 +15,11 @@ public:
         const std::shared_ptr<CUserInput>& a_pUserInput,const std::shared_ptr<CTime>& a_pTime)
     : m_pWindow(a_pWindow), m_pGladLoader(a_pGladLoader), m_pTime(a_pTime), m_pUserInput(a_pUserInput) {}
 
+    CPhongScene(const CPhongScene&) = default;
+    CPhongScene(CPhongScene&&) = default;
+    CPhongScene& operator= (const CPhongScene&) = default;
+    CPhongScene& operator= (CPhongScene&&) = default;
+    ~CPhongScene() override = default;
     
     void Initialize() override;
     void Update(void) override;
